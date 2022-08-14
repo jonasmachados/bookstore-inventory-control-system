@@ -1,0 +1,14 @@
+com\jonas\backend\BackendApplication.class
+com\jonas\backend\entities\Endereco.class
+com\jonas\backend\repositories\CompraRepository.class
+com\jonas\backend\config\TestConfig.class
+com\jonas\backend\entities\Livro.class
+com\jonas\backend\entities\PessoaJuridica.class
+com\jonas\backend\repositories\ClientRepository.class
+com\jonas\backend\entities\Client.class
+com\jonas\backend\entities\Compra.class
+com\jonas\backend\entities\PessoaFisica.class
+com\jonas\backend\entities\Venda.class
+com\jonas\backend\repositories\LivroRepository.class
+com\jonas\backend\repositories\VendaRepository.class
+com\jonas\backend\repositories\EnderecoRepository.class
