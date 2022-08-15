@@ -1,12 +1,13 @@
 package com.jonas.backend.entities;
 
 import java.util.Objects;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
+//@DiscriminatorValue("pf")
 @Table(name = "tb_pessoaFisica")
 @Getter
 @Setter
@@ -15,13 +16,15 @@ public class PessoaFisica extends Client {
     private String rg;
     private String cpf;
 
-    public PessoaFisica(Long id, String rg, String cpf, String name, Endereco endereco) {
-        super(id, name, endereco);
+    public PessoaFisica() {
+    }
+
+    public PessoaFisica(Long id, String name, String rua, Integer numero, String bairro, String cidade, String estado, String cep, String rg, String cpf) {
+        super(id, name, rua, numero, bairro, cidade, estado, cep);
         this.rg = rg;
         this.cpf = cpf;
     }
 
-   
 
     @Override
     public String toString() {

@@ -1,5 +1,6 @@
 package com.jonas.backend.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.Objects;
@@ -18,7 +19,9 @@ import lombok.Setter;
 @Table(name = "tb_livro")
 @Getter
 @Setter
-public class Livro {
+public class Livro implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id //Declarando chave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
