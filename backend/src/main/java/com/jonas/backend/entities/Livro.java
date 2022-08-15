@@ -31,7 +31,7 @@ public class Livro implements Serializable {
     private String autor;
     private String editora;
     //private String link_imagem;
-    private byte[] img;
+    private String linkImg;
     private Date anoPublicacao;
 
     @ManyToOne
@@ -40,14 +40,15 @@ public class Livro implements Serializable {
     public Livro() {
     }
 
-    public Livro(Long id, String titulo, String autor, String editora, Date anoPublicacao) {
+    public Livro(Long id, String titulo, String autor, String editora, String linkImg, Date anoPublicacao) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
+        this.linkImg = linkImg;
         this.anoPublicacao = anoPublicacao;
     }
-
+ 
     @Override
     public int hashCode() {
         int hash = 5;
@@ -75,7 +76,7 @@ public class Livro implements Serializable {
 
     @Override
     public String toString() {
-        return "Livro: " + "id: " + id + ", titulo: " + titulo + ", autor: " + autor + ", editora: " + editora + ", img: " + img + ", anoPublicacao: " + anoPublicacao + '}';
+        return "Livro: " + "id: " + id + ", titulo: " + titulo + ", autor: " + autor + ", editora: " + editora + ", img: " + linkImg + ", anoPublicacao: " + anoPublicacao + '}';
     }
 
 }
