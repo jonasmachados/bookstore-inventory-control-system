@@ -1,0 +1,23 @@
+.container-livro{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding-top: 5%;
+  background-color: black;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.container-livro h1{
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.container-livro p{
+  text-align: center;
+  padding-bottom: 5%;
+}
