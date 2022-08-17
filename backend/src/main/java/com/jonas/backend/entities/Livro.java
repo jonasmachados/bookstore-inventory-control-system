@@ -1,16 +1,21 @@
 package com.jonas.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedHashSet;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,9 +38,10 @@ public class Livro implements Serializable {
     //private String link_imagem;
     private String linkImg;
     private Date anoPublicacao;
+    private Integer estoque;
 
-    @ManyToOne
-    private Compra compra;
+    @OneToMany
+    private Set<Compra> compra = new LinkedHashSet<>();
 
     public Livro() {
     }
@@ -48,7 +54,33 @@ public class Livro implements Serializable {
         this.linkImg = linkImg;
         this.anoPublicacao = anoPublicacao;
     }
- 
+
+    public Livro(Long id, String titulo, String autor, String editora, String linkImg, Date anoPublicacao, Integer estoque) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.linkImg = linkImg;
+        this.anoPublicacao = anoPublicacao;
+        this.estoque = estoque;
+    }
+
+    public void comprar(Double preco, Integer quantidade) {
+        int sum = 0;
+        sum = estoque + quantidade;
+        setEstoque(sum);
+    }
+
+    public void vender(Integer quantidade) {
+        int sum = 0;
+        if (estoque < quantidade) {
+            System.out.println("Valor nao permitido");
+        } else {
+            sum = estoque - quantidade;
+            setEstoque(sum);
+        }
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
