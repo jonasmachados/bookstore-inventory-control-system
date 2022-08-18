@@ -1,9 +1,6 @@
   
-  /* 
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 75px;
-  }
+
+ 
   
   body {
     font-weight: 400;
@@ -13,7 +10,11 @@
     color: #fff !important;
     font-family: 'Centra', sans-serif !important;
   }
-  
+  /* 
+     html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+  }
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
