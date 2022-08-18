@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Cormorant+SC&display=swap");
+
+.container-livro {
+  height: auto;
+  padding-top: 0;
+  padding-bottom: 5%;
+  padding-right: 1%;
+  padding-left: 1%;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.container-livro h1 {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.container-livro p {
+  text-align: center;
+  padding-bottom: 5%;
+  color: #fff;
+}
+
+.container-livro .btn {
+ margin-bottom:  5%;
+  margin-right: 2%;
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.p_td {
+  color: #fff;
+  padding-left: 0;
+  padding-top: 5%;
+}
+
+.div-acoes {
+  display: flex;
+  flex-direction: column;
+    color: #fff;
+}

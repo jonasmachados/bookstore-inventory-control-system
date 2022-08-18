@@ -8,24 +8,23 @@ class LivroService{
         return axios.get(LIVRO_API_BASE_URL);
     }
 
-    /*
-    createEmployee(employee){
-        return axios.post(EMPLOYEE_API_BASE_URL, employee);
+    
+    createLivro(livro){
+        return axios.post(LIVRO_API_BASE_URL, livro);
     }
 
-    getEmployeeById(employeeId){
-        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    getLivroById(livroId){
+        return axios.get(LIVRO_API_BASE_URL + '/' + livroId);
     }
 
-    updateEmployee(employeeId, employee){ 
-        return axios.put(EMPLOYEE_API_BASE_URL + '/' +employeeId, employee);
+    updateLivro(livroId, livro){ 
+        return axios.put(LIVRO_API_BASE_URL + '/' +livroId, livro);
     }
 
-    deleteEmployee(employeeId){
-        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    deleteLivro(livroId){
+        return axios.delete(LIVRO_API_BASE_URL + '/' + livroId);
     }
-    */
-
+    
 }
 
 export default new LivroService()

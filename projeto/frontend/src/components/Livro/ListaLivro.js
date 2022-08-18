@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LivroService from "../../services/LivroService"
-import "./Livro.css";
+import "./ListaLivro.css";
 
 const ListaLivro = () => {
     const [livros, setlivros] = useState([]);
@@ -21,10 +21,18 @@ const ListaLivro = () => {
             });
     };
 
+    const deleteLivro = (livroId) => {
+        LivroService.deleteLivro(livroId).then((response) => {
+            getAllLivros();
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
-        <div className="tables">
+        <div className="container-livro">
             <h1> Livros </h1>
-            <Link to="/add-employee" className="btn btn-primary mb-2">
+            <Link to="/add-livro" className="btn mb-4 btn-lg">
                 {" "}
                 Novo Livro{" "}
             </Link>
@@ -37,6 +45,7 @@ const ListaLivro = () => {
                         <th> <p>Editora</p> </th>
                         <th> <p>Ano Publicacao</p> </th>
                         <th> <p>Estoque</p> </th>
+                        <th> <p>Ações</p> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +57,13 @@ const ListaLivro = () => {
                             <td> <p className="p_td">{livro.editora} </p> </td>
                             <td> <p className="p_td">{livro.anoPublicacao} </p> </td>
                             <td> <p className="p_td">{livro.estoque} </p> </td>
+                            <td>
+                                <div className="div-acoes">
+                                    <Link className="btn" to={`/edit-livro/${livro.id}`} >Atualizar</Link>
+                                    <button className="btn" onClick={() => deleteLivro(livro.id)}
+                                        >Deletar</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

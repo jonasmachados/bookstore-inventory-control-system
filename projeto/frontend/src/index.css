@@ -3,14 +3,14 @@
   --primary-color: #0e04d8;
   --primary-color: #377dff;
   */
-  --primary-color: #1bbe05;
-  --second-color:#3dec1a;
+  --primary-color: #0d5e02;
+  --second-color:#9bd394;
   --background-color: rgb(255 255 255 / 10%);
 }
 
 body {
   margin: 0;
-  background-color: #121212 
+  background-color: var(--background-color)
 }
 
 h1{

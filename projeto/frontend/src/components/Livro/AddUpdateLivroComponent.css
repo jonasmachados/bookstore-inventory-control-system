@@ -1,0 +1,29 @@
+.container-add{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.row .card{
+    background-color: var(--primary-color)
+}
+
+h1{
+    padding-top: 5%;
+}
+
+.form-group{
+    padding-bottom: 5%;
+}
+
+.row .btn{
+    margin-right: 2%;
+    background-color: rgb(29, 28, 28);
+    color: #fff;
+}
