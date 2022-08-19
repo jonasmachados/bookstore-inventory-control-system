@@ -9,8 +9,12 @@ class ClienteService{
     }
 
     
-    createCliente(cliente){
-        return axios.post(CLIENTE_API_BASE_URL, cliente);
+    createClientePf(cliente){
+        return axios.post(CLIENTE_API_BASE_URL+ '/pf', cliente);
+    }
+
+    createClientePj(cliente){
+        return axios.post(CLIENTE_API_BASE_URL+ '/pj', cliente);
     }
 
     getClienteById(clienteId){

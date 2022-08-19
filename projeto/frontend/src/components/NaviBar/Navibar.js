@@ -10,7 +10,6 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div></div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li className="nav-item">
           <a href="/#home">Home</a>
