@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NaviBar/Navibar';
 import Footer from './components/Footer/Footer';
 
-import Livro from './components/Livro/Livro';
+import RouteComponents from './components/Route/RouteComponents';
 
 function App() {
   return (
     <div>
    
       <Navbar />
-      <Livro />
+      <RouteComponents />
       <Footer />
    
   </div >
