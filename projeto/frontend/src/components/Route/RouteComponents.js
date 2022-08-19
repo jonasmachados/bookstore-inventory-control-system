@@ -5,6 +5,7 @@ import AddUpdateLivroComponent from '../Livro/AddUpdateLivroComponent';
 import ListaClientes from '../Cliente/ListaClientes.js';
 
 import AddUpdatePF from '../Cliente/AddUpdatePF.js';
+import AddUpdatePJ from '../Cliente/AddUpdatePJ.js';
 import Cliente from '../Cliente/Cliente.js';
 
 const RouteComponents = () => {
@@ -21,7 +22,9 @@ const RouteComponents = () => {
             <Route path="/clientes" element={<ListaClientes />} />
             <Route path="/add-cliente/" element={<Cliente />} />
             <Route path="/add-cliente/pf" element={<AddUpdatePF />} />
-            <Route path="/edit-cliente/:id" element={<AddUpdatePF />} />
+            <Route path="/add-cliente/pj" element={<AddUpdatePJ/>} />
+            <Route path="/edit-cliente-pj/:id" element={<AddUpdatePJ />} />
+            <Route path="/edit-cliente-pf/:id" element={<AddUpdatePF />} />
 
           </Routes>
 

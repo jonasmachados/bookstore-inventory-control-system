@@ -60,12 +60,14 @@ const ListaClientes = () => {
                             <td> <p className="p_td">{cliente.bairro} </p> </td>
                             <td> <p className="p_td">{cliente.cidade} </p> </td>
                             <td> <p className="p_td">{cliente.estado} </p> </td>
-                            <td> <p className="p_td">{cliente.cep} </p> </td>                            
+                            <td> <p className="p_td">{cliente.cep} </p> </td>
                             <td>
                                 <div className="div-acoes">
-                                    <Link className="btn" to={`/edit-cliente/${cliente.id}`} >Atualizar</Link>
+
+                                    <Link className="btn" to={`/edit-cliente/pf/${cliente.id}`} >Atualizar</Link>
+
                                     <button className="btn" onClick={() => deleteCliente(cliente.id)}
-                                        >Deletar</button>
+                                    >Deletar</button>
                                 </div>
                             </td>
                         </tr>
