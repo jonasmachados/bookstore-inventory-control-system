@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LivroService {
-    
+
     @Autowired
     private LivroRepository repository;
-    
+
     public List<Livro> findAll() {
         return repository.findAll();
     }
-    
-     public Livro findById(Long id) {
+
+    public Livro findById(Long id) {
         Optional<Livro> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
@@ -40,7 +40,7 @@ public class LivroService {
             throw new DatabaseException(e.getMessage());
         }
     }
-    
+
     public Livro update(Long id, Livro obj) {
         try {
             Livro entity = repository.getOne(id); //GetOne let a obj mapped for to JPA, dont go to DB
@@ -57,7 +57,8 @@ public class LivroService {
         entity.setTitulo(obj.getTitulo());
         entity.setAutor(obj.getAutor());
         entity.setEditora(obj.getEditora());
-         entity.setLinkImg(obj.getLinkImg());
-          entity.setAnoPublicacao(obj.getAnoPublicacao());
+        entity.setLinkImg(obj.getLinkImg());
+        entity.setAnoPublicacao(obj.getAnoPublicacao());
+        entity.setEstoque(obj.getEstoque());
     }
 }

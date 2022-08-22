@@ -60,7 +60,7 @@ public class TestConfig implements CommandLineRunner {
         Itens itens3 = new Itens(c2, livro3, 30, 20.30);
         itensRepository.saveAll(Arrays.asList(itens1, itens2, itens3));
           
-//        livro1.comprar(10.1, 20);
+       livro1.comprar(10.1, 20);
         livrorepository.save(livro1);
 //        
 //        livro1.vender(2);

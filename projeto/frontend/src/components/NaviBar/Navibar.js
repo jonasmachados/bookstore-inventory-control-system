@@ -21,10 +21,10 @@ const Navbar = () => {
           <a href={`/clientes`}>Clientes</a>
         </li>
         <li className="nav-item">
-          <a href="/#">Compras/Vendas</a>
+          <a href={`/compras`}>Compras</a>
         </li>
         <li className="nav-item">
-          <a href="/#">Contact</a>
+          <a href="/#">Vendas</a>
         </li>
       </ul>
       <div className="hamburger" onClick={handleClick}>

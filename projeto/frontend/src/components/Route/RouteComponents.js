@@ -8,6 +8,8 @@ import AddUpdatePF from '../Cliente/AddUpdatePF.js';
 import AddUpdatePJ from '../Cliente/AddUpdatePJ.js';
 import Cliente from '../Cliente/Cliente.js';
 
+import Compra from '../Compra/Compra.js';
+
 const RouteComponents = () => {
   return (
     <section>
@@ -25,6 +27,7 @@ const RouteComponents = () => {
             <Route path="/add-cliente/pj" element={<AddUpdatePJ/>} />
             <Route path="/edit-cliente-pj/:id" element={<AddUpdatePJ />} />
             <Route path="/edit-cliente-pf/:id" element={<AddUpdatePF />} />
+            <Route path="/compras" element={<Compra />} />
 
           </Routes>
 

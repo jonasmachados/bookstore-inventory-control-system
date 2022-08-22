@@ -52,13 +52,12 @@ public class LivroResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro obj){
+    public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-    
-    
-    
+
+
 }
