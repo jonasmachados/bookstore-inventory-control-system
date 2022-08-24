@@ -1,24 +1,30 @@
 package com.jonas.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@Entity
-//@DiscriminatorValue("pf")
-@Table(name = "tb_pessoaFisica")
 @Getter
 @Setter
-public class PessoaFisica extends Client {
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class PessoaFisica extends Client implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String rg;
     private String cpf;
 
-    public PessoaFisica() {
-    }
-
+    
     public PessoaFisica(Long id, String name, String rua, Integer numero, String bairro, String cidade, String estado, String cep, String rg, String cpf) {
         super(id, name, rua, numero, bairro, cidade, estado, cep);
         this.rg = rg;

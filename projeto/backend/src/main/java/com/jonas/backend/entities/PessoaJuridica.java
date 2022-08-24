@@ -1,25 +1,27 @@
 package com.jonas.backend.entities;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@Entity
 //@DiscriminatorValue("pj")
 @Table(name = "tb_pessoaJuridica")
 @Getter
 @Setter
-public class PessoaJuridica extends Client{
-    
-    private String cnpj;
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class PessoaJuridica extends Client implements Serializable {
 
-    public PessoaJuridica() {
-    }
+    private static final long serialVersionUID = 1L;
+
+    private String cnpj;
 
     public PessoaJuridica(Long id, String name, String rua, Integer numero, String bairro, String cidade, String estado, String cep, String cnpj) {
         super(id, name, rua, numero, bairro, cidade, estado, cep);
@@ -31,5 +33,4 @@ public class PessoaJuridica extends Client{
         return "PessoaJuridica{" + "cnpj=" + cnpj + '}';
     }
 
-   
 }

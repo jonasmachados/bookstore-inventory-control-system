@@ -1,46 +1,52 @@
 package com.jonas.backend.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "tb_venda")
-@Getter 
+
+@Getter
 @Setter
-public class Venda {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "tb_vendas")
+public class Venda implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     @Id //Declarando chave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
+    
+    @ManyToOne
+    @JoinColumn(name = "livro_id")
+    private Livro livro;
     
     private Integer qtdItens;
     private Double precoVenda;
 
-    public Venda(Long id, Client client, Integer qtdItens, Double precoVenda) {
-        this.id = id;
-        this.client = client;
-        this.qtdItens = qtdItens;
-        this.precoVenda = precoVenda;
-    }
-
+    
     @Override
     public String toString() {
         return "Venda{" + "id=" + id + ", client=" + client + ", qtdItens=" + qtdItens + ", precoVenda=" + precoVenda + '}';
     }
     
-    
-    
-    
-    
-    
-    
+
 }

@@ -2,13 +2,17 @@ package com.jonas.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,6 +46,10 @@ public class Livro implements Serializable {
 
     @OneToMany
     private Set<Compra> compra = new LinkedHashSet<>();
+    
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Venda> vendas = new ArrayList<>();
 
     public Livro() {
     }
