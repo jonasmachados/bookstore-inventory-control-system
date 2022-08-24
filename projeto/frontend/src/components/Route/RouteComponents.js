@@ -9,6 +9,7 @@ import AddUpdatePJ from '../Cliente/AddUpdatePJ.js';
 import Cliente from '../Cliente/Cliente.js';
 
 import Compra from '../Compra/Compra.js';
+import ListaVendas from '../Venda/ListaVendas.js';
 
 const RouteComponents = () => {
   return (
@@ -28,6 +29,8 @@ const RouteComponents = () => {
             <Route path="/edit-cliente-pj/:id" element={<AddUpdatePJ />} />
             <Route path="/edit-cliente-pf/:id" element={<AddUpdatePF />} />
             <Route path="/compras" element={<Compra />} />
+
+            <Route path="/vendas" element={<ListaVendas />} />
 
           </Routes>
 

@@ -24,7 +24,7 @@ const Navbar = () => {
           <a href={`/compras`}>Compras</a>
         </li>
         <li className="nav-item">
-          <a href="/#">Vendas</a>
+        <a href={`/vendas`}>Vendas</a>
         </li>
       </ul>
       <div className="hamburger" onClick={handleClick}>
