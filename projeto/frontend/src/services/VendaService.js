@@ -10,7 +10,7 @@ class VendaService{
 
     
     createVenda(venda){
-        return axios.post(VENDA_API_BASE_URL, venda);
+        return axios.post(VENDA_API_BASE_URL + '/add' , venda);
     }
 
     getVendaById(vendaId){

@@ -12,10 +12,12 @@
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-icons": "^1.8.4",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.2",
     "react-icons": "^4.4.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.4.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0"
   },

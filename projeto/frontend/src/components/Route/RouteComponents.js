@@ -10,6 +10,7 @@ import Cliente from '../Cliente/Cliente.js';
 
 import Compra from '../Compra/Compra.js';
 import ListaVendas from '../Venda/ListaVendas.js';
+import AddUpdateVenda from '../Venda/AddUpdateVenda.js';
 
 const RouteComponents = () => {
   return (
@@ -31,6 +32,8 @@ const RouteComponents = () => {
             <Route path="/compras" element={<Compra />} />
 
             <Route path="/vendas" element={<ListaVendas />} />
+            <Route path="/add-venda/" element={<AddUpdateVenda />} />
+            <Route path="/edit-venda/:id" element={<AddUpdateVenda />} />
 
           </Routes>
 
