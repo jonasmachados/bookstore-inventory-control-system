@@ -25,6 +25,17 @@ const AddUpdateVenda = () => {
         getAllLivros();
     }, []);
 
+    useEffect(() => {
+        VendaService.getVendaById(id).then((response) => {
+            setClient(response.data.client.id)
+            setLivro(response.data.livro.id)
+            setQtdItens(response.data.qtdItens)
+            setPrecoVenda(response.data.precoVenda)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [])
+
     const getAllClientes = () => {
         ClienteService.getAllClientes()
             .then((response) => {
@@ -81,17 +92,6 @@ const AddUpdateVenda = () => {
         }
 
     }
-
-    useEffect(() => {
-        VendaService.getVendaById(id).then((response) => {
-            setClient(response.data.client)
-            setLivro(response.data.livro)
-            setQtdItens(response.data.qtdItens)
-            setPrecoVenda(response.data.precoVenda)
-        }).catch(error => {
-            console.log(error)
-        })
-    }, [])
 
     const title = () => {
 

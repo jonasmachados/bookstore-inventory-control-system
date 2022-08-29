@@ -7,6 +7,7 @@ import com.jonas.backend.repositories.VendaRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -36,6 +37,11 @@ public class VendaService {
 
     public Venda get(Long id) {
         return null;
+    }
+    
+    public Venda getFindById(Long id) {
+        Optional<Venda> obj = vendarRepository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {

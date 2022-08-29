@@ -34,6 +34,13 @@ public class VendaResource {
         return service.getAll();
     }
     
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Venda> getFindById(@PathVariable Long id) { //ResponseEntity: resposta de aquisicao web
+        Venda obj = service.getFindById(id);
+        return ResponseEntity.ok().body(obj);
+
+    }
+    
     @PostMapping(path =  "/add")
     public ResponseEntity<Venda> insert(@RequestBody Venda obj) {
         obj = service.insert(obj);
