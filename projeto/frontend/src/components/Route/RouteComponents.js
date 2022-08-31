@@ -8,7 +8,9 @@ import AddUpdatePF from '../Cliente/AddUpdatePF.js';
 import AddUpdatePJ from '../Cliente/AddUpdatePJ.js';
 import Cliente from '../Cliente/Cliente.js';
 
-import Compra from '../Compra/Compra.js';
+import ListaCompra from '../Compra/ListaCompra.js';
+import AddUpdateCompra from '../Compra/AddUpdateCompra.js';
+
 import ListaVendas from '../Venda/ListaVendas.js';
 import AddUpdateVenda from '../Venda/AddUpdateVenda.js';
 import Teste from '../Venda/Teste.js';
@@ -30,7 +32,10 @@ const RouteComponents = () => {
             <Route path="/add-cliente/pj" element={<AddUpdatePJ/>} />
             <Route path="/edit-cliente-pj/:id" element={<AddUpdatePJ />} />
             <Route path="/edit-cliente-pf/:id" element={<AddUpdatePF />} />
-            <Route path="/compras" element={<Compra />} />
+            
+            <Route path="/compras" element={<ListaCompra />} />
+            <Route path="/add-compra/" element={<AddUpdateCompra />} />
+            <Route path="/edit-compra/:id" element={<AddUpdateCompra />} />
 
             <Route path="/vendas" element={<ListaVendas />} />
             <Route path="/add-venda/" element={<AddUpdateVenda />} />
