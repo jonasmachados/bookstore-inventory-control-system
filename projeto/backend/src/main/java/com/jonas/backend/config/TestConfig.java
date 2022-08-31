@@ -2,7 +2,6 @@ package com.jonas.backend.config;
 
 import com.jonas.backend.entities.Client;
 import com.jonas.backend.entities.Compra;
-import com.jonas.backend.entities.Itens;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.entities.PessoaFisica;
 import com.jonas.backend.entities.PessoaJuridica;
@@ -55,22 +54,25 @@ public class TestConfig implements CommandLineRunner {
         Client client3 = new PessoaJuridica(null, " JB Imports", "Rua São José", 658, "Centro", "São Paulo", "SP", "37890-000", "1555879966-00001");
         clientRepository.saveAll(Arrays.asList(client1, client2, client3));
 
-        Compra c1 = new Compra(null);
-        Compra c2 = new Compra(null);
-        compraRepository.saveAll(Arrays.asList(c1, c2));
+        Compra c1 = new Compra(null, livro1, 30, 20.20);
+        Compra c2 = new Compra(null, livro2, 10, 15.20);
+        Compra c3 = new Compra(null, livro3, 10, 18.20);
+        Compra c4 = new Compra(null, livro4, 45, 15.20);
+        Compra c5 = new Compra(null, livro5, 25, 16.20);
+        compraRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5));
 
-        Itens itens1 = new Itens(c1, livro1, 15, 15.9);
-        Itens itens2 = new Itens(c1, livro2, 25, 16.90);
-        Itens itens3 = new Itens(c2, livro3, 30, 20.30);
-        itensRepository.saveAll(Arrays.asList(itens1, itens2, itens3));
+//        Itens itens1 = new Itens(c1, livro1, 15, 15.9);
+//        Itens itens2 = new Itens(c1, livro2, 25, 16.90);
+//        Itens itens3 = new Itens(c2, livro3, 30, 20.30);
+//        itensRepository.saveAll(Arrays.asList(itens1, itens2, itens3));
 
         Venda venda1 = new Venda(null, client1, livro1, 10, 15.20);
         Venda venda2 = new Venda(null, client1, livro2, 20, 15.20);
         Venda venda3 = new Venda(null, client2, livro2, 30, 18.00);
         vendaRepository.saveAll(Arrays.asList(venda1, venda2, venda3));
 
-        livro1.comprar(10.1, 20);
-        livrorepository.save(livro1);
+//        livro1.comprar(10.1, 20);
+//        livrorepository.save(livro1);
 //        
 //        livro1.vender(2);
 //        livrorepository.save(livro1);

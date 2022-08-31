@@ -1,22 +1,26 @@
 package com.jonas.backend.entities;
 
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "tb_compra")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "tb_compra")
 public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,52 +29,17 @@ public class Compra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "id.compra")
-    private Set<Itens> itens = new LinkedHashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "livro_id")
+    private Livro livro;
 
-    public Compra() {
-    }
+    private Integer qtdItens;
+    private Double precoVenda;
 
-    public Compra(Long id) {
-        this.id = id;
-    }
-    
-     public Double getTotal() {
+    public Double getTotal() {
         double sum = 0.0;
-        for (Itens x : itens) {
-            sum += x.getSubTotal();
-        }
+        sum = qtdItens * precoVenda;
         return sum;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Compra other = (Compra) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Compra -  " + "id: " + id + '}';
     }
 
 }

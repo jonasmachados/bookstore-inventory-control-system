@@ -16,18 +16,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+
 @Table(name = "tb_livro")
 @Getter
 @Setter
+@Entity
 public class Livro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,8 +42,11 @@ public class Livro implements Serializable {
     private Date anoPublicacao;
     private Integer estoque;
 
-    @OneToMany
-    private Set<Compra> compra = new LinkedHashSet<>();
+//    @OneToMany
+//    private Set<Compra> compra = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Compra> compras = new ArrayList<>();
     
     @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
     @JsonIgnore

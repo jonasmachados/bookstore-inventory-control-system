@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import VendaService from '../../services/VendaService';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ClienteService from '../../services/ClienteService';
@@ -11,11 +11,21 @@ const AddUpdateVenda = () => {
     const [livro, setLivro] = useState('')
     const [qtdItens, setQtdItens] = useState('')
     const [precoVenda, setPrecoVenda] = useState('')
-    const history = useNavigate();
     const { id } = useParams();
 
     const [listaCliente, setlistaCliente] = useState([]);
     const [listaLivros, setlistaLivros] = useState([])
+
+    const venda = {
+        client: {
+            id: client
+        },
+        livro: {
+            id: livro
+        },
+        qtdItens,
+        precoVenda
+    }
 
     useEffect(() => {
         getAllClientes();
@@ -60,17 +70,6 @@ const AddUpdateVenda = () => {
 
     const saveOrUpdateVenda = (e) => {
         e.preventDefault();
-
-        const venda = {
-            client: {
-                id: client
-            },
-            livro: {
-                id: livro
-            },
-            qtdItens,
-            precoVenda
-        }
 
         if (id) {
             VendaService.updateVenda(id, venda).then((response) => {
@@ -119,20 +118,20 @@ const AddUpdateVenda = () => {
                                     <select name="client" className="form-control" onChange={(e) => setClient(e.target.value)}>
                                         <option>--Selecione o Cliente--</option>
                                         {
-                                            listaCliente.map((cliente) => (
-                                                <option key={cliente.id} value={cliente.id}> {cliente.name}</option>
+                                            listaCliente.map((client) => (
+                                                <option key={client.id} value={client.id}> {client.name}</option>
                                             ))
                                         }
                                     </select>
                                 </div>
-
+                             
                                 <div className="form-group mb-2">
                                     <label className="mb-2">Livro</label>
                                     <select name="livro" className="form-control" onChange={(e) => setLivro(e.target.value)}>
-                                        <option>--Selecione o Livro--</option>
+                                        
                                         {
                                             listaLivros.map((livro) => (
-                                                <option key={livro.id} value={livro.id}> {livro.titulo} </option>
+                                                <option key={livro.id} value={livro.id} > {livro.titulo} </option>
                                             ))
                                         }
                                     </select>
