@@ -47,5 +47,11 @@ public class Venda implements Serializable {
         return "Venda{" + "id=" + id + ", client=" + client + ", qtdItens=" + qtdItens + ", precoVenda=" + precoVenda + '}';
     }
     
+    public Double getTotal() {
+        double sum = 0.0;
+        sum = qtdItens * precoVenda;
+        return sum;
+    }
+    
 
 }

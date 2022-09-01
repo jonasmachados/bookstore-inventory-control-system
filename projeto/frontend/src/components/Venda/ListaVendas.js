@@ -45,6 +45,7 @@ const ListaVendas = () => {
                         <th> <p>Livro </p> </th>
                         <th> <p>Quantidade</p> </th>
                         <th> <p>Preço </p> </th>
+                        <th> <p>Total </p> </th>
                         <th> <p>Ações</p> </th>
                     </tr>
                 </thead>
@@ -56,6 +57,7 @@ const ListaVendas = () => {
                             <td> <p className="p_td">{venda.livro.titulo} </p> </td>
                             <td> <p className="p_td">{venda.qtdItens} </p> </td>
                             <td> <p className="p_td">{venda.precoVenda} </p> </td>
+                            <td> <p className="p_td">{venda.total} </p> </td>
                             <td>
                                 <div className="div-acoes">
                                     <Link className="btn" to={`/edit-venda/${venda.id}`} >Atualizar</Link>
