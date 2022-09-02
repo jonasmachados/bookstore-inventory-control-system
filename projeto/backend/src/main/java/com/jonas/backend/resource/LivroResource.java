@@ -1,5 +1,6 @@
 package com.jonas.backend.resource;
 
+import com.jonas.backend.dto.QuantityDTO;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.services.LivroService;
 import java.net.URI;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -57,6 +59,11 @@ public class LivroResource {
     public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
+    }
+    
+    @PatchMapping("/{id}/addEstoque")
+    public Livro add(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
+        return service.add(id, quantityDTO.getQuantity());
     }
 
 

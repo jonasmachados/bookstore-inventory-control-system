@@ -61,4 +61,20 @@ public class LivroService {
         entity.setAnoPublicacao(obj.getAnoPublicacao());
         entity.setEstoque(obj.getEstoque());
     }
+
+    private Livro verifyIfExists(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public Livro add(Long id, int quantityToAdd) {
+        Livro livroToAdd = verifyIfExists(id);
+        int quantityDepoisAdd = quantityToAdd + livroToAdd.getEstoque();
+
+        livroToAdd.setEstoque(livroToAdd.getEstoque() + quantityToAdd);
+        Livro addLivroEstoque = new Livro();
+        return addLivroEstoque = repository.save(livroToAdd);
+
+    }
+
 }

@@ -1,9 +1,10 @@
 package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Compra;
-import com.jonas.backend.entities.Itens;
+import com.jonas.backend.entities.Livro;
 import com.jonas.backend.repositories.CompraRepository;
 import com.jonas.backend.repositories.ItensRepository;
+import com.jonas.backend.repositories.LivroRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import java.util.List;
@@ -20,16 +21,10 @@ public class CompraService {
     @Autowired
     private CompraRepository repository;
 
-    @Autowired
-    private ItensRepository itensRepository;
-
     public List<Compra> findAll() {
         return repository.findAll();
     }
 
-//    public List<Itens> findAllItens() {
-//        return itensRepository.findAll();
-//    }
     public Compra findById(Long id) {
         Optional<Compra> obj = repository.findById(id);
         return obj.get();
@@ -39,13 +34,9 @@ public class CompraService {
         return repository.save(obj);
     }
 
-//    public Itens insertItens(Itens obj) {
-//        return itensRepository.save(obj);
-//    }
-
     public Compra update(Long id, Compra obj) {
         try {
-            Compra entity = repository.getOne(id); 
+            Compra entity = repository.getOne(id);
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
@@ -60,7 +51,7 @@ public class CompraService {
         entity.setQtdItens(obj.getQtdItens());
         entity.setPrecoVenda(obj.getPrecoVenda());
     }
-    
+
     public void delete(Long id) {
         try {
             repository.deleteById(id);

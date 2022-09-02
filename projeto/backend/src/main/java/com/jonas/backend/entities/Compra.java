@@ -22,9 +22,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_compra")
 public class Compra implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
-
+    
     @Id //Declarando chave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,5 +41,14 @@ public class Compra implements Serializable {
         sum = qtdItens * precoVenda;
         return sum;
     }
+    
+//     public Integer getEstoque(){
+//        int estoqueAtual = 0;
+//        estoqueAtual = livro.getEstoque() + qtdItens;
+//        livro.setEstoque(estoqueAtual); 
+//        return estoqueAtual;
+//
+//    }
+
 
 }

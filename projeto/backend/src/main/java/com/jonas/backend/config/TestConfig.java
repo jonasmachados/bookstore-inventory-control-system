@@ -59,7 +59,8 @@ public class TestConfig implements CommandLineRunner {
         Compra c3 = new Compra(null, livro3, 10, 18.20);
         Compra c4 = new Compra(null, livro4, 45, 15.20);
         Compra c5 = new Compra(null, livro5, 25, 16.20);
-        compraRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5));
+        Compra c6 = new Compra(null, livro5, 25, 16.20);
+        compraRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6));
 
 //        Itens itens1 = new Itens(c1, livro1, 15, 15.9);
 //        Itens itens2 = new Itens(c1, livro2, 25, 16.90);
