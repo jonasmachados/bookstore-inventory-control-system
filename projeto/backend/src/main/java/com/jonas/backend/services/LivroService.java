@@ -76,5 +76,15 @@ public class LivroService {
         return addLivroEstoque = repository.save(livroToAdd);
 
     }
+    
+    public Livro remover(Long id, int quantityToAdd) {
+        Livro livroToAdd = verifyIfExists(id);
+        int quantityDepoisAdd = quantityToAdd - livroToAdd.getEstoque();
+
+        livroToAdd.setEstoque(livroToAdd.getEstoque() - quantityToAdd);
+        Livro addLivroEstoque = new Livro();
+        return addLivroEstoque = repository.save(livroToAdd);
+
+    }
 
 }

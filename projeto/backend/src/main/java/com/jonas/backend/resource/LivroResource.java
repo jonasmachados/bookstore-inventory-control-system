@@ -65,6 +65,11 @@ public class LivroResource {
     public Livro add(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
         return service.add(id, quantityDTO.getQtdItens());
     }
+    
+    @PatchMapping("/{id}/removerEstoque")
+    public Livro remove(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
+        return service.remover(id, quantityDTO.getQtdItens());
+    }
 
 
 }
