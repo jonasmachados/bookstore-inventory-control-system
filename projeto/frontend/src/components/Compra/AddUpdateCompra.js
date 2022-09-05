@@ -49,7 +49,15 @@ const AddUpdateCompra = () => {
     const saveOrUpdateCompra = (e) => {
         e.preventDefault();
 
+        const livro = { qtdItens }
+
         if (id) {
+            LivroService.addEstoque(compra.livro.id, livro).then((response) => {
+
+                window.location.href = "/compras";
+            }).catch(error => {
+                console.log(error)
+            })
             CompraService.updateCompra(id, compra).then((response) => {
                 window.location.href = "/compras";
             }).catch(error => {
@@ -57,6 +65,12 @@ const AddUpdateCompra = () => {
             })
 
         } else {
+            LivroService.addEstoque(compra.livro.id, livro).then((response) => {
+
+                window.location.href = "/compras";
+            }).catch(error => {
+                console.log(error)
+            })
             CompraService.createCompra(compra).then((response) => {
 
                 console.log(response.data)

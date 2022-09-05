@@ -21,6 +21,10 @@ class LivroService{
         return axios.put(LIVRO_API_BASE_URL + '/' +livroId, livro);
     }
 
+    addEstoque(livroId, livro){ 
+        return axios.patch(LIVRO_API_BASE_URL + '/' + livroId + '/addEstoque', livro);
+    }
+
     deleteLivro(livroId){
         return axios.delete(LIVRO_API_BASE_URL + '/' + livroId);
     }

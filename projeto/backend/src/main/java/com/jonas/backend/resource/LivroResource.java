@@ -63,7 +63,7 @@ public class LivroResource {
     
     @PatchMapping("/{id}/addEstoque")
     public Livro add(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
-        return service.add(id, quantityDTO.getQuantity());
+        return service.add(id, quantityDTO.getQtdItens());
     }
 
 
