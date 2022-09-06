@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import VendaService from '../../services/VendaService';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -71,7 +71,15 @@ const AddUpdateVenda = () => {
     const saveOrUpdateVenda = (e) => {
         e.preventDefault();
 
+        const livro = { qtdItens }
+
         if (id) {
+            LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
+
+                window.location.href = "/vendas";
+            }).catch(error => {
+                console.log(error)
+            })
             VendaService.updateVenda(id, venda).then((response) => {
                 window.location.href = "/vendas";
             }).catch(error => {
@@ -79,6 +87,12 @@ const AddUpdateVenda = () => {
             })
 
         } else {
+            LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
+
+                window.location.href = "/vendas";
+            }).catch(error => {
+                console.log(error)
+            })
             VendaService.createVenda(venda).then((response) => {
 
                 console.log(response.data)
@@ -124,11 +138,11 @@ const AddUpdateVenda = () => {
                                         }
                                     </select>
                                 </div>
-                             
+
                                 <div className="form-group mb-2">
                                     <label className="mb-2">Livro</label>
                                     <select name="livro" className="form-control" onChange={(e) => setLivro(e.target.value)}>
-                                        
+                                    <option>--Selecione o Cliente--</option>
                                         {
                                             listaLivros.map((livro) => (
                                                 <option key={livro.id} value={livro.id} > {livro.titulo} </option>
