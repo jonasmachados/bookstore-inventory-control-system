@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LivroService from "../../services/LivroService"
 import "./ListaLivro.css";
+import livroImg from "../../assets/img/livro.svg";
+
 
 const ListaLivro = () => {
     const [livros, setlivros] = useState([]);
@@ -68,6 +70,7 @@ const ListaLivro = () => {
                     ))}
                 </tbody>
             </table>
+            <img src={livroImg} alt="livroImg Img" />
         </div>
     );
 };
