@@ -45,6 +45,7 @@ const ListaLivro = () => {
                         <th> <p>Titulo</p> </th>
                         <th> <p>Autor</p> </th>
                         <th> <p>Editora</p> </th>
+                        <th> <p>Capa livro</p> </th>
                         <th> <p>Ano Publicacao</p> </th>
                         <th> <p>Estoque</p> </th>
                         <th> <p>Ações</p> </th>
@@ -57,6 +58,7 @@ const ListaLivro = () => {
                             <td> <p className="p_td">{livro.titulo}</p> </td>
                             <td> <p className="p_td">{livro.autor}</p> </td>
                             <td> <p className="p_td">{livro.editora} </p> </td>
+                            <td> <p className="p_td"><img className="img-capa-livro" src={livro.linkImg} alt="CapaLivro"/> </p> </td>
                             <td> <p className="p_td">{livro.anoPublicacao} </p> </td>
                             <td> <p className="p_td">{livro.estoque} </p> </td>
                             <td>

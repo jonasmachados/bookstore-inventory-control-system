@@ -47,3 +47,9 @@
   width: 40%;
   padding-top: 5%;
 }
+
+.container-livro .img-capa-livro {
+  width: 50%;
+  padding-top: 0;
+  padding-right: 30%;
+}
