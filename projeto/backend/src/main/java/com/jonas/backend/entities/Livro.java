@@ -1,5 +1,6 @@
 package com.jonas.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,13 +38,11 @@ public class Livro implements Serializable {
     private String titulo;
     private String autor;
     private String editora;
-    //private String link_imagem;
     private String linkImg;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date anoPublicacao;
     private Integer estoque;
 
-//    @OneToMany
-//    private Set<Compra> compra = new LinkedHashSet<>();
     @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Compra> compras = new ArrayList<>();
