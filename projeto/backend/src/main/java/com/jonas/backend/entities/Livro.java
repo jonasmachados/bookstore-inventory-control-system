@@ -5,13 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.List;
-
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.CascadeType;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -86,22 +82,6 @@ public class Livro implements Serializable {
         this.linkImg = linkImg;
         this.anoPublicacao = anoPublicacao;
         this.estoque = estoque;
-    }
-
-    public void comprar(Double preco, Integer quantidade) {
-        int sum = 0;
-        sum = estoque + quantidade;
-        setEstoque(sum);
-    }
-
-    public void vender(Integer quantidade) {
-        int sum = 0;
-        if (estoque < quantidade) {
-            System.out.println("Valor nao permitido");
-        } else {
-            sum = estoque - quantidade;
-            setEstoque(sum);
-        }
     }
 
     @Override

@@ -1,13 +1,9 @@
 package com.jonas.backend.resource;
 
 import com.jonas.backend.entities.Compra;
-import com.jonas.backend.entities.Itens;
-import com.jonas.backend.entities.Livro;
-import com.jonas.backend.entities.Venda;
 import com.jonas.backend.services.CompraService;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -59,7 +59,7 @@ public class LivroService {
         entity.setEditora(obj.getEditora());
         entity.setLinkImg(obj.getLinkImg());
         entity.setAnoPublicacao(obj.getAnoPublicacao());
-        entity.setEstoque(obj.getEstoque());
+       
     }
 
     private Livro verifyIfExists(Long id) {

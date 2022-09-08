@@ -1,10 +1,7 @@
 package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Compra;
-import com.jonas.backend.entities.Livro;
 import com.jonas.backend.repositories.CompraRepository;
-import com.jonas.backend.repositories.ItensRepository;
-import com.jonas.backend.repositories.LivroRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import java.util.List;
