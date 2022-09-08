@@ -23,6 +23,7 @@ C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\resource\CompraResource.java
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\pk\ItemPK.java
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\Venda.java
+C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\dto\QuantityDTO.java
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\CompraService.java
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\ItensRepository.java
 C:\projetos\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\BackendApplication.java

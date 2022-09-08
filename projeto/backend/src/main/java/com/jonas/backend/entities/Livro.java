@@ -19,9 +19,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Table(name = "tb_livro")
 @Getter
@@ -35,19 +37,32 @@ public class Livro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(min = 1, max = 100)
     private String titulo;
+
+    @NotBlank
+    @Size(min = 1, max = 100)
     private String autor;
+
+    @NotBlank
+    @Size(min = 1, max = 100)
     private String editora;
+
     private String linkImg;
+
+    @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date anoPublicacao;
+
+    @NotNull
     private Integer estoque;
 
-    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Compra> compras = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Venda> vendas = new ArrayList<>();
 
@@ -112,11 +127,6 @@ public class Livro implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Livro: " + "id: " + id + ", titulo: " + titulo + ", autor: " + autor + ", editora: " + editora + ", img: " + linkImg + ", anoPublicacao: " + anoPublicacao + '}';
     }
 
 }

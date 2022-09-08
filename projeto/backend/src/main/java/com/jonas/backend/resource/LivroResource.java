@@ -5,6 +5,7 @@ import com.jonas.backend.entities.Livro;
 import com.jonas.backend.services.LivroService;
 import java.net.URI;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +43,7 @@ public class LivroResource {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> insert(@RequestBody Livro obj) {
+    public ResponseEntity<Livro> insert(@RequestBody @Valid Livro obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
