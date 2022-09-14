@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClienteService from "../../services/ClienteService"
+import clienteImg from "../../assets/img/client.svg";
 
 const ListaClientes = () => {
     const [cliente, setCliente] = useState([]);
@@ -74,6 +75,7 @@ const ListaClientes = () => {
                     ))}
                 </tbody>
             </table>
+            <img src={clienteImg} alt="clienteImg Img" />
         </div>
     );
 };

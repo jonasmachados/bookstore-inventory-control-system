@@ -205,14 +205,11 @@ const AddUpdateLivroComponent = () => {
                                     <DatePicker
                                         selected={anoPublicacao}
                                         onChange={date => setAnoPublicacao(date)}
-                                        //onChange={onChangeDatehadler}
                                         dateFormat="dd/MM/yyyy"
                                         placeholderText="Ano de Publicacao"
                                         name="anoPublicacao"
                                         id="anoPublicacao"
                                         className="form-control"
-                                    //value={anoPublicacao}
-
                                     />
                                 </div>
 
