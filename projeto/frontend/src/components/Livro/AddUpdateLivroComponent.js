@@ -4,7 +4,6 @@ import LivroService from '../../services/LivroService.js';
 import "./AddUpdateLivroComponent.css";
 import * as yup from 'yup';
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddUpdateLivroComponent = () => {
@@ -123,7 +122,7 @@ const AddUpdateLivroComponent = () => {
             setAutor(response.data.autor)
             setEditora(response.data.editora)
             setLinkImg(response.data.linkImg)
-            setAnoPublicacao(response.data.anoPublicacao)
+            setAnoPublicacao(response.data.format.anoPublicacao)
             setEstoque(response.data.estoque)
         }).catch(error => {
             console.log(error)
@@ -179,7 +178,7 @@ const AddUpdateLivroComponent = () => {
 
                                 <div className="form-group mb-2">
                                     <input
-                                        type="editora"
+                                        type="text"
                                         placeholder="Editora"
                                         name="editora"
                                         className="form-control"
@@ -191,7 +190,7 @@ const AddUpdateLivroComponent = () => {
 
                                 <div className="form-group mb-2">
                                     <input
-                                        type="linkImg"
+                                        type="text"
                                         placeholder="LinkImg"
                                         name="linkImg"
                                         className="form-control"
@@ -203,20 +202,20 @@ const AddUpdateLivroComponent = () => {
 
                                 <div className="form-group mb-2">
                                     <DatePicker
+                                        controls={['anoPublicacao']}
                                         selected={anoPublicacao}
                                         onChange={date => setAnoPublicacao(date)}
                                         dateFormat="dd/MM/yyyy"
-                                        placeholderText="Ano de Publicacao"
+                                        placeholderText={anoPublicacao}
                                         name="anoPublicacao"
                                         id="anoPublicacao"
                                         className="form-control"
                                     />
                                 </div>
 
-
                                 <div className="form-group mb-2">
                                     <input
-                                        type="estoque"
+                                        type="text"
                                         placeholder="Estoque"
                                         name="estoque"
                                         className="form-control"

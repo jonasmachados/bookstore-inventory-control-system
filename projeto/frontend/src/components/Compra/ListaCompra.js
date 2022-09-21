@@ -10,6 +10,11 @@ const ListaCompra = () => {
 
     const [compras, setCompras] = useState([]);
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('pt-BR',
+        { style: 'currency', currency: 'BRL' }).format(number)
+    }
+
     useEffect(() => {
         getAllCompras();
     }, []);
@@ -57,8 +62,8 @@ const ListaCompra = () => {
                             <td> <p className="p_td">{compra.id}</p></td>
                             <td> <p className="p_td">{compra.livro.titulo} </p> </td>
                             <td> <p className="p_td">{compra.qtdItens} </p> </td>
-                            <td> <p className="p_td">{compra.precoVenda} </p> </td>
-                            <td> <p className="p_td">{compra.total} </p> </td>
+                            <td> <p className="p_td">{formatNumber(compra.precoVenda)} </p> </td>
+                            <td> <p className="p_td">{formatNumber(compra.total)} </p> </td>
                             <td>
                                 <div className="div-acoes">
                                     <Link className="btn" to={`/edit-compra/${compra.id}`} >Atualizar</Link>
