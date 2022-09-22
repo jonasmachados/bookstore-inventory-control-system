@@ -1,8 +1,9 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import CompraService from '../../services/CompraService';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LivroService from '../../services/LivroService';
+import * as yup from 'yup';
 
 const AddUpdateCompra = () => {
 
@@ -46,10 +47,53 @@ const AddUpdateCompra = () => {
             });
     };
 
-    const saveOrUpdateCompra = (e) => {
+    const [status, setStatus] = useState({
+        type: '',
+        mensagem: ''
+    })
+
+    let schema = yup.object().shape({
+        livro: yup.object().required().typeError(),
+        qtdItens: yup.number().required().integer(),
+        precoVenda: yup.number().required(),
+    });
+
+    async function validate() {
+        let schema = yup.object().shape({
+            livro: yup.object().shape({
+                id: yup.number()
+                .typeError('Erro: Necessario selecionar o livro!')
+                .required("Erro: O campo é obrigatório2.")
+            }),
+            precoVenda: yup.number()
+                .typeError('Erro: Necessario preencher o preço de venda!')
+                .required("Erro: O campo é obrigatório.")
+                .positive("Erro: O Preço deve ser maior que 0"),
+            qtdItens: yup.number()
+                .typeError('Erro: Necessario preencher a quantidade a comprar!')
+                .required("Erro: O campo é obrigatório.")
+                .positive("Erro: Quantidade deve ser maior que 0")
+                .integer("Erro: Estoque deve possuir um número inteiro.")
+        });
+
+        try {
+            await schema.validate(compra)
+            return true;
+        } catch (err) {
+            setStatus({
+                type: 'error',
+                mensagem: err.errors
+            });
+            return false;
+        }
+    }
+
+    const saveOrUpdateCompra = async (e) => {
         e.preventDefault();
 
-        const livro = { qtdItens }
+        if (!(await validate())) return;
+
+        const livro = { qtdItens };
 
         if (id) {
             LivroService.addEstoque(compra.livro.id, livro).then((response) => {
@@ -102,13 +146,16 @@ const AddUpdateCompra = () => {
                         {
                             title()
                         }
+
+                        {status.type === 'error' ? <p style={{ color: "#ff0000", textAlign: 'center', paddingTop: '5%' }}> {status.mensagem}</p> : ""}
+
                         <div className="card-body">
                             <form>
-                             
+
                                 <div className="form-group mb-2">
                                     <label className="mb-2">Livro</label>
                                     <select name="livro" className="form-control" onChange={(e) => setLivro(e.target.value)}>
-                                    <option>--Selecione o Livro--</option>
+                                        <option>--Selecione o Livro--</option>
 
                                         {
                                             listaLivros.map((livro) => (

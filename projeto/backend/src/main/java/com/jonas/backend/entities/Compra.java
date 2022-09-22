@@ -8,11 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import javax.validation.constraints.NotNull;
+
 
 @Getter
 @Setter
@@ -22,18 +26,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_compra")
 public class Compra implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id //Declarando chave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "livro_id")
     private Livro livro;
 
+    @NotNull
+    @Min(1)
     private Integer qtdItens;
+
+    @NotNull
+    @DecimalMin("0.1") 
     private Double precoVenda;
 
     public Double getTotal() {
@@ -41,14 +51,5 @@ public class Compra implements Serializable {
         sum = qtdItens * precoVenda;
         return sum;
     }
-    
-//     public Integer getEstoque(){
-//        int estoqueAtual = 0;
-//        estoqueAtual = livro.getEstoque() + qtdItens;
-//        livro.setEstoque(estoqueAtual); 
-//        return estoqueAtual;
-//
-//    }
-
 
 }
