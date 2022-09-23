@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 import compraImg from "../../assets/img/compra.svg";
 import CompraService from "../../services/CompraService";
 import { Link } from "react-router-dom";
-
+import LivroService from '../../services/LivroService';
 import "./Compra.css";
 
 const ListaCompra = () => {
 
     const [compras, setCompras] = useState([]);
-
+ 
     function formatNumber(number) {
         return new Intl.NumberFormat('pt-BR',
-        { style: 'currency', currency: 'BRL' }).format(number)
+            { style: 'currency', currency: 'BRL' }).format(number)
     }
 
     useEffect(() => {
@@ -30,7 +30,14 @@ const ListaCompra = () => {
             });
     };
 
-    const deleteCompra = (compraId) => {
+    const deleteCompra = (compraId, qtdItens, livroId) => {
+
+        const livro = { qtdItens }
+
+        LivroService.removerEstoque(livroId, livro).then((response) => {
+        }).catch(error => {
+            console.log(error)
+        })
         CompraService.deleteCompra(compraId).then((response) => {
             getAllCompras();
         }).catch(error => {
@@ -67,7 +74,7 @@ const ListaCompra = () => {
                             <td>
                                 <div className="div-acoes">
                                     <Link className="btn" to={`/edit-compra/${compra.id}`} >Atualizar</Link>
-                                    <button className="btn" onClick={() => deleteCompra(compra.id)}
+                                    <button className="btn" onClick={() => deleteCompra(compra.id, compra.qtdItens, compra.livro.id)}
                                     >Deletar</button>
                                 </div>
                             </td>
