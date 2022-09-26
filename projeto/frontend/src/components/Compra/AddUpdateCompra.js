@@ -96,12 +96,6 @@ const AddUpdateCompra = () => {
         const livro = { qtdItens };
 
         if (id) {
-            LivroService.addEstoque(compra.livro.id, livro).then((response) => {
-
-                window.location.href = "/compras";
-            }).catch(error => {
-                console.log(error)
-            })
             CompraService.updateCompra(id, compra).then((response) => {
                 window.location.href = "/compras";
             }).catch(error => {

@@ -59,7 +59,7 @@ public class LivroService {
         entity.setEditora(obj.getEditora());
         entity.setLinkImg(obj.getLinkImg());
         entity.setAnoPublicacao(obj.getAnoPublicacao());
-       
+
     }
 
     private Livro verifyIfExists(Long id) {
@@ -69,22 +69,14 @@ public class LivroService {
 
     public Livro add(Long id, int quantityToAdd) {
         Livro livroToAdd = verifyIfExists(id);
-        int quantityDepoisAdd = quantityToAdd + livroToAdd.getEstoque();
-
         livroToAdd.setEstoque(livroToAdd.getEstoque() + quantityToAdd);
-        Livro addLivroEstoque = new Livro();
-        return addLivroEstoque = repository.save(livroToAdd);
-
+        return repository.save(livroToAdd);
     }
-    
-    public Livro remover(Long id, int quantityToAdd) {
-        Livro livroToAdd = verifyIfExists(id);
-        int quantityDepoisAdd = quantityToAdd - livroToAdd.getEstoque();
 
-        livroToAdd.setEstoque(livroToAdd.getEstoque() - quantityToAdd);
-        Livro addLivroEstoque = new Livro();
-        return addLivroEstoque = repository.save(livroToAdd);
-
+    public Livro remover(Long id, int quantityToRemove) {
+        Livro livroToRemove = verifyIfExists(id);
+        livroToRemove.setEstoque(livroToRemove.getEstoque() - quantityToRemove);
+        return repository.save(livroToRemove);
     }
 
 }
