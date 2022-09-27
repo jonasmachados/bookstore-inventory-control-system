@@ -1,6 +1,7 @@
 package com.jonas.backend.resource;
 
 import com.jonas.backend.dto.QuantityDTO;
+import com.jonas.backend.entities.Compra;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.services.LivroService;
 import java.net.URI;
@@ -61,16 +62,19 @@ public class LivroResource {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-    
+
     @PatchMapping("/{id}/addEstoque")
-    public Livro add(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
+    public Livro add(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO) {
         return service.add(id, quantityDTO.getQtdItens());
     }
-    
+
     @PatchMapping("/{id}/removerEstoque")
-    public Livro remove(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO){
+    public Livro remove(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO) {
         return service.remover(id, quantityDTO.getQtdItens());
     }
 
-
+    @PatchMapping("/{id}/atualizarEstoque/{idCompra}")
+    public Livro atualizar(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO, @PathVariable Long idCompra) {
+        return service.atualizar(id, quantityDTO.getQtdItens(), idCompra);
+    }
 }

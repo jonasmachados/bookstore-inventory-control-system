@@ -1,6 +1,8 @@
 package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Livro;
+import com.jonas.backend.entities.Compra;
+import com.jonas.backend.repositories.CompraRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import com.jonas.backend.repositories.LivroRepository;
@@ -17,6 +19,9 @@ public class LivroService {
 
     @Autowired
     private LivroRepository repository;
+
+    @Autowired
+    private CompraRepository compraRepository;
 
     public List<Livro> findAll() {
         return repository.findAll();
@@ -67,6 +72,11 @@ public class LivroService {
                 .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    private Compra verifyIfCompraExists(Long id) {
+        return compraRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
     public Livro add(Long id, int quantityToAdd) {
         Livro livroToAdd = verifyIfExists(id);
         livroToAdd.setEstoque(livroToAdd.getEstoque() + quantityToAdd);
@@ -77,6 +87,24 @@ public class LivroService {
         Livro livroToRemove = verifyIfExists(id);
         livroToRemove.setEstoque(livroToRemove.getEstoque() - quantityToRemove);
         return repository.save(livroToRemove);
+    }
+
+    public Livro atualizar(Long id, int quantity, Long idCompra) {
+        Livro livroToAdd = verifyIfExists(id);
+        Compra compra = verifyIfCompraExists(idCompra);
+        Integer diferenca;
+
+        if (quantity < compra.getQtdItens()) {
+            diferenca = compra.getQtdItens() - quantity;
+            livroToAdd.setEstoque(livroToAdd.getEstoque() - diferenca);
+        } else if (quantity > compra.getQtdItens()) {
+            diferenca = quantity - compra.getQtdItens();
+            livroToAdd.setEstoque(livroToAdd.getEstoque() + diferenca);
+        } else {
+            livroToAdd.setEstoque(livroToAdd.getEstoque());
+        }
+
+        return repository.save(livroToAdd);
     }
 
 }
