@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 const ListaVendas = () => {
     const [vendas, setVendas] = useState([]);
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('pt-BR',
+            { style: 'currency', currency: 'BRL' }).format(number)
+    }
+
     useEffect(() => {
         getAllVendas();
     }, []);
@@ -56,8 +61,8 @@ const ListaVendas = () => {
                             <td> <p className="p_td">{venda.client.name} </p> </td>
                             <td> <p className="p_td">{venda.livro.titulo} </p> </td>
                             <td> <p className="p_td">{venda.qtdItens} </p> </td>
-                            <td> <p className="p_td">{venda.precoVenda} </p> </td>
-                            <td> <p className="p_td">{venda.total} </p> </td>
+                            <td> <p className="p_td">{formatNumber(venda.precoVenda)} </p> </td>
+                            <td> <p className="p_td">{formatNumber(venda.total)} </p> </td>
                             <td>
                                 <div className="div-acoes">
                                     <Link className="btn" to={`/edit-venda/${venda.id}`} >Atualizar</Link>

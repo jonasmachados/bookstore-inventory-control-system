@@ -8,7 +8,6 @@ class LivroService{
         return axios.get(LIVRO_API_BASE_URL);
     }
 
-    
     createLivro(livro){
         return axios.post(LIVRO_API_BASE_URL, livro);
     }
