@@ -4,6 +4,7 @@ import VendaService from '../../services/VendaService';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ClienteService from '../../services/ClienteService';
 import LivroService from '../../services/LivroService';
+import * as yup from 'yup';
 
 const AddUpdateVenda = () => {
 
@@ -68,14 +69,62 @@ const AddUpdateVenda = () => {
             });
     };
 
-    const saveOrUpdateVenda = (e) => {
+    const [status, setStatus] = useState({
+        type: '',
+        mensagem: ''
+    })
+
+    let schema = yup.object().shape({
+        qtdItens: yup.number().required().integer(),
+        precoVenda: yup.number().required(),
+        livro: yup.object().required().typeError(),
+        client: yup.object().required().typeError()
+    });
+
+    async function validate() {
+        let schema = yup.object().shape({
+            client: yup.object().shape({
+                id: yup.number()
+                    .typeError('Necessario selecionar !')
+                    .required("O campo é obrigatório.")
+            }),
+            livro: yup.object().shape({
+                id: yup.number()
+                    .typeError('Necessario selecionar !')
+                    .required("O campo é obrigatório.")
+            }),
+            precoVenda: yup.number()
+                .typeError('Necessario preencher!')
+                .required("O campo é obrigatório.")
+                .positive("O Preço deve ser maior que 0"),
+            qtdItens: yup.number()
+                .typeError('Necessario preenche!')
+                .required("O campo é obrigatório.")
+                .positive("Quantidade deve ser maior que 0")
+                .integer("Estoque deve possuir um número inteiro."),
+        });
+
+        try {
+            await schema.validate(venda)
+            return true;
+        } catch (err) {
+            setStatus({
+                type: 'error',
+                mensagem: err.errors
+            });
+            return false;
+        }
+    }
+
+    const saveOrUpdateVenda = async (e) => {
         e.preventDefault();
+
+        if (!(await validate())) return;
 
         const livro = { qtdItens }
 
         if (id) {
             LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
-
                 window.location.href = "/vendas";
             }).catch(error => {
                 console.log(error)
@@ -115,6 +164,12 @@ const AddUpdateVenda = () => {
         }
     }
 
+    const valid = (name) => {
+        if (status.type === 'error' && name === '') {
+            return status.type === 'error' ? <p style={{ color: "#ff0000", }}> {status.mensagem}</p> : "";
+        }
+    }
+
     return (
         <div>
             <br /><br />
@@ -124,6 +179,7 @@ const AddUpdateVenda = () => {
                         {
                             title()
                         }
+
                         <div className="card-body">
                             <form>
 
@@ -137,30 +193,33 @@ const AddUpdateVenda = () => {
                                             ))
                                         }
                                     </select>
+                                    {valid(venda.client.id)}
                                 </div>
 
                                 <div className="form-group mb-2">
                                     <label className="mb-2">Livro</label>
                                     <select name="livro" className="form-control" onChange={(e) => setLivro(e.target.value)}>
-                                    <option>--Selecione o Cliente--</option>
+                                        <option>--Selecione o Livro--</option>
                                         {
                                             listaLivros.map((livro) => (
                                                 <option key={livro.id} value={livro.id} > {livro.titulo} </option>
                                             ))
                                         }
                                     </select>
+                                    {valid(venda.livro.id)}
                                 </div>
 
                                 <div className="form-group mb-2">
                                     <input
                                         type="number"
-                                        placeholder="qtdItens"
+                                        placeholder="Quantidade"
                                         name="qtdItens"
                                         className="form-control"
                                         value={qtdItens}
                                         onChange={(e) => setQtdItens(e.target.value)}
                                     >
                                     </input>
+                                    {valid(venda.qtdItens)}
                                 </div>
 
                                 <div className="form-group mb-2">
@@ -169,13 +228,14 @@ const AddUpdateVenda = () => {
                                         step="0.1"
                                         min='0'
                                         max='20'
-                                        placeholder="precoVenda"
-                                        name="precoVenda"
+                                        placeholder="Preco de venda"
+                                        name="precoVenda" s
                                         className="form-control"
                                         value={precoVenda}
                                         onChange={(e) => setPrecoVenda(e.target.value)}
                                     >
                                     </input>
+                                    {valid(precoVenda)}
                                 </div>
 
                                 <button className="btn" onClick={(e) => saveOrUpdateVenda(e)} >Salvar </button>
