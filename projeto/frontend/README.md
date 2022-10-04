@@ -77,3 +77,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### `yarn add react-hook-form`
 ### `yarn add yup`
 ### `yarn add react-datepicker`
+### `yarn add sweetalert`

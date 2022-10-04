@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ClienteService from '../../services/ClienteService';
 import LivroService from '../../services/LivroService';
 import * as yup from 'yup';
+import swal from 'sweetalert';
 
 const AddUpdateVenda = () => {
 
@@ -16,6 +17,8 @@ const AddUpdateVenda = () => {
 
     const [listaCliente, setlistaCliente] = useState([]);
     const [listaLivros, setlistaLivros] = useState([])
+
+    const [book, setBook] = useState([]);
 
     const venda = {
         client: {
@@ -123,7 +126,14 @@ const AddUpdateVenda = () => {
 
         const livro = { qtdItens }
 
-        if (id) {
+        LivroService.getLivroById(venda.livro.id).then((response) => {
+            setBook(response.data);
+            console.log(response.data);
+        }).catch(error => {
+            console.log(error)
+        })
+
+        if (id && book.estoque > venda.qtdItens) {
             LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
                 window.location.href = "/vendas";
             }).catch(error => {
@@ -135,7 +145,7 @@ const AddUpdateVenda = () => {
                 console.log(error)
             })
 
-        } else {
+        } else if (book.estoque > venda.qtdItens) {
             LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
 
                 window.location.href = "/vendas";
@@ -151,6 +161,9 @@ const AddUpdateVenda = () => {
             }).catch(error => {
                 console.log(error)
             })
+        }
+        else {
+            swal("Oops!", "Quantidade Insuficiente!!", "warning");
         }
 
     }

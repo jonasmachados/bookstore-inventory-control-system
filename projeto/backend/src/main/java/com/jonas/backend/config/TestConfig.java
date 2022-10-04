@@ -37,11 +37,11 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Livro livro1 = new Livro(null, "Harry Potter e a Pedra Filosofal", "J. K. Rowling", "Presenca", "https://ingresso-a.akamaihd.net/img/cinema/cartaz/7766-cartaz.jpg", formatador.parse("14/10/1999"), 0);
-        Livro livro2 = new Livro(null, "Don Quixote", "Miguel de Cervantes", "Livraria José Olympio Editora", "https://images-na.ssl-images-amazon.com/images/I/41JKGW9P6AL.jpg", formatador.parse("01/01/1952"), 0);
-        Livro livro3 = new Livro(null, "Um Conto de Duas Cidades", "Charles Dickens", "	Bradbury & Evans", "https://images-na.ssl-images-amazon.com/images/I/61fD+SMxHeL.jpg", formatador.parse("30/04/1859"), 0);
-        Livro livro4 = new Livro(null, "O Senhor dos Anéis", "J. R. R. Tolkien", "Allen & Unwin", "https://images-na.ssl-images-amazon.com/images/I/71Xl6pR0k9L.jpg", formatador.parse("20/10/1955"), 0);
-        Livro livro5 = new Livro(null, "O Pequeno Príncipe", "	Antoine de Saint-Exupéry", "Editora Agir", "https://a-static.mlcdn.com.br/1500x1500/livro-o-pequeno-principe/magazineluiza/228782900/159d6918b41a93af36fe6727aab9b701.jpg", formatador.parse("01/01/1956"), 0);
+        Livro livro1 = new Livro(null, "Harry Potter e a Pedra Filosofal", "J. K. Rowling", "Presenca", "https://ingresso-a.akamaihd.net/img/cinema/cartaz/7766-cartaz.jpg", formatador.parse("14/10/1999"), 30);
+        Livro livro2 = new Livro(null, "Don Quixote", "Miguel de Cervantes", "Livraria José Olympio Editora", "https://images-na.ssl-images-amazon.com/images/I/41JKGW9P6AL.jpg", formatador.parse("01/01/1952"), 10);
+        Livro livro3 = new Livro(null, "Um Conto de Duas Cidades", "Charles Dickens", "	Bradbury & Evans", "https://images-na.ssl-images-amazon.com/images/I/61fD+SMxHeL.jpg", formatador.parse("30/04/1859"), 10);
+        Livro livro4 = new Livro(null, "O Senhor dos Anéis", "J. R. R. Tolkien", "Allen & Unwin", "https://images-na.ssl-images-amazon.com/images/I/71Xl6pR0k9L.jpg", formatador.parse("20/10/1955"), 45);
+        Livro livro5 = new Livro(null, "O Pequeno Príncipe", "	Antoine de Saint-Exupéry", "Editora Agir", "https://a-static.mlcdn.com.br/1500x1500/livro-o-pequeno-principe/magazineluiza/228782900/159d6918b41a93af36fe6727aab9b701.jpg", formatador.parse("01/01/1956"), 50);
 
         livrorepository.saveAll(Arrays.asList(livro1, livro2, livro3, livro4, livro5));
 
