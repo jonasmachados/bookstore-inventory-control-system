@@ -2,10 +2,12 @@ package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.entities.Compra;
+import com.jonas.backend.entities.Venda;
 import com.jonas.backend.repositories.CompraRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import com.jonas.backend.repositories.LivroRepository;
+import com.jonas.backend.repositories.VendaRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
@@ -22,6 +24,9 @@ public class LivroService {
 
     @Autowired
     private CompraRepository compraRepository;
+    
+    @Autowired
+    private VendaRepository vendaRepository;
 
     public List<Livro> findAll() {
         return repository.findAll();
@@ -76,6 +81,11 @@ public class LivroService {
         return compraRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
     }
+    
+    private Venda verifyIfVendaExists(Long id) {
+        return vendaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
 
     public Livro add(Long id, int quantityToAdd) {
         Livro livroToAdd = verifyIfExists(id);
@@ -106,5 +116,24 @@ public class LivroService {
 
         return repository.save(livroToAdd);
     }
+    
+    public Livro atualizarVenda(Long id, int quantity, Long idVenda) {
+        Livro livroToAdd = verifyIfExists(id);
+        Venda venda = verifyIfVendaExists(idVenda);
+        Integer diferenca;
+
+        if (quantity < venda.getQtdItens()) {
+            diferenca = venda.getQtdItens() - quantity;
+            livroToAdd.setEstoque(livroToAdd.getEstoque() + diferenca);
+        } else if (quantity > venda.getQtdItens()) {
+            diferenca = quantity - venda.getQtdItens();
+            livroToAdd.setEstoque(livroToAdd.getEstoque() - diferenca);
+        } else {
+            livroToAdd.setEstoque(livroToAdd.getEstoque());
+        }
+
+        return repository.save(livroToAdd);
+    } 
+
 
 }

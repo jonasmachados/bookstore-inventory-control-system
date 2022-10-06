@@ -77,4 +77,10 @@ public class LivroResource {
     public Livro atualizar(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO, @PathVariable Long idCompra) {
         return service.atualizar(id, quantityDTO.getQtdItens(), idCompra);
     }
+
+    @PatchMapping("/{id}/atualizarVenda/{idVenda}")
+    public Livro atualizarVenda(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO, @PathVariable Long idVenda) {
+        return service.atualizarVenda(id, quantityDTO.getQtdItens(), idVenda);
+    }
+    
 }
