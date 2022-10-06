@@ -133,8 +133,8 @@ const AddUpdateVenda = () => {
             console.log(error)
         })
 
-        if (id && book.estoque > venda.qtdItens) {
-            LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
+        if (id && book.estoque >= venda.qtdItens) {
+            LivroService.atualizarLivroVenda(venda.livro.id, id, livro).then((response) => {
                 window.location.href = "/vendas";
             }).catch(error => {
                 console.log(error)
@@ -145,7 +145,7 @@ const AddUpdateVenda = () => {
                 console.log(error)
             })
 
-        } else if (book.estoque > venda.qtdItens) {
+        } else if (book.estoque >= venda.qtdItens) {
             LivroService.removerEstoque(venda.livro.id, livro).then((response) => {
 
                 window.location.href = "/vendas";
