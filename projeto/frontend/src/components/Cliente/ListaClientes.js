@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ClienteService from "../../services/ClienteService"
 import clienteImg from "../../assets/img/client.svg";
 
+import clientesPDF from "../../report/cliente/Clientes";
+
 const ListaClientes = () => {
     const [cliente, setCliente] = useState([]);
 
@@ -37,6 +39,7 @@ const ListaClientes = () => {
                 {" "}
                 Novo Cliente{" "}
             </Link>
+            <button onClick={(e) => clientesPDF(cliente)} className="btn mb-4 btn-lg" >Print PDF</button>
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>

@@ -52,6 +52,28 @@ ul {
     
 }
 
+.navbar li:hover > .sub-menu {
+    display: block;
+}
+
+.sub-menu{
+    margin-top: 1px;
+    display: none;
+}
+
+.sub-menu a{
+    background-color: var(--primary-color);
+    width: 120%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    font-size: 35px;
+    border-left: 8px solid transparent;
+}
+.sub-menu li:hover > a{
+    border-left: 8px solid black;
+}
+
 .hamburger {
     display: none;
 }

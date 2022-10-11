@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import clientesPDF from "../../report/cliente/Clientes";
+import ClienteService from "../../services/ClienteService"
+
 import "./Nav.css";
 import '../../App.css';
 
@@ -7,6 +11,23 @@ const Navbar = () => {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
+
+  const [cliente, setCliente] = useState([]);
+
+  useEffect(() => {
+    getAllClientes();
+  }, []);
+
+  const getAllClientes = () => {
+    ClienteService.getAllClientes()
+      .then((response) => {
+        setCliente(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="navbar">
@@ -24,7 +45,16 @@ const Navbar = () => {
           <a href={`/compras`}>Compras</a>
         </li>
         <li className="nav-item">
-        <a href={`/vendas`}>Vendas</a>
+          <a href={`/vendas`}>Vendas</a>
+        </li>
+        <li className="nav-item">
+          <a href={`/`}>Relatórios</a>
+          <ul className="sub-menu">
+            <li><a href={`/`}>Livros</a></li>
+            <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
+            <li><a href={`/`}>Compras</a></li>
+            <li><a href={`/`}>Vendas</a></li>
+          </ul>
         </li>
       </ul>
       <div className="hamburger" onClick={handleClick}>

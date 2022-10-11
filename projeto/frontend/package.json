@@ -12,6 +12,7 @@
     "date-fns": "^2.29.3",
     "eslint-plugin-react-hooks": "^4.7.0-next-9ff738f53-20220826",
     "nth-check": "^2.1.1",
+    "pdfmake": "^0.2.6",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",

@@ -1,5 +1,5 @@
-
-const Teste = () => {
-
+function Teste() {
+   
 }
+
 export default Teste;
