@@ -5,6 +5,7 @@ import CompraService from "../../services/CompraService";
 import { Link } from "react-router-dom";
 import LivroService from '../../services/LivroService';
 import "./Compra.css";
+import compraToPDF from "../../report/cliente/CompraToPDF";
 
 const ListaCompra = () => {
 
@@ -52,6 +53,8 @@ const ListaCompra = () => {
                 {" "}
                 Novo Compra{" "}
             </Link>
+            <button onClick={(e) => compraToPDF(compras)} className="btn mb-4 btn-lg" >Print PDF</button>
+
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>

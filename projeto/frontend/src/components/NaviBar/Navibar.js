@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import clientesPDF from "../../report/cliente/Clientes";
 import livroToPDF from "../../report/cliente/LivroToPDF";
+import compraToPDF from "../../report/cliente/CompraToPDF";
 import ClienteService from "../../services/ClienteService"
 import LivroService from "../../services/LivroService"
+import CompraService from "../../services/CompraService";
 
 import "./Nav.css";
 import '../../App.css';
@@ -16,6 +18,7 @@ const Navbar = () => {
 
   const [cliente, setCliente] = useState([]);
   const [livros, setlivros] = useState([]);
+  const [compras, setCompras] = useState([]);
 
   useEffect(() => {
     getAllClientes();
@@ -23,6 +26,10 @@ const Navbar = () => {
 
   useEffect(() => {
     getAllLivros();
+  }, []);
+
+  useEffect(() => {
+    getAllCompras();
 }, []);
 
   const getAllClientes = () => {
@@ -37,8 +44,19 @@ const Navbar = () => {
   };
   const getAllLivros = () => {
     LivroService.getAllLivros()
+      .then((response) => {
+        setlivros(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getAllCompras = () => {
+    CompraService.getAllCompras()
         .then((response) => {
-            setlivros(response.data);
+            setCompras(response.data);
             console.log(response.data);
         })
         .catch((error) => {
@@ -69,7 +87,7 @@ const Navbar = () => {
           <ul className="sub-menu">
             <li><a href="#" onClick={(e) => livroToPDF(livros)}>Livros</a></li>
             <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
-            <li><a href={`/`}>Compras</a></li>
+            <li><a href="#" onClick={(e) => compraToPDF(compras)}>Compras</a></li>
             <li><a href={`/`}>Vendas</a></li>
           </ul>
         </li>
