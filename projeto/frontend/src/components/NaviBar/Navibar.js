@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import clientesPDF from "../../report/cliente/Clientes";
+import livroToPDF from "../../report/cliente/LivroToPDF";
 import ClienteService from "../../services/ClienteService"
+import LivroService from "../../services/LivroService"
 
 import "./Nav.css";
 import '../../App.css';
@@ -13,10 +15,15 @@ const Navbar = () => {
   const handleClick = () => setClick(!click);
 
   const [cliente, setCliente] = useState([]);
+  const [livros, setlivros] = useState([]);
 
   useEffect(() => {
     getAllClientes();
   }, []);
+
+  useEffect(() => {
+    getAllLivros();
+}, []);
 
   const getAllClientes = () => {
     ClienteService.getAllClientes()
@@ -28,6 +35,16 @@ const Navbar = () => {
         console.log(error);
       });
   };
+  const getAllLivros = () => {
+    LivroService.getAllLivros()
+        .then((response) => {
+            setlivros(response.data);
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
 
   return (
     <div className="navbar">
@@ -50,7 +67,7 @@ const Navbar = () => {
         <li className="nav-item">
           <a href={`/`}>Relatórios</a>
           <ul className="sub-menu">
-            <li><a href={`/`}>Livros</a></li>
+            <li><a href="#" onClick={(e) => livroToPDF(livros)}>Livros</a></li>
             <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
             <li><a href={`/`}>Compras</a></li>
             <li><a href={`/`}>Vendas</a></li>

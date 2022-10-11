@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LivroService from "../../services/LivroService"
 import "./ListaLivro.css";
 import livroImg from "../../assets/img/livro.svg";
-
+import livroToPDF from "../../report/cliente/LivroToPDF";
 
 const ListaLivro = () => {
     const [livros, setlivros] = useState([]);
@@ -38,6 +38,7 @@ const ListaLivro = () => {
                 {" "}
                 Novo Livro{" "}
             </Link>
+            <button onClick={(e) => livroToPDF(livros)} className="btn mb-4 btn-lg" >Print PDF</button>
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -58,14 +59,14 @@ const ListaLivro = () => {
                             <td> <p className="p_td">{livro.titulo}</p> </td>
                             <td> <p className="p_td">{livro.autor}</p> </td>
                             <td> <p className="p_td">{livro.editora} </p> </td>
-                            <td> <p className="p_td"><img className="img-capa-livro" src={livro.linkImg} alt="CapaLivro"/> </p> </td>
+                            <td> <p className="p_td"><img className="img-capa-livro" src={livro.linkImg} alt="CapaLivro" /> </p> </td>
                             <td> <p className="p_td">{livro.anoPublicacao} </p> </td>
                             <td> <p className="p_td">{livro.estoque} </p> </td>
                             <td>
                                 <div className="div-acoes">
                                     <Link className="btn" to={`/edit-livro/${livro.id}`} >Atualizar</Link>
                                     <button className="btn" onClick={() => deleteLivro(livro.id)}
-                                        >Deletar</button>
+                                    >Deletar</button>
                                 </div>
                             </td>
                         </tr>
