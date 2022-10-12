@@ -3,6 +3,7 @@ import VendaService from "../../services/VendaService";
 import "./Venda.css";
 import vendaImg from "../../assets/img/venda.svg";
 import { Link } from "react-router-dom";
+import VendaToPDF from "../../report/cliente/VendaToPDF";
 
 const ListaVendas = () => {
     const [vendas, setVendas] = useState([]);
@@ -42,6 +43,8 @@ const ListaVendas = () => {
                 {" "}
                 Nova Venda{" "}
             </Link>
+            <button onClick={(e) => VendaToPDF(vendas)} className="btn mb-4 btn-lg" >Print PDF</button>
+
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>

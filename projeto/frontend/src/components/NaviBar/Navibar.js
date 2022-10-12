@@ -7,9 +7,10 @@ import compraToPDF from "../../report/cliente/CompraToPDF";
 import ClienteService from "../../services/ClienteService"
 import LivroService from "../../services/LivroService"
 import CompraService from "../../services/CompraService";
-
+import VendaService from "../../services/VendaService";
 import "./Nav.css";
 import '../../App.css';
+import VendaToPDF from "../../report/cliente/VendaToPDF";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [cliente, setCliente] = useState([]);
   const [livros, setlivros] = useState([]);
   const [compras, setCompras] = useState([]);
+  const [vendas, setVendas] = useState([]);
 
   useEffect(() => {
     getAllClientes();
@@ -30,7 +32,10 @@ const Navbar = () => {
 
   useEffect(() => {
     getAllCompras();
-}, []);
+  }, []);
+  useEffect(() => {
+    getAllVendas();
+  }, []);
 
   const getAllClientes = () => {
     ClienteService.getAllClientes()
@@ -55,14 +60,25 @@ const Navbar = () => {
 
   const getAllCompras = () => {
     CompraService.getAllCompras()
-        .then((response) => {
-            setCompras(response.data);
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-};
+      .then((response) => {
+        setCompras(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getAllVendas = () => {
+    VendaService.getAllVendas()
+      .then((response) => {
+        setVendas(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="navbar">
@@ -88,7 +104,7 @@ const Navbar = () => {
             <li><a href="#" onClick={(e) => livroToPDF(livros)}>Livros</a></li>
             <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
             <li><a href="#" onClick={(e) => compraToPDF(compras)}>Compras</a></li>
-            <li><a href={`/`}>Vendas</a></li>
+            <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Vendas</a></li>
           </ul>
         </li>
       </ul>
