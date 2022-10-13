@@ -15,6 +15,8 @@ import ListaVendas from '../Venda/ListaVendas.js';
 import AddUpdateVenda from '../Venda/AddUpdateVenda.js';
 import Teste from '../Venda/Teste.js';
 
+import Dashboard from '../DashBoard/Dashboard.js';
+
 const RouteComponents = () => {
   return (
     <section>
@@ -22,7 +24,7 @@ const RouteComponents = () => {
         <div >
 
           <Routes>
-            <Route path="/" element={<ListaLivro />} />
+            <Route path="/livros" element={<ListaLivro />} />
             <Route path="/add-livro" element={<AddUpdateLivroComponent />} />
             <Route path="/edit-livro/:id" element={<AddUpdateLivroComponent />} />
           
@@ -40,6 +42,8 @@ const RouteComponents = () => {
             <Route path="/vendas" element={<ListaVendas />} />
             <Route path="/add-venda/" element={<AddUpdateVenda />} />
             <Route path="/edit-venda/:id" element={<AddUpdateVenda />} />
+
+            <Route path="/dashboard/" element={<Dashboard />} />
 
             <Route path="/teste/" element={<Teste />} />
 
