@@ -12,6 +12,8 @@ import ClienteService from "../../services/ClienteService"
 import CompraService from "../../services/CompraService";
 import VendaService from "../../services/VendaService";
 
+import ListCompraDash from "./ListCompraDash";
+
 const Dashboard = () => {
 
     const [livros, setlivros] = useState([]);
@@ -121,15 +123,7 @@ const Dashboard = () => {
                         <i><AiOutlineShoppingCart /></i>
                         <span class="text">Compras Recentes</span>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    <p>Praesent eu nibh vel nunc sollicitudin rhoncus.
-                    </p>
-                    <p>Nulla id tortor id augue tempor vehicula vitae hendrerit lorem.
-                    </p>
-                    <p>Aliquam a lectus vitae ante consequat iaculis.
-                    </p>
-
+                    <ListCompraDash/>
 
                     <div class="title">
                         <i><MdPointOfSale /></i>
