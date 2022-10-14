@@ -43,7 +43,7 @@ const RouteComponents = () => {
             <Route path="/add-venda/" element={<AddUpdateVenda />} />
             <Route path="/edit-venda/:id" element={<AddUpdateVenda />} />
 
-            <Route path="/dashboard/" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
 
             <Route path="/teste/" element={<Teste />} />
 

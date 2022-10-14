@@ -13,6 +13,7 @@ import CompraService from "../../services/CompraService";
 import VendaService from "../../services/VendaService";
 
 import ListCompraDash from "./ListCompraDash";
+import ListVendaDash from "./ListVendaDash";
 
 const Dashboard = () => {
 
@@ -129,14 +130,7 @@ const Dashboard = () => {
                         <i><MdPointOfSale /></i>
                         <span class="text">Vendas Recentes</span>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    <p>Praesent eu nibh vel nunc sollicitudin rhoncus.
-                    </p>
-                    <p>Nulla id tortor id augue tempor vehicula vitae hendrerit lorem.
-                    </p>
-                    <p>Aliquam a lectus vitae ante consequat iaculis.
-                    </p>
+                    <ListVendaDash f/>
 
                 </div>
             </div>

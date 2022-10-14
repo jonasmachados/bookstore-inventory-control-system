@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import CompraService from "../../services/CompraService";
+import VendaService from "../../services/VendaService";
 
-function ListCompraDash() {
-    const [compras, setCompras] = useState([]);
+function ListVendaDash() {
+    const [vendas, setVendas] = useState([]);
 
     useEffect(() => {
-        getAllCompras();
+        getAllVendas();
     }, []);
 
-    const getAllCompras = () => {
-        CompraService.getAllCompras()
+    const getAllVendas = () => {
+        VendaService.getAllVendas()
             .then((response) => {
-                setCompras(response.data);
+                setVendas(response.data);
                 console.log(response.data);
             })
             .catch((error) => {
@@ -24,13 +24,14 @@ function ListCompraDash() {
             { style: 'currency', currency: 'BRL' }).format(number)
     }
 
-    var list = compras.slice(Math.max(compras.length - 3, 1))
+    var list = vendas.slice(Math.max(vendas.length - 3, 1))
 
     return (
         <div>
             <table className="table table-dark table-borderless">
                 <thead className="table-light">
                     <tr>
+                        <th> <p>Cliente </p> </th>
                         <th> <p>Livro </p> </th>
                         <th> <p>Quantidade</p> </th>
                         <th> <p>Preço </p> </th>
@@ -38,12 +39,13 @@ function ListCompraDash() {
                     </tr>
                 </thead>
                 <tbody>
-                    {list.map((compra) => (
-                        <tr key={compra.id}>
-                            <td> <p className="p_td">{compra.livro.titulo} </p> </td>
-                            <td> <p className="p_td">{compra.qtdItens} </p> </td>
-                            <td> <p className="p_td">{formatNumber(compra.precoVenda)} </p> </td>
-                            <td> <p className="p_td">{formatNumber(compra.total)} </p> </td>
+                    {list.map((venda) => (
+                        <tr key={venda.id}>
+                             <td> <p className="p_td">{venda.client.name} </p> </td>
+                            <td> <p className="p_td">{venda.livro.titulo} </p> </td>
+                            <td> <p className="p_td">{venda.qtdItens} </p> </td>
+                            <td> <p className="p_td">{formatNumber(venda.precoVenda)} </p> </td>
+                            <td> <p className="p_td">{formatNumber(venda.total)} </p> </td>
                         </tr>
                     ))}
                 </tbody>
@@ -53,4 +55,4 @@ function ListCompraDash() {
 }
 
 
-export default ListCompraDash;
+export default ListVendaDash;

@@ -84,7 +84,7 @@ const Navbar = () => {
     <div className="navbar">
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li className="nav-item">
-          <a href={`/dashboard`}>Home</a>
+          <a href={`/`}>Home</a>
         </li>
         <li className="nav-item">
           <a href={`/livros`}>Livros</a>
