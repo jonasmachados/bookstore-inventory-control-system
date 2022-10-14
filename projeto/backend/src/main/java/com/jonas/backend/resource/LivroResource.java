@@ -82,5 +82,5 @@ public class LivroResource {
     public Livro atualizarVenda(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO, @PathVariable Long idVenda) {
         return service.atualizarVenda(id, quantityDTO.getQtdItens(), idVenda);
     }
-    
+
 }
