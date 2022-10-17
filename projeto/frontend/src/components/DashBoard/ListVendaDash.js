@@ -41,7 +41,7 @@ function ListVendaDash() {
                 <tbody>
                     {list.map((venda) => (
                         <tr key={venda.id}>
-                             <td> <p className="p_td">{venda.client.name} </p> </td>
+                            <td> <p className="p_td">{venda.client.name} </p> </td>
                             <td> <p className="p_td">{venda.livro.titulo} </p> </td>
                             <td> <p className="p_td">{venda.qtdItens} </p> </td>
                             <td> <p className="p_td">{formatNumber(venda.precoVenda)} </p> </td>
