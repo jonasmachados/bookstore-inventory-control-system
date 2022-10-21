@@ -53,7 +53,7 @@ public class ClientResource {
         obj = service.updatePJ(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-    
+
     //PF 
     @PostMapping("pf")
     public ResponseEntity<PessoaFisica> insert(@RequestBody PessoaFisica obj) {
@@ -67,9 +67,9 @@ public class ClientResource {
         obj = service.updatePF(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-    
-     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete (@PathVariable Long id){
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

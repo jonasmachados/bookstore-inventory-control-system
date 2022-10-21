@@ -62,7 +62,7 @@ public class TestConfig implements CommandLineRunner {
         Venda venda2 = new Venda(null, client1, livro2, 20, 15.20);
         Venda venda3 = new Venda(null, client2, livro2, 30, 18.00);
         vendaRepository.saveAll(Arrays.asList(venda1, venda2, venda3));
-
+        
     }
 
 }

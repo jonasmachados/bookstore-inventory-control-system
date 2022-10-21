@@ -31,7 +31,7 @@ public class ClientService {
     public List<Client> findAll() {
         return repository.findAll();
     }
-
+    
     public Client findById(Long id) {
         Optional<Client> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));

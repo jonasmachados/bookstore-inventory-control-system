@@ -38,10 +38,14 @@ public class VendaService {
     public Venda get(Long id) {
         return null;
     }
-    
+
     public Venda getFindById(Long id) {
         Optional<Venda> obj = vendarRepository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public List<Venda> findBookByClient(int idCliente) {
+        return vendarRepository.findVendaByClient(idCliente);
     }
 
     public void delete(Long id) {

@@ -1,7 +1,6 @@
 package com.jonas.backend.resource;
 
 import com.jonas.backend.dto.QuantityDTO;
-import com.jonas.backend.entities.Compra;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.services.LivroService;
 import java.net.URI;
@@ -35,7 +34,7 @@ public class LivroResource {
         List<Livro> list = service.findAll();
         return ResponseEntity.ok().body(list);//Contralador rest
     }
-
+    
     @GetMapping(value = "/{id}")
     public ResponseEntity<Livro> findById(@PathVariable Long id) { //ResponseEntity: resposta de aquisicao web
         Livro obj = service.findById(id);
