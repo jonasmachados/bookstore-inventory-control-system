@@ -105,6 +105,12 @@ const Navbar = () => {
             <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
             <li><a href="#" onClick={(e) => compraToPDF(compras)}>Compras</a></li>
             <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Vendas</a></li>
+            <li>
+              <ul className="sub-sub-menu">
+                <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Todas as vendas</a></li>
+                <li><a href={`/report-sale-by-client`}>Vendas por cliente</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>

@@ -19,6 +19,7 @@ import Dashboard from '../DashBoard/Dashboard.js';
 
 import Error404 from '../PageNotFound/Error404.js';
 
+import ReportSalebyClient from '../Venda/ReportSalebyClient.js';
 const RouteComponents = () => {
   return (
     <section>
@@ -46,10 +47,10 @@ const RouteComponents = () => {
             <Route path="/edit-venda/:id" element={<AddUpdateVenda />} />
 
             <Route path="/" element={<Dashboard />} />
-
+            <Route path="/report-sale-by-client" element={<ReportSalebyClient />} />
             <Route path="/*" element={<Error404 />} />
 
-            <Route path="/teste/" element={<Teste />} />
+            <Route path="/teste" element={<Teste />} />
 
           </Routes>
 

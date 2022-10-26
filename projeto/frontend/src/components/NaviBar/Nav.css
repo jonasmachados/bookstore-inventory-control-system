@@ -16,10 +16,6 @@
     align-items: center;
     padding:1rem;
     background-color:var(--primary-color);
-    /*opacity: 0.8;
-   background-color: #03366994;
-    background-color: #06376888; */
-    
 }
 
 ul {
@@ -56,10 +52,14 @@ ul {
     display: block;
 }
 
+
+
 .sub-menu{
     margin-top: 1px;
     display: none;
 }
+
+
 
 .sub-menu a{
     background-color: var(--primary-color);
@@ -71,6 +71,10 @@ ul {
     border-left: 8px solid transparent;
 }
 .sub-menu li:hover > a{
+    border-left: 8px solid black;
+}
+
+.sub-sub-menu li:hover > a{
     border-left: 8px solid black;
 }
 

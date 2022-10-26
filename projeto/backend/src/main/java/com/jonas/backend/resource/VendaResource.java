@@ -42,10 +42,6 @@ public class VendaResource {
 
     }
 
-//    @GetMapping(value = "/cliente/{idCliente}")
-//    public List<Venda> findBookByClient(@PathVariable int idCliente) {
-//        return repository.findVendaByClient(idCliente);
-//    }
     @GetMapping(value = "/cliente/{idCliente}")
     public List<Venda> findBookByClient(@PathVariable int idCliente) {
         return service.findBookByClient(idCliente);

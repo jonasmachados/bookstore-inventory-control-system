@@ -8,13 +8,16 @@ class VendaService{
         return axios.get(VENDA_API_BASE_URL);
     }
 
-    
     createVenda(venda){
         return axios.post(VENDA_API_BASE_URL + '/add' , venda);
     }
 
     getVendaById(vendaId){
         return axios.get(VENDA_API_BASE_URL + '/' + vendaId);
+    }
+
+    getVendaByClient(idCliente){
+        return axios.get(VENDA_API_BASE_URL + '/cliente/' + idCliente);
     }
 
     updateVenda(vendaId, venda){ 
