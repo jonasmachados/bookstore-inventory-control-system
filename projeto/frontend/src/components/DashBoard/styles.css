@@ -46,38 +46,43 @@
   transition: var(--tran-05);
 }
 
-.boxes .box i{
-    font-size: 35px;
-    color: #fff;
+.boxes .box i {
+  font-size: 35px;
+  color: #fff;
 }
 
-.boxes .box .text{
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-    color: #fff;
+.boxes .box .text {
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
 }
 
-.boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
-    color: #fff;
+.boxes .box .number {
+  font-size: 35px;
+  font-weight: 500;
+  color: #fff;
 }
 
-.boxes .box.box1{
-    background-color: rgb(245, 91, 80);
+.boxes .box.box1 {
+  background-color: rgb(245, 91, 80);
 }
 
-.boxes .box.box2{
-    background-color: rgb(90, 145, 247);
+.boxes .box.box2 {
+  background-color: rgb(90, 145, 247);
 }
 
-.boxes .box.box3{
-    background-color: rgba(245, 241, 7, 0.897);
+.boxes .box.box3 {
+  background-color: rgba(241, 164, 48, 0.897);
 }
 
-.boxes .box.box4{
-    background-color: rgb(202, 9, 144);
+.boxes .box.box4 {
+  background-color: rgb(247, 81, 197);
 }
 
-/* ************************************  */
+@media (max-width: 880px) {
+  .dash-content .boxes .box {
+    width: calc(100% / 2 - 15px);
+    margin-top: 15px;
+  }
+}
