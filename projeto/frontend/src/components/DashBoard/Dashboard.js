@@ -130,7 +130,7 @@ const Dashboard = () => {
                         <i><MdPointOfSale /></i>
                         <span class="text">Vendas Recentes</span>
                     </div>
-                    <ListVendaDash f/>
+                    <ListVendaDash />
 
                 </div>
             </div>

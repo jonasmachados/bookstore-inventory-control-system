@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VendaService from "../../services/VendaService";
+import "./styles.css"
 
 function ListVendaDash() {
     const [vendas, setVendas] = useState([]);
@@ -27,7 +28,7 @@ function ListVendaDash() {
     var list = vendas.slice(Math.max(vendas.length - 3, 1))
 
     return (
-        <div>
+        <div className="table-vendas">
             <table className="table table-dark table-borderless">
                 <thead className="table-light">
                     <tr>

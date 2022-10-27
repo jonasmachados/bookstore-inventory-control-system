@@ -80,6 +80,10 @@
   background-color: rgb(247, 81, 197);
 }
 
+.table-vendas{
+  padding-bottom: 150px;
+}
+
 @media (max-width: 880px) {
   .dash-content .boxes .box {
     width: calc(100% / 2 - 15px);
