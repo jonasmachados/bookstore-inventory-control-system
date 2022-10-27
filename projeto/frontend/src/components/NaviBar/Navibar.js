@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { AiFillCaretDown } from 'react-icons/ai'
 import clientesPDF from "../../report/cliente/Clientes";
 import livroToPDF from "../../report/cliente/LivroToPDF";
 import compraToPDF from "../../report/cliente/CompraToPDF";
@@ -99,13 +100,15 @@ const Navbar = () => {
           <a href={`/vendas`}>Vendas</a>
         </li>
         <li className="nav-item">
-          <a href={`/`}>Relatórios</a>
+          <a href={`/`}>Relatórios </a>
           <ul className="sub-menu">
             <li><a href="#" onClick={(e) => livroToPDF(livros)}>Livros</a></li>
             <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
             <li><a href="#" onClick={(e) => compraToPDF(compras)}>Compras</a></li>
-            <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Vendas</a></li>
             <li>
+              <a href={"#"}>Vendas
+                <i className="ai">< AiFillCaretDown /></i>
+              </a>
               <ul className="sub-sub-menu">
                 <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Todas as vendas</a></li>
                 <li><a href={`/report-sale-by-client`}>Vendas por cliente</a></li>
