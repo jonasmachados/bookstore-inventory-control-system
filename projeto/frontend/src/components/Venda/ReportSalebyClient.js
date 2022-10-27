@@ -42,7 +42,6 @@ const ReportSalebyClient = () => {
 
     return (
         <div>
-            <br /><br />
             <div className="container-add">
                 <h1> Relatorio de vendas por cliente. </h1>
                 <div className="row">
