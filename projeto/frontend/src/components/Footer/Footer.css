@@ -1,5 +1,7 @@
 .footer {
-  padding: 0 0 0 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background: var(--primary-color);
   background-position: center center;
   background-size: cover;
