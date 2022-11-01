@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const COMPRA_API_BASE_URL = "http://localhost:8070/compra";
+const COMPRA_API_BASE_URL = "https://backend-livraria-jonas.herokuapp.com/compra";
 
 class CompraService {
 

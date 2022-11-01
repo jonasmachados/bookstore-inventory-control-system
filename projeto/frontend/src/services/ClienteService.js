@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const CLIENTE_API_BASE_URL = "http://localhost:8070/clientes";
+const CLIENTE_API_BASE_URL = "https://backend-livraria-jonas.herokuapp.com/clientes";
 
 class ClienteService{
 
