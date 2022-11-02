@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const VENDA_API_BASE_URL = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8070/vendas";
+const VENDA_API_BASE_URL = "http://localhost:8070/vendas";
 
 class VendaService {
 
