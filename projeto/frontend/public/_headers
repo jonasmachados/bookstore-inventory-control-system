@@ -1,1 +1,1 @@
-/vendas            /https://backend-livraria-jonas.herokuapp.com/vendas 200
+GET /https://backend-livraria-jonas.herokuapp.com/vendas
