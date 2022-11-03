@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://bookstore-jonas.netlify.app")
 @RestController
 @RequestMapping(value = "/livro")
 public class LivroResource {
