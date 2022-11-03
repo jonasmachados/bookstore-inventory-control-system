@@ -1,1 +1,4 @@
-/*            Access-Control-Allow-Origin:* 200
+/*
+  Access-Control-Allow-Origin: * 
+  Access-Control-Allow-Methods: GET, POST, PUT
+  Access-Control-Allow-Headers: Content-Type
