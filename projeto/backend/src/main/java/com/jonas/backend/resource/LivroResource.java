@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
 
-@CrossOrigin(origins = "https://backend-livraria-jonas.herokuapp.com/livro")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/livro")
 public class LivroResource {
