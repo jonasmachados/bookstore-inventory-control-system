@@ -11,9 +11,11 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         <Row className="align-items-center">
-    
+
           <Col size={12} sm={6}>
-            <img src={logo} alt="Logo" />
+            <div className="img-logo">
+              <img src={logo} alt="Logo" />
+            </div>
           </Col>
           <Col size={12} sm={6} className="text-center text-sm-end">
             <div className="social-icon">
