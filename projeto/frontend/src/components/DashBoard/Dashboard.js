@@ -119,20 +119,20 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div class="activity">
-                    <div class="title">
+                <div className="activity">
+                    <div className="title">
                         <i><AiOutlineShoppingCart /></i>
-                        <span class="text">Compras Recentes</span>
+                        <span className="text">Compras Recentes</span>
                     </div>
                     <ListCompraDash/>
 
-                    <div class="title">
+                    <div className="title">
                         <i><MdPointOfSale /></i>
-                        <span class="text">Vendas Recentes</span>
+                        <span className="text">Vendas Recentes</span>
                     </div>
                     <ListVendaDash />
-
                 </div>
+                
             </div>
         </div>
     )

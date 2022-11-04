@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const VENDA_API_BASE_URL = "https://backend-livraria-jonas.herokuapp.com/vendas";
+const VENDA_API_BASE_URL = process.env.REACT_VENDA_API_BASE_URL ?? "http://localhost:8070/vendas";
 
 class VendaService {
 
