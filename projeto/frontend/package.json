@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-icons": "^1.8.4",
+    "react-css-transition": "^0.7.4",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",

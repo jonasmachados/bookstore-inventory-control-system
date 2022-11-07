@@ -84,9 +84,26 @@
   padding-bottom: 150px;
 }
 
+tr{
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+tr:hover{
+  background-color: var(--primary-color);
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px var(--primary-color);;
+}
+
 @media (max-width: 880px) {
   .dash-content .boxes .box {
     width: calc(100% / 2 - 15px);
     margin-top: 15px;
+  }
+  .table th p{
+    font-size: 18px;
+  }
+  .table td p{
+    font-size: 15px;
   }
 }
