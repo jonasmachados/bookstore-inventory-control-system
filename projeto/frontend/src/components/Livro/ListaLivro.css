@@ -32,6 +32,7 @@
 
 .container-livro .table th {
   background-color: var(--primary-color);
+  border: 1px solid #fff;
 }
 
 .container-livro table td {
@@ -87,25 +88,7 @@
   .container-livro th {
     display: block;
   }
-  .container-livro td {
-    display: block;
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: static;
-    padding-left: 50%;
-    text-align: right;
-  }
-  .container-livro td::before {
-    position: static;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-  }
+
   .container-livro tr {
     display: block;
     border: 1px solid #ccc;
@@ -116,6 +99,20 @@
     position: absolute;
     top: -9999px;
     left: -9999px;
+  }
+
+  .container-livro td {
+    display: block;
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: static;
+  }
+  .container-livro td::before {
+    position: static;
+    white-space: nowrap;
+    font-size: 23px;
+    font-weight: 600;
+    color: #fff;
   }
   .container-livro td:nth-of-type(1)::before {
     content: "Id:";
@@ -153,13 +150,13 @@
     margin-top: 20px;
   }
 
-  .container-livro p {
+  .container-livro .p_td {
     padding-bottom: 0%;
+    font-size: 20px;
   }
 
   .container-livro table .img-capa-livro {
     margin: auto;
     display: block;
   }
-
 }

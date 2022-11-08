@@ -33,14 +33,14 @@ const ListaClientes = () => {
     }
 
     return (
-        <div className="container-livro">
+        <div className="container-cliente">
             <h1> Clientes </h1>
             <Link to="/add-cliente" className="btn mb-4 btn-lg">
                 {" "}
                 Novo Cliente{" "}
             </Link>
             <button onClick={(e) => clientesPDF(cliente)} className="btn mb-4 btn-lg" >Print PDF</button>
-            <table className="table table-bordered table-striped">
+            <table className="table">
                 <thead>
                     <tr>
                         <th> <p>Id</p> </th>

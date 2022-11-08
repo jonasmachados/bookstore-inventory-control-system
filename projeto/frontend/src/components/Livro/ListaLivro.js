@@ -39,8 +39,8 @@ const ListaLivro = () => {
                 Novo Livro{" "}
             </Link>
             <button onClick={(e) => livroToPDF(livros)} className="btn mb-4 btn-lg" >Print PDF</button>
-            <table className="table table-dark table-borderless">
-                <thead className="table-light">
+            <table className="table">
+                <thead>
                     <tr>
                         <th> <p>Id</p> </th>
                         <th> <p>Titulo</p> </th>
