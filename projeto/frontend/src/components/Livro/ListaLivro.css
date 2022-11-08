@@ -24,10 +24,25 @@
 }
 
 .container-livro .btn {
- margin-bottom:  5%;
+  margin-bottom: 5%;
   margin-right: 2%;
   background-color: var(--primary-color);
   color: #fff;
+}
+
+.container-livro .table th {
+  background-color: var(--primary-color);
+}
+
+.container-livro table td {
+  padding: 12px;
+  border: 1px solid #fff;
+  text-align: center;
+}
+.container-livro table th {
+  padding: 12px;
+  border: 1px solid #fff;
+  text-align: center;
 }
 
 .p_td {
@@ -39,7 +54,12 @@
 .div-acoes {
   display: flex;
   flex-direction: column;
-    color: #fff;
+  color: #fff;
+}
+
+.container-livro table .img-capa-livro {
+  width: 100px;
+  margin-right: 50px;
 }
 
 .container-livro img {
@@ -48,8 +68,98 @@
   padding-top: 5%;
 }
 
-.container-livro .img-capa-livro {
-  width: 50%;
-  padding-top: 0;
-  padding-right: 30%;
+@media only screen and (max-width: 768px),
+  (min-device-width: 768px) and (max-device-width: 992px) {
+  .container-livro {
+    width: 100%;
+    background: transparent;
+  }
+
+  .container-livro table {
+    display: block;
+  }
+  .container-livro thead {
+    display: block;
+  }
+  .container-livro tbody {
+    display: block;
+  }
+  .container-livro th {
+    display: block;
+  }
+  .container-livro td {
+    display: block;
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: static;
+    padding-left: 50%;
+    text-align: right;
+  }
+  .container-livro td::before {
+    position: static;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .container-livro tr {
+    display: block;
+    border: 1px solid #ccc;
+    margin-bottom: 75px;
+  }
+
+  .container-livro thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .container-livro td:nth-of-type(1)::before {
+    content: "Id:";
+  }
+
+  .container-livro td:nth-of-type(2)::before {
+    content: "Titulo:";
+  }
+
+  .container-livro td:nth-of-type(3)::before {
+    content: "Autor:";
+  }
+
+  .container-livro td:nth-of-type(4)::before {
+    content: "Editora:";
+  }
+
+  .container-livro td:nth-of-type(5)::before {
+    content: "Capa Livro:";
+  }
+
+  .container-livro td:nth-of-type(6)::before {
+    content: "Ano Publicacao:";
+  }
+
+  .container-livro td:nth-of-type(7)::before {
+    content: "Estoque:";
+  }
+
+  .container-livro td:nth-of-type(8)::before {
+    content: "Ação:";
+  }
+
+  .container-livro .btn {
+    margin-top: 20px;
+  }
+
+  .container-livro p {
+    padding-bottom: 0%;
+  }
+
+  .container-livro table .img-capa-livro {
+    margin: auto;
+    display: block;
+  }
+
 }
