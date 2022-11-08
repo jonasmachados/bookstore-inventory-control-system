@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CompraService from "../../services/CompraService";
+import "./styles.css"
 
 function ListCompraDash() {
     const [compras, setCompras] = useState([]);
@@ -27,7 +28,7 @@ function ListCompraDash() {
     var list = compras.slice(Math.max(compras.length - 3, 1))
 
     return (
-        <div>
+        <div className="table-dash">
             <table className="table table-dark table-borderless">
                 <thead className="table-light">
                     <tr>

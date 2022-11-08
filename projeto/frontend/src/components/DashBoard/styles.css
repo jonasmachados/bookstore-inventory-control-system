@@ -80,17 +80,16 @@
   background-color: rgba(28, 185, 7, 0.678);
 }
 
-.table-vendas{
-  padding-bottom: 150px;
+.table-dash{
+  padding-bottom: 40px;
 }
 
-tr{
+.table-dash table tr{
   transition: all .2s ease-in;
   cursor: pointer;
 }
 
-tr:hover{
-  background-color: var(--primary-color);
+.table-dash table tr:hover{
   transform: scale(1.02);
   box-shadow: 2px 2px 12px var(--primary-color);;
 }
