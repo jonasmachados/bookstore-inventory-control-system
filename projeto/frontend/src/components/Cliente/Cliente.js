@@ -6,7 +6,7 @@ const Cliente = () => {
 
     return (
         <div className="container-cliente">
-            <div>
+            <div className="pf-pj">
                 <Link to="/add-cliente/pf" className="btn mb-4 btn-lg">
                     {" "}
                     Pessoa Fisica{" "}

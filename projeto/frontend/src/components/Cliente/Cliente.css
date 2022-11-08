@@ -47,12 +47,20 @@
 
 .container-cliente img {
   margin-left: 25%;
-  width: 40%;
+  width: 45%;
   padding-top: 5%;
 }
 
 .table tbody tr:nth-child(even) {
   background-color: rgb(48, 46, 46);
+}
+
+.pf-pj {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
 }
 
 @media only screen and (max-width: 768px),
@@ -76,7 +84,7 @@
   }
 
   .container-cliente tr {
-    display: block;  
+    display: block;
     border: 1px solid #ccc;
     margin-bottom: 75px;
   }
@@ -143,5 +151,4 @@
     padding-bottom: 0%;
     font-size: 20px;
   }
-
 }
