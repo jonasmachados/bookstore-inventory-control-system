@@ -55,7 +55,7 @@ const ListaCompra = () => {
             </Link>
             <button onClick={(e) => compraToPDF(compras)} className="btn mb-4 btn-lg" >Print PDF</button>
 
-            <table className="table table-bordered table-striped">
+            <table className="table">
                 <thead>
                     <tr>
                         <th> <p>Id</p> </th>
