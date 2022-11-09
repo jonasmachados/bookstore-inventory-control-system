@@ -1,9 +1,9 @@
 <h1 align="center">Bookstore Inventory Control System </h1>
 
-<p align="center">
-  <br>
-	<img src="https://user-images.githubusercontent.com/67349235/200827152-6c04e9ca-b92b-4544-8bd0-39bf2b44dbd1.gif">
-</p>
+<br>
+<img src="https://user-images.githubusercontent.com/67349235/200827152-6c04e9ca-b92b-4544-8bd0-39bf2b44dbd1.gif">
+
+<p align="center">See Web App here 👉🏼 https://bookstore-jonas.netlify.app/ </p>
 
 <h2>About</h2>
 
