@@ -53,6 +53,18 @@ performs customer registration and generates different types of reports such as 
  
  <p>Install the dependencies:</p>
  <br>
+ <p>Bootstrap:</p>
+ 
+ ```
+ yarn add react-bootstrap
+ ```
+ 
+ <p>Bootstrap Icon:</p>
+ 
+ ```
+ yarn add react-bootstrap-icons
+ ```
+ 
  <p>Axios:</p>
  
   ```
