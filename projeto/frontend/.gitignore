@@ -17,6 +17,26 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+.env.test
+.env.production
+
+# Dependency directories
+node_modules/
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
 
 # eslint cache
 .eslintcache
