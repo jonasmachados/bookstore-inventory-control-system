@@ -6,7 +6,7 @@
 </div>
 
 <div align="center">
-<a href="https://bookstore-jonas.netlify.app/"><img src="https://user-images.githubusercontent.com/67349235/203813371-164a8a4e-08b2-4577-9c86-c4cb2c3feb58.png" alt="button"/></a>
+<a href="https://bookstore-jonas.netlify.app/"><img src="https://user-images.githubusercontent.com/67349235/204552908-62606110-aaf0-4a36-9e30-5cdec37c04b7.png" alt="button"/></a>
 </div>
 
 <h2>About</h2>
