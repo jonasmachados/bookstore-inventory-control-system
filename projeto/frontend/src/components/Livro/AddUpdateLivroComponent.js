@@ -139,100 +139,101 @@ const AddUpdateLivroComponent = () => {
     }
 
     return (
-        <div>
-            <br /><br />
+        <div className='body'>
             <div className="container-add">
-                <div className="row">
-                    <div className="card col-md-6 offset-md-3 offset-md-3">
-                        {
-                            title()
-                        }
+                <header>{title()}</header>
 
-                        {status.type === 'error' ? <p style={{ color: "#ff0000", textAlign: 'center' }}> {status.mensagem}</p> : ""}
+                {status.type === 'error' ? <p style={{ color: "#ff0000", textAlign: 'center' }}> {status.mensagem}</p> : ""}
 
-                        <div className="card-body">
-                            <form>
-                                <div className="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Titulo"
-                                        name="titulo"
-                                        className="form-control"
-                                        value={titulo}
-                                        onChange={(e) => setTitulo(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
+                <form className='form'>
+                    <div className="input-box">
+                        <label>Titulo</label>
+                        <input
+                            type="text"
+                            placeholder="Titulo"
+                            name="titulo"
+                            className="form-control"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                                <div className="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Autor"
-                                        name="autor"
-                                        className="form-control"
-                                        value={autor}
-                                        onChange={(e) => setAutor(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
+                    <div className="input-box">
+                        <label>Autor</label>
+                        <input
+                            type="text"
+                            placeholder="Autor"
+                            name="autor"
+                            className="form-control"
+                            value={autor}
+                            onChange={(e) => setAutor(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                                <div className="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Editora"
-                                        name="editora"
-                                        className="form-control"
-                                        value={editora}
-                                        onChange={(e) => setEditora(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
+                    <div className="input-box">
+                        <label>Editora</label>
+                        <input
+                            type="text"
+                            placeholder="Editora"
+                            name="editora"
+                            className="form-control"
+                            value={editora}
+                            onChange={(e) => setEditora(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                                <div className="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="LinkImg"
-                                        name="linkImg"
-                                        className="form-control"
-                                        value={linkImg}
-                                        onChange={(e) => setLinkImg(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
+                    <div className="input-box">
+                        <label>Imagem</label>
+                        <input
+                            type="text"
+                            placeholder="LinkImg"
+                            name="linkImg"
+                            className="form-control"
+                            value={linkImg}
+                            onChange={(e) => setLinkImg(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                                <div className="form-group mb-2">
-                                    <DatePicker
-                                        controls={['anoPublicacao']}
-                                        selected={anoPublicacao}
-                                        onChange={date => setAnoPublicacao(date)}
-                                        dateFormat="dd/MM/yyyy"
-                                        placeholderText={anoPublicacao}
-                                        name="anoPublicacao"
-                                        id="anoPublicacao"
-                                        className="form-control"
-                                    />
-                                </div>
+                    <div className="column">
+                        <div className="input-box">
+                            <label>Data Edição</label>
+                            <DatePicker
+                                controls={['anoPublicacao']}
+                                selected={anoPublicacao}
+                                onChange={date => setAnoPublicacao(date)}
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="dd/mm/aaaa"
+                                name="anoPublicacao"
+                                id="anoPublicacao"
+                            />
+                        </div>
 
-                                <div className="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Estoque"
-                                        name="estoque"
-                                        className="form-control"
-                                        value={estoque}
-                                        onChange={(e) => setEstoque(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-
-                                <button className="btn" onClick={(e) => saveOrUpdateLivro(e)} >Salvar </button>
-                                <Link to="/" className="btn"> Cancel </Link>
-                            </form>
-
+                        <div className="input-box">
+                            <label>Estoque</label>
+                            <input
+                                type="text"
+                                placeholder="Estoque"
+                                name="estoque"
+                                className="form-control"
+                                value={estoque}
+                                onChange={(e) => setEstoque(e.target.value)}
+                            >
+                            </input>
                         </div>
                     </div>
-                </div>
 
+                    <div className='container-button'>
+                        <button className="btn" onClick={(e) => saveOrUpdateLivro(e)} >Salvar </button>
+                        <Link to="/" className="btn"> <p>Cancelar</p> </Link>
+                    </div>
+
+
+
+                </form>
             </div>
 
         </div>
