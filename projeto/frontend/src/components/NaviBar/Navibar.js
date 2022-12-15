@@ -1,22 +1,26 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { AiFillCaretDown } from 'react-icons/ai'
+ // eslint-disable-next-line
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import BurguerButton from './BurguerButton'
+import "./Nav.css";
+import { AiFillHome, AiOutlinePlus } from 'react-icons/ai';
+import { GiWhiteBook } from 'react-icons/gi';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import { MdPointOfSale } from 'react-icons/md';
+import { BiPurchaseTagAlt } from 'react-icons/bi';
+import { HiDocumentReport } from 'react-icons/hi';
+
 import clientesPDF from "../../report/cliente/Clientes";
 import livroToPDF from "../../report/cliente/LivroToPDF";
 import compraToPDF from "../../report/cliente/CompraToPDF";
+import VendaToPDF from "../../report/cliente/VendaToPDF";
+
 import ClienteService from "../../services/ClienteService"
 import LivroService from "../../services/LivroService"
 import CompraService from "../../services/CompraService";
 import VendaService from "../../services/VendaService";
-import "./Nav.css";
-import '../../App.css';
-import VendaToPDF from "../../report/cliente/VendaToPDF";
 
-const Navbar = () => {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
+function Navbar() {
 
   const [cliente, setCliente] = useState([]);
   const [livros, setlivros] = useState([]);
@@ -25,18 +29,15 @@ const Navbar = () => {
 
   useEffect(() => {
     getAllClientes();
-  }, []);
-
-  useEffect(() => {
     getAllLivros();
-  }, []);
-
-  useEffect(() => {
     getAllCompras();
-  }, []);
-  useEffect(() => {
     getAllVendas();
   }, []);
+
+  const [clicked, setClicked] = useState(false)
+  const handleClick = () => {
+    setClicked(!clicked)
+  }
 
   const getAllClientes = () => {
     ClienteService.getAllClientes()
@@ -82,50 +83,53 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
-      <ul className={click ? "nav-menu active" : "nav-menu"}>
-        <li className="nav-item">
-          <a href={`/`}>Home</a>
-        </li>
-        <li className="nav-item">
-          <a href={`/livros`}>Livros</a>
-        </li>
-        <li className="nav-item">
-          <a href={`/clientes`}>Clientes</a>
-        </li>
-        <li className="nav-item">
-          <a href={`/compras`}>Compras</a>
-        </li>
-        <li className="nav-item">
-          <a href={`/vendas`}>Vendas</a>
-        </li>
-        <li className="nav-item">
-          <a href={`/`}>Relatórios </a>
+    <div className='container-nav'>
+      <ul className={`links ${clicked ? 'active' : ''}`}>
+        <li><a onClick={handleClick} href={`/`}><p><AiFillHome />Home</p></a> </li>
+        <li><a onClick={handleClick} href={`/livros`}><p><GiWhiteBook />Livros</p></a> </li>
+        <li><a onClick={handleClick} href={`/clientes`}><p><BsFillPeopleFill />Clientes</p></a> </li>
+        <li><a onClick={handleClick} href={`/compras`}><p><BiPurchaseTagAlt />Compras</p></a> </li>
+        <li><a onClick={handleClick} href={`/vendas`}><p><MdPointOfSale />Vendas</p></a> </li>
+        <li>
+          <a onClick={handleClick} href={`/`}><p><HiDocumentReport />Relatórios</p></a>
           <ul className="sub-menu">
-            <li><a href="#" onClick={(e) => livroToPDF(livros)}>Livros</a></li>
-            <li><a href="#" onClick={(e) => clientesPDF(cliente)}>Clientes</a></li>
-            <li><a href="#" onClick={(e) => compraToPDF(compras)}>Compras</a></li>
-            <li>
-              <a href={"#"}>Vendas
-                <i className="ai">< AiFillCaretDown /></i>
-              </a>
+            <li><a href="#" onClick={(e) => livroToPDF(livros)}><p>Livros</p></a></li>
+            <li><a href="#" onClick={(e) => clientesPDF(cliente)}><p>Clientes</p></a></li>
+            <li><a href="#" onClick={(e) => compraToPDF(compras)}><p>Compras</p></a>
+            </li>
+            <li> <a href={"#"}><p> Vendas <AiOutlinePlus /> </p></a>
               <ul className="sub-sub-menu">
-                <li><a href="#" onClick={(e) => VendaToPDF(vendas)}>Todas as vendas</a></li>
-                <li><a href={`/report-sale-by-client`}>Vendas por cliente</a></li>
+                <li><a href="#" onClick={(e) => VendaToPDF(vendas)}><p>Todas as vendas</p></a></li>
+                <li><a href={`/report-sale-by-client`}><p>Vendas por cliente</p></a></li>
               </ul>
             </li>
           </ul>
         </li>
       </ul>
-      <div className="hamburger" onClick={handleClick}>
-        {click ? (
-          <FaTimes size={30} style={{ color: "#f8f8f8" }} />
-        ) : (
-          <FaBars size={30} style={{ color: "#f8f8f8" }} />
-        )}
+      <div className='burguer'>
+        <BurguerButton clicked={clicked} handleClick={handleClick} />
       </div>
+      <BgDiv className={`initial ${clicked ? ' active' : ''}`}></BgDiv>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
+
+const BgDiv = styled.div`
+  background: var(--primary-color);
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all .6s ease ;
+  
+  &.active{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 580%;
+  }
+`
