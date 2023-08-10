@@ -2,15 +2,14 @@ com\jonas\backend\entities\Compra$CompraBuilder.class
 com\jonas\backend\resource\LivroResource.class
 com\jonas\backend\repositories\CompraRepository.class
 com\jonas\backend\dto\QuantityDTO.class
-com\jonas\backend\config\TestConfig.class
 com\jonas\backend\config\SwaggerConfig.class
 com\jonas\backend\resource\VendaResource.class
 com\jonas\backend\services\LivroService.class
 com\jonas\backend\entities\Livro.class
 com\jonas\backend\entities\PessoaJuridica.class
 com\jonas\backend\services\VendaService.class
-com\jonas\backend\entities\Estoque.class
 com\jonas\backend\resource\ClientResource.class
+com\jonas\backend\config\DatabaseSeeder.class
 com\jonas\backend\entities\Client.class
 com\jonas\backend\services\CompraService.class
 com\jonas\backend\entities\Venda.class

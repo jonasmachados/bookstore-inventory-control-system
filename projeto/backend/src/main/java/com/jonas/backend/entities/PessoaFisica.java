@@ -1,19 +1,15 @@
 package com.jonas.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,27 +17,26 @@ public class PessoaFisica extends Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotEmpty(message = "RG é obrigatorio!")
+    @Pattern(regexp = "\\d{2}\\.\\d{3}\\.\\d{3}-[0-9Xx]",
+            message = "Invalid RG format")
     private String rg;
+
+    @NotEmpty(message = "CPF é obrigatorio!")
+    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}",
+            message = "Invalid CPF format")
     private String cpf;
 
-    
     public PessoaFisica(Long id, String name, String rua, Integer numero, String bairro, String cidade, String estado, String cep, String rg, String cpf) {
         super(id, name, rua, numero, bairro, cidade, estado, cep);
         this.rg = rg;
         this.cpf = cpf;
     }
 
-
-    @Override
-    public String toString() {
-        return "PessoaFisica - " + "rg: " + rg + ", cpf: " + cpf + '}';
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.rg);
-        hash = 83 * hash + Objects.hashCode(this.cpf);
+        hash = 67 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -57,9 +52,6 @@ public class PessoaFisica extends Client implements Serializable {
             return false;
         }
         final PessoaFisica other = (PessoaFisica) obj;
-        if (!Objects.equals(this.rg, other.rg)) {
-            return false;
-        }
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }

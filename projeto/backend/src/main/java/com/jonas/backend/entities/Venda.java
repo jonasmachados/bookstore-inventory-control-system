@@ -8,15 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,33 +26,33 @@ import lombok.Setter;
 public class Venda implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @Id //Declarando chave primaria
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @Valid
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    
+
+    @Valid
     @ManyToOne
     @JoinColumn(name = "livro_id")
     private Livro livro;
-    
+
+    @NotNull(message = "Quantidade é obrigatorio!")
+    @PositiveOrZero(message = "Quantidade deve ser numero positivo ou zero!")
     private Integer qtdItens;
+
+    @NotNull(message = "Preco venda é obrigatorio!")
+    @DecimalMin(value = "0.1", message = "Prece venda deve ser maior ou igual a 0.1!")
     private Double precoVenda;
 
-    
-    @Override
-    public String toString() {
-        return "Venda{" + "id=" + id + ", client=" + client + ", qtdItens=" + qtdItens + ", precoVenda=" + precoVenda + '}';
-    }
-    
     public Double getTotal() {
         double sum = 0.0;
         sum = qtdItens * precoVenda;
         return sum;
     }
-    
 
 }

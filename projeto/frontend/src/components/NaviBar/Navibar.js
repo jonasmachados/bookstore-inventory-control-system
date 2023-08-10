@@ -1,4 +1,4 @@
- // eslint-disable-next-line
+// eslint-disable-next-line
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import BurguerButton from './BurguerButton'

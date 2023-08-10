@@ -1,12 +1,11 @@
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\VendaService.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\BackendApplication.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\Client.java
-C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\Estoque.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\Venda.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\ClientRepository.java
+C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\config\DatabaseSeeder.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\CompraService.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\CompraRepository.java
-C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\config\TestConfig.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\PFRepository.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\exceptions\DatabaseException.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\PJRepository.java
