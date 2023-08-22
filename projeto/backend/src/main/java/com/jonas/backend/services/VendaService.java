@@ -71,7 +71,7 @@ public class VendaService {
     }
 
     private void updateData(Venda entity, Venda obj) {
-        entity.setClient(obj.getClient());
+        entity.setCliente(obj.getCliente());
         entity.setLivro(obj.getLivro());
         entity.setQtdItens(obj.getQtdItens());
         entity.setPrecoVenda(obj.getPrecoVenda());

@@ -1,6 +1,5 @@
 package com.jonas.backend.resource;
 
-import com.jonas.backend.entities.Client;
 import com.jonas.backend.entities.Venda;
 import com.jonas.backend.repositories.VendaRepository;
 import com.jonas.backend.services.VendaService;

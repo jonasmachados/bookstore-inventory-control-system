@@ -1,6 +1,6 @@
 package com.jonas.backend.config;
 
-import com.jonas.backend.entities.Client;
+import com.jonas.backend.entities.Cliente;
 import com.jonas.backend.entities.Compra;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.entities.PessoaFisica;
@@ -74,7 +74,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         livrorepository.saveAll(Arrays.asList(livro1, livro2, livro3, livro4, livro5));
 
-        Client client1 = new PessoaFisica(null,
+        Cliente client1 = new PessoaFisica(null,
                 "Ana Green", "Rua São José",
                 658,
                 "Centro",
@@ -83,7 +83,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                 "37890-000",
                 "12.345.678-9",
                 "123.456.789-09");
-        Client client2 = new PessoaFisica(null,
+        Cliente client2 = new PessoaFisica(null,
                 " John Brown",
                 "Rua São José",
                 658,
@@ -93,7 +93,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                 "37890-000",
                 "12.345.678-9",
                 "987.654.321-00");
-        Client client3 = new PessoaJuridica(null,
+        Cliente client3 = new PessoaJuridica(null,
                 " JB Imports",
                 "Rua São José",
                 658,

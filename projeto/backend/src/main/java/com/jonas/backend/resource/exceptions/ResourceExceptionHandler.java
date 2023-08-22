@@ -38,5 +38,17 @@ public class ResourceExceptionHandler {
                 request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
+    
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorDetails> illegalArgument(IllegalArgumentException e, HttpServletRequest request) {
+        String error = "Illegal Argument Exception";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorDetails err = new ErrorDetails(Instant.now(),
+                status.value(),
+                error,
+                e.getMessage(),
+                request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
 
 }

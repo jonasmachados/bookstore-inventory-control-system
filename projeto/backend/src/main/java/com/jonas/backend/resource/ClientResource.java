@@ -1,11 +1,17 @@
 package com.jonas.backend.resource;
 
-import com.jonas.backend.entities.Client;
+import com.jonas.backend.request.ClienteRequest;
+import com.jonas.backend.dto.ClienteDTO;
+import com.jonas.backend.dto.PessoaFisicaDTO;
+import com.jonas.backend.dto.PessoaJuridicaDTO;
+import com.jonas.backend.entities.Cliente;
 import com.jonas.backend.entities.PessoaFisica;
 import com.jonas.backend.entities.PessoaJuridica;
 import com.jonas.backend.services.ClientService;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,58 +26,65 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin(origins = "*")
-@RestController //controller rest
-@RequestMapping(value = "/clientes") //Path of controller
+@RestController
+@RequestMapping(value = "/clientes")
 public class ClientResource {
 
-    @Autowired //Anoatcao que  Associa a instancia 
-    private ClientService service;
+    @Autowired
+    private ClientService clienteService;
 
-    //Metodo que retorna os usuarios
+    @Autowired
+    private ModelMapper mapper;
+
     @GetMapping
-    public ResponseEntity<List<Client>> findAll() { //ResponseEntity: resposta de aquisicao web
-        List<Client> list = service.findAll();
-        return ResponseEntity.ok().body(list);//Contralador rest
+    public ResponseEntity<List<ClienteDTO>> findAll() {
+        List<ClienteDTO> clientesDTO = clienteService.findAll()
+                .stream()
+                .map(this::convertToResponseDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(clientesDTO);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Client> findById(@PathVariable Long id) { //ResponseEntity: resposta de aquisicao web
-        Client obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id) {
+        ClienteDTO clienteDTO = convertToResponseDTO(clienteService.findById(id));
+
+        return ResponseEntity.ok().body(clienteDTO);
     }
 
-    //PJ 
-    @PostMapping("pj")
-    public ResponseEntity<PessoaJuridica> insert(@RequestBody PessoaJuridica obj) {
-        obj = service.insertPJ(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
-    //PJ 
-    @PutMapping(value = "/pj/{id}")
-    public ResponseEntity<PessoaJuridica> update(@PathVariable Long id, @RequestBody PessoaJuridica obj) {
-        obj = service.updatePJ(id, obj);
-        return ResponseEntity.ok().body(obj);
+    @PostMapping
+    public ResponseEntity<ClienteDTO> insert(@RequestBody ClienteRequest clienteRequest) {
+        ClienteDTO cliente = mapper.map(clienteService.insert(clienteRequest),
+                ClienteDTO.class);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(cliente.getId()).toUri();
+        return ResponseEntity.created(uri).body(cliente);
     }
 
-    //PF 
-    @PostMapping("pf")
-    public ResponseEntity<PessoaFisica> insert(@RequestBody PessoaFisica obj) {
-        obj = service.insertPF(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
-    //PF 
-    @PutMapping(value = "/pf/{id}")
-    public ResponseEntity<PessoaFisica> update(@PathVariable Long id, @RequestBody PessoaFisica obj) {
-        obj = service.updatePF(id, obj);
-        return ResponseEntity.ok().body(obj);
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteDTO> update(@PathVariable Long id, @RequestBody ClienteRequest clienteRequest) {
+        Cliente cliente = clienteService.update(id, clienteRequest);
+        ClienteDTO clienteDTO = mapper.map(cliente, ClienteDTO.class);
+        return ResponseEntity.ok().body(clienteDTO);
+
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+    public ResponseEntity<ClienteDTO> delete(@PathVariable Long id) {
+        clienteService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    private ClienteDTO convertToResponseDTO(Cliente cliente) {
+        if (cliente instanceof PessoaFisica) {
+            return mapper.map(cliente, PessoaFisicaDTO.class);
+        } else if (cliente instanceof PessoaJuridica) {
+            return mapper.map(cliente, PessoaJuridicaDTO.class);
+        } else {
+            return mapper.map(cliente, ClienteDTO.class);
+        }
     }
 
 }

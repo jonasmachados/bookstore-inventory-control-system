@@ -1,6 +1,5 @@
 package com.jonas.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ import org.hibernate.validator.constraints.Length;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "tb_cliente")
 @Entity
-public class Client implements Serializable {
+public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,7 +37,7 @@ public class Client implements Serializable {
 
     @NotEmpty(message = "Nome é obrigatorio!")
     @Length(min = 3, max = 100, message = "Nome deve ter de 3 a 100 characters")
-    private String name;
+    private String nome;
 
     @NotEmpty(message = "Rua é obrigatorio!")
     @Length(min = 3, max = 50, message = "Rua deve ter de 3 a 50 characters")
@@ -63,13 +62,12 @@ public class Client implements Serializable {
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "Cep invalido. Use XXXXX-XXX.")
     private String cep;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Venda> vendas = new ArrayList<>();
 
-    public Client(Long id, String name, String rua, Integer numero, String bairro, String cidade, String estado, String cep) {
+    public Cliente(Long id, String nome, String rua, Integer numero, String bairro, String cidade, String estado, String cep) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;

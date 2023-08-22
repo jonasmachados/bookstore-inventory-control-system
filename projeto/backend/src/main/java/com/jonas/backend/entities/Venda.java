@@ -33,8 +33,8 @@ public class Venda implements Serializable {
 
     @Valid
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @Valid
     @ManyToOne
