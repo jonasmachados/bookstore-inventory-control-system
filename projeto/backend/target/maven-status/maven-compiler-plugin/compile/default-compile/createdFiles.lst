@@ -1,7 +1,7 @@
 com\jonas\backend\dto\PessoaJuridicaDTO.class
 com\jonas\backend\resource\exceptions\ErrorDetails.class
+com\jonas\backend\enums\ClienteType.class
 com\jonas\backend\entities\Compra$CompraBuilder.class
-com\jonas\backend\entities\ClienteType.class
 com\jonas\backend\resource\LivroResource.class
 com\jonas\backend\dto\VendaDTO.class
 com\jonas\backend\config\ModelMapperConfig.class
@@ -9,6 +9,7 @@ com\jonas\backend\repositories\CompraRepository.class
 com\jonas\backend\dto\ClienteDTO.class
 com\jonas\backend\dto\CompraDTO.class
 com\jonas\backend\dto\QuantityDTO.class
+com\jonas\backend\serialization\ClienteTypeDeserializer.class
 com\jonas\backend\config\SwaggerConfig.class
 com\jonas\backend\resource\VendaResource.class
 com\jonas\backend\services\LivroService.class

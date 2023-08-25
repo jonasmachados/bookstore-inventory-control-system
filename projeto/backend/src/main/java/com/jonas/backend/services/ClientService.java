@@ -1,7 +1,7 @@
 package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Cliente;
-import com.jonas.backend.entities.ClienteType;
+import com.jonas.backend.enums.ClienteType;
 import com.jonas.backend.entities.PessoaFisica;
 import com.jonas.backend.entities.PessoaJuridica;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
@@ -54,17 +54,13 @@ public class ClientService {
     public Cliente update(Long id, ClienteRequest clienteRequest) {
         validateClienteType(clienteRequest.getClienteType());
 
-        Cliente updatedCliente;
         if (clienteRequest.getClienteType() == ClienteType.PF) {
-            updatedCliente = updateDataForPF(id, clienteRequest.getPf());
-
+            return updateDataForPF(id, clienteRequest.getPf());
         } else if (clienteRequest.getClienteType() == ClienteType.PJ) {
-            updatedCliente = updateDataForPJ(id, clienteRequest.getPj());
-        } else {
-            throw new IllegalArgumentException("Invalid ClienteType");
+            return updateDataForPJ(id, clienteRequest.getPj());
         }
-
-        return updatedCliente;
+        
+        return null;
     }
 
     private PessoaFisica updateDataForPF(Long id, PessoaFisica obj) {
@@ -84,8 +80,8 @@ public class ClientService {
             pf.setCpf(obj.getCpf());
 
             return pfRepository.save(pf);
-        } catch (IllegalArgumentException e) {
-            throw new ClassCastException("Invalid operation: Cannot cast Cliente to PessoaFisica");
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("Invalid operation: Cannot cast Cliente to PessoaFisica");
         }
     }
 
@@ -107,12 +103,13 @@ public class ClientService {
 
             return pjRepository.save(pj);
         } catch (ClassCastException e) {
-            throw new IllegalArgumentException("Invalid operation: Cannot cast Cliente to PessoaFisica");
+            throw new IllegalArgumentException("Invalid operation: Cannot cast Cliente to PessoaJuridica");
         }
     }
 
     private void validateClienteType(ClienteType clienteType) {
-        if (clienteType == null || (clienteType != ClienteType.PJ && clienteType != ClienteType.PF)) {
+        if (clienteType == null || (clienteType
+                != ClienteType.PJ && clienteType != ClienteType.PF)) {
             throw new IllegalArgumentException("Invalid ClienteType");
         }
     }

@@ -3,6 +3,7 @@ C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\ba
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\BackendApplication.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\exceptions\IllegalArgumentException.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\resource\exceptions\ErrorDetails.java
+C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\serialization\ClienteTypeDeserializer.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\config\ModelMapperConfig.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\Venda.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\ClientRepository.java
@@ -16,6 +17,7 @@ C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\ba
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\PJRepository.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\dto\CompraDTO.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\dto\LivroDTO.java
+C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\enums\ClienteType.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\resource\VendaResource.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\dto\PessoaFisicaDTO.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\request\ClienteRequest.java
@@ -24,7 +26,6 @@ C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\ba
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\resource\exceptions\ResourceExceptionHandler.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\exceptions\ResourceNotFoundException.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\PessoaJuridica.java
-C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\entities\ClienteType.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\repositories\LivroRepository.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\resource\ClientResource.java
 C:\projetos\tqi_evolution_fullstack_2022\tqi_evolution_fullstack_2022\projeto\backend\src\main\java\com\jonas\backend\services\LivroService.java
