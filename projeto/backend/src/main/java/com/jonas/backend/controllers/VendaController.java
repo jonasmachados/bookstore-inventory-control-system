@@ -1,4 +1,4 @@
-package com.jonas.backend.resource;
+package com.jonas.backend.controllers;
 
 import com.jonas.backend.entities.Venda;
 import com.jonas.backend.repositories.VendaRepository;
@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/vendas")
-public class VendaResource {
+public class VendaController {
 
     @Autowired
     private VendaService service;

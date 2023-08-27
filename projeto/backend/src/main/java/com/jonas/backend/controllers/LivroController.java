@@ -1,4 +1,4 @@
-package com.jonas.backend.resource;
+package com.jonas.backend.controllers;
 
 import com.jonas.backend.dto.QuantityDTO;
 import com.jonas.backend.entities.Livro;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/livro")
-public class LivroResource {
+public class LivroController {
 
     @Autowired
     private LivroService service;

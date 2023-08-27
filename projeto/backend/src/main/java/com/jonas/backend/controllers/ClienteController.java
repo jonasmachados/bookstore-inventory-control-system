@@ -1,4 +1,4 @@
-package com.jonas.backend.resource;
+package com.jonas.backend.controllers;
 
 import com.jonas.backend.request.ClienteRequest;
 import com.jonas.backend.dto.ClienteDTO;
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClientResource {
+public class ClienteController {
 
     @Autowired
     private ClientService clienteService;

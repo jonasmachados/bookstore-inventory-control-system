@@ -1,4 +1,4 @@
-package com.jonas.backend.resource;
+package com.jonas.backend.controllers;
 
 import com.jonas.backend.entities.Compra;
 import com.jonas.backend.services.CompraService;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/compra")
-public class CompraResource {
+public class CompraController {
 
     @Autowired
     private CompraService service;
