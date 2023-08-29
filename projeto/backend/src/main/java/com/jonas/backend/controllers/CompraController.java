@@ -1,9 +1,12 @@
 package com.jonas.backend.controllers;
 
+import com.jonas.backend.dto.CompraDTO;
 import com.jonas.backend.entities.Compra;
 import com.jonas.backend.services.CompraService;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,40 +26,53 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class CompraController {
 
     @Autowired
-    private CompraService service;
-    
+    private CompraService compraService;
+
+    @Autowired
+    private ModelMapper mapper;
+
     @GetMapping
-    public ResponseEntity<List<Compra>> findAll() {
-        List<Compra> list = service.findAll();
-        return ResponseEntity.ok().body(list);//Contralador rest
+    public ResponseEntity<List<CompraDTO>> findAll() {
+        List<CompraDTO> clientesDTO = compraService.findAll()
+                .stream()
+                .map(this::convertToCompraDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(clientesDTO);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Compra> findById(@PathVariable Long id) { //ResponseEntity: resposta de aquisicao web
-        Compra obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<CompraDTO> findById(@PathVariable Long id) {
+        CompraDTO compraDTO = convertToCompraDTO(compraService.findById(id));
+
+        return ResponseEntity.ok().body(compraDTO);
     }
 
     @PostMapping
-    public ResponseEntity<Compra> insert(@RequestBody Compra obj) {
-        obj = service.insert(obj);
+    public ResponseEntity<CompraDTO> insert(@RequestBody Compra compra) {
+        Compra compraToInsert = compraService.insert(compra);
+        CompraDTO compraDTO = mapper.map(compraToInsert, CompraDTO.class);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+                .buildAndExpand(compraDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(compraDTO);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Compra> update(@PathVariable Long id, @RequestBody Compra obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<CompraDTO> update(@PathVariable Long id, 
+            @RequestBody Compra compra) {
+        Compra compraToUpdate = compraService.update(id, compra);
+        CompraDTO compraDTO = mapper.map(compraToUpdate, CompraDTO.class);
+        return ResponseEntity.ok().body(compraDTO);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+        compraService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-   
+    private CompraDTO convertToCompraDTO(Compra compra) {
+        return mapper.map(compra, CompraDTO.class);
+    }
 
 }

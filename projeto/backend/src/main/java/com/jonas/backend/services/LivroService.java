@@ -3,11 +3,9 @@ package com.jonas.backend.services;
 import com.jonas.backend.entities.Livro;
 import com.jonas.backend.entities.Compra;
 import com.jonas.backend.entities.Venda;
-import com.jonas.backend.repositories.CompraRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import com.jonas.backend.repositories.LivroRepository;
-import com.jonas.backend.repositories.VendaRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
@@ -21,12 +19,6 @@ public class LivroService {
 
     @Autowired
     private LivroRepository repository;
-
-    @Autowired
-    private CompraRepository compraRepository;
-    
-    @Autowired
-    private VendaRepository vendaRepository;
 
     public List<Livro> findAll() {
         return repository.findAll();
@@ -53,7 +45,7 @@ public class LivroService {
 
     public Livro update(Long id, Livro obj) {
         try {
-            Livro entity = repository.getOne(id); //GetOne let a obj mapped for to JPA, dont go to DB
+            Livro entity = repository.getOne(id);
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
@@ -72,68 +64,55 @@ public class LivroService {
 
     }
 
-    private Livro verifyIfExists(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
-    }
-
-    private Compra verifyIfCompraExists(Long id) {
-        return compraRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
-    }
-    
-    private Venda verifyIfVendaExists(Long id) {
-        return vendaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
-    }
-
-    public Livro add(Long id, int quantityToAdd) {
-        Livro livroToAdd = verifyIfExists(id);
+    public Livro addBook(Long id, int quantityToAdd) {
+        Livro livroToAdd = findById(id);
         livroToAdd.setEstoque(livroToAdd.getEstoque() + quantityToAdd);
         return repository.save(livroToAdd);
     }
 
-    public Livro remover(Long id, int quantityToRemove) {
-        Livro livroToRemove = verifyIfExists(id);
+    public Livro removeBook(Long id, int quantityToRemove) {
+        Livro livroToRemove = findById(id);
         livroToRemove.setEstoque(livroToRemove.getEstoque() - quantityToRemove);
         return repository.save(livroToRemove);
     }
 
-    public Livro atualizar(Long id, int quantity, Long idCompra) {
-        Livro livroToAdd = verifyIfExists(id);
-        Compra compra = verifyIfCompraExists(idCompra);
-        Integer diferenca;
+    public Livro updatePurchase(Long id, int quantity, Compra compra) {
+        Livro livro = findById(id);
+
+        int currentStock;
 
         if (quantity < compra.getQtdItens()) {
-            diferenca = compra.getQtdItens() - quantity;
-            livroToAdd.setEstoque(livroToAdd.getEstoque() - diferenca);
+            System.out.println("menos");
+            currentStock = compra.getQtdItens() - quantity;
+            livro.setEstoque(livro.getEstoque() - currentStock);
         } else if (quantity > compra.getQtdItens()) {
-            diferenca = quantity - compra.getQtdItens();
-            livroToAdd.setEstoque(livroToAdd.getEstoque() + diferenca);
+            System.out.println("maior");
+            currentStock = quantity - compra.getQtdItens();
+            livro.setEstoque(livro.getEstoque() + currentStock);
+        } else {
+            System.out.println("else");
+            livro.setEstoque(livro.getEstoque());
+        }
+
+        return repository.save(livro);
+    }
+
+    public Livro updateSale(Long id, int quantity, Venda venda) {
+        Livro livroToAdd = findById(id);
+
+        Integer currentStock;
+
+        if (quantity < venda.getQtdItens()) {
+            currentStock = venda.getQtdItens() - quantity;
+            livroToAdd.setEstoque(livroToAdd.getEstoque() + currentStock);
+        } else if (quantity > venda.getQtdItens()) {
+            currentStock = quantity - venda.getQtdItens();
+            livroToAdd.setEstoque(livroToAdd.getEstoque() - currentStock);
         } else {
             livroToAdd.setEstoque(livroToAdd.getEstoque());
         }
 
         return repository.save(livroToAdd);
     }
-    
-    public Livro atualizarVenda(Long id, int quantity, Long idVenda) {
-        Livro livroToAdd = verifyIfExists(id);
-        Venda venda = verifyIfVendaExists(idVenda);
-        Integer diferenca;
-
-        if (quantity < venda.getQtdItens()) {
-            diferenca = venda.getQtdItens() - quantity;
-            livroToAdd.setEstoque(livroToAdd.getEstoque() + diferenca);
-        } else if (quantity > venda.getQtdItens()) {
-            diferenca = quantity - venda.getQtdItens();
-            livroToAdd.setEstoque(livroToAdd.getEstoque() - diferenca);
-        } else {
-            livroToAdd.setEstoque(livroToAdd.getEstoque());
-        }
-
-        return repository.save(livroToAdd);
-    } 
-
 
 }

@@ -18,6 +18,9 @@ public class CompraService {
     @Autowired
     private CompraRepository repository;
 
+    @Autowired
+    private LivroService livroService;
+
     public List<Compra> findAll() {
         return repository.findAll();
     }
@@ -27,15 +30,29 @@ public class CompraService {
         return obj.get();
     }
 
-    public Compra insert(Compra obj) {
-        return repository.save(obj);
+    public Compra insert(Compra compra) {
+        repository.save(compra);
+
+        livroService.addBook(compra.getLivro().getId(),
+                compra.getQtdItens());
+
+        return compra;
+
     }
 
     public Compra update(Long id, Compra obj) {
         try {
-            Compra entity = repository.getOne(id);
-            updateData(entity, obj);
-            return repository.save(entity);
+            Compra compra = findById(id);
+
+            int updatedQuantity = obj.getQtdItens();
+
+            livroService.updatePurchase(compra.getLivro().getId(),
+                    updatedQuantity,
+                    compra);
+
+            updateData(compra, obj);
+
+            return repository.save(compra);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
 
@@ -51,7 +68,14 @@ public class CompraService {
 
     public void delete(Long id) {
         try {
+
+            Compra compra = findById(id);
+
+            livroService.removeBook(compra.getLivro().getId(),
+                    compra.getQtdItens());
+
             repository.deleteById(id);
+
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {
