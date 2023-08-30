@@ -27,7 +27,8 @@ public class CompraService {
 
     public Compra findById(Long id) {
         Optional<Compra> obj = repository.findById(id);
-        return obj.get();
+
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Compra insert(Compra compra) {
@@ -79,7 +80,7 @@ public class CompraService {
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
+            throw new DatabaseException("Erro de violação de integridade nos dados");
         }
     }
 
