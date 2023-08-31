@@ -58,7 +58,7 @@ public class CompraController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CompraDTO> update(@PathVariable Long id, 
+    public ResponseEntity<CompraDTO> update(@PathVariable Long id,
             @RequestBody Compra compra) {
         Compra compraToUpdate = compraService.update(id, compra);
         CompraDTO compraDTO = mapper.map(compraToUpdate, CompraDTO.class);
@@ -66,7 +66,7 @@ public class CompraController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<CompraDTO> delete(@PathVariable Long id) {
         compraService.delete(id);
         return ResponseEntity.noContent().build();
     }
