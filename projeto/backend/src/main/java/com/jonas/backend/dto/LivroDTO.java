@@ -1,5 +1,6 @@
 package com.jonas.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class LivroDTO {
 
     private String linkImg;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date anoPublicacao;
 
     private Integer estoque;
