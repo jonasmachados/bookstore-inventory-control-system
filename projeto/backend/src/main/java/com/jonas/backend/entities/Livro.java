@@ -1,9 +1,8 @@
 package com.jonas.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jonas.backend.validation.ValidDateFormat;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -45,8 +44,8 @@ public class Livro implements Serializable {
     @NotEmpty(message = "Imagem é obrigatorio!")
     private String linkImg;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date anoPublicacao;
+    @ValidDateFormat
+    private String anoPublicacao;
 
     private Integer estoque;
 
@@ -56,7 +55,7 @@ public class Livro implements Serializable {
     @OneToMany(mappedBy = "livro", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Venda> vendas = new ArrayList<>();
 
-    public Livro(Long id, String titulo, String autor, String editora, String linkImg, Date anoPublicacao, Integer estoque) {
+    public Livro(Long id, String titulo, String autor, String editora, String linkImg, String anoPublicacao, Integer estoque) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;

@@ -1,6 +1,7 @@
 package com.jonas.backend.resource.exceptions;
 
 import com.jonas.backend.services.exceptions.DatabaseException;
+import com.jonas.backend.services.exceptions.DateParsingException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
 import java.time.Instant;
 
@@ -38,12 +39,26 @@ public class ResourceExceptionHandler {
                 request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorDetails> illegalArgument(IllegalArgumentException e, HttpServletRequest request) {
         String error = "Illegal Argument Exception";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErrorDetails err = new ErrorDetails(Instant.now(),
+                status.value(),
+                error,
+                e.getMessage(),
+                request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(DateParsingException.class)
+    public ResponseEntity<ErrorDetails> dateParsingException(DateParsingException e, 
+            HttpServletRequest request) {
+        String error = "Date Parsing Exception";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorDetails err = new ErrorDetails(
+                Instant.now(),
                 status.value(),
                 error,
                 e.getMessage(),

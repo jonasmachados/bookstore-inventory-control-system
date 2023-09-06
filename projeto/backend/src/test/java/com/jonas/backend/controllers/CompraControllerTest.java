@@ -182,7 +182,7 @@ public class CompraControllerTest {
                 "J. R. R. Tolkien",
                 "Allen & Unwin",
                 "https://",
-                formatador.parse("20/10/1955"),
+                "20/10/1955",
                 45);
 
         livroDTo = new LivroDTO(ID,
@@ -190,7 +190,7 @@ public class CompraControllerTest {
                 "J. R. R. Tolkien",
                 "Allen & Unwin",
                 "https://",
-                formatador.parse("20/10/1955"),
+                "20/10/1955",
                 45);
 
         compra = new Compra(ID,
