@@ -39,13 +39,14 @@ public class LivroService {
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
+            throw new DatabaseException("Erro de violação de "
+                    + "integridade nos dados");
         }
     }
 
     public Livro update(Long id, Livro obj) {
         try {
-            Livro entity = repository.getOne(id);
+            Livro entity = findById(id);
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
@@ -82,15 +83,12 @@ public class LivroService {
         int currentStock;
 
         if (quantity < compra.getQtdItens()) {
-            System.out.println("menos");
             currentStock = compra.getQtdItens() - quantity;
             livro.setEstoque(livro.getEstoque() - currentStock);
         } else if (quantity > compra.getQtdItens()) {
-            System.out.println("maior");
             currentStock = quantity - compra.getQtdItens();
             livro.setEstoque(livro.getEstoque() + currentStock);
         } else {
-            System.out.println("else");
             livro.setEstoque(livro.getEstoque());
         }
 
