@@ -1,8 +1,6 @@
 package com.jonas.backend.services;
 
 import com.jonas.backend.entities.Venda;
-import com.jonas.backend.repositories.ClientRepository;
-import com.jonas.backend.repositories.LivroRepository;
 import com.jonas.backend.repositories.VendaRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
 import com.jonas.backend.services.exceptions.ResourceNotFoundException;
@@ -18,52 +16,61 @@ import org.springframework.stereotype.Service;
 public class VendaService {
 
     @Autowired
-    private VendaRepository vendarRepository;
+    private VendaRepository vendaRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private LivroService livroService;
 
-    @Autowired
-    private LivroRepository livroRepository;
+    public List<Venda> findAll() {
 
-    public Venda insert(Venda obj) {
-        return vendarRepository.save(obj);
+        return vendaRepository.findAll();
+
     }
 
-    public List<Venda> getAll() {
+    public Venda findById(Long id) {
 
-        return vendarRepository.findAll();
-    }
+        Optional<Venda> obj = vendaRepository.findById(id);
 
-    public Venda get(Long id) {
-        return null;
-    }
-
-    public Venda getFindById(Long id) {
-        Optional<Venda> obj = vendarRepository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
 
+    }
+    
     public List<Venda> findBookByClient(int idCliente) {
-        return vendarRepository.findVendaByClient(idCliente);
+
+        return vendaRepository.findVendaByClient(idCliente);
+
     }
 
-    public void delete(Long id) {
-        try {
-            vendarRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
+    public Venda insert(Venda venda) {
+
+        vendaRepository.save(venda);
+
+        livroService.removeBook(venda.getLivro().getId(),
+                venda.getQtdItens());
+
+        return venda;
+
     }
 
     public Venda update(Long id, Venda obj) {
+
         try {
-            Venda entity = vendarRepository.getOne(id); //GetOne let a obj mapped for to JPA, dont go to DB
-            updateData(entity, obj);
-            return vendarRepository.save(entity);
+
+            Venda venda = findById(id);
+
+            int updatedQuantity = obj.getQtdItens();
+
+            livroService.updateSale(
+                    venda.getLivro().getId(),
+                    updatedQuantity,
+                    venda);
+
+            updateData(venda, obj);
+
+            return vendaRepository.save(venda);
+
         } catch (EntityNotFoundException e) {
+
             throw new ResourceNotFoundException(id);
 
         }
@@ -71,10 +78,32 @@ public class VendaService {
     }
 
     private void updateData(Venda entity, Venda obj) {
+
         entity.setCliente(obj.getCliente());
         entity.setLivro(obj.getLivro());
         entity.setQtdItens(obj.getQtdItens());
         entity.setPrecoVenda(obj.getPrecoVenda());
+
+    }
+
+    public void delete(Long id) {
+
+        try {
+
+            Venda venda = findById(id);
+
+            livroService.addBook(
+                    venda.getLivro().getId(),
+                    venda.getQtdItens());
+
+            vendaRepository.deleteById(id);
+
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 
 }

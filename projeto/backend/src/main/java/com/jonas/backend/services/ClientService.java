@@ -39,6 +39,16 @@ public class ClientService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    public Cliente findByNome(String name) {
+        Cliente obj = clienteRepository.findByNome(name);
+
+        if (obj == null) {
+            throw new ResourceNotFoundException("name " + name);
+        }
+
+        return obj;
+    }
+
     public Cliente insert(ClienteRequest obj) {
         validateClienteType(obj.getClienteType());
 
@@ -59,7 +69,7 @@ public class ClientService {
         } else if (clienteRequest.getClienteType() == ClienteType.PJ) {
             return updateDataForPJ(id, clienteRequest.getPj());
         }
-        
+
         return null;
     }
 

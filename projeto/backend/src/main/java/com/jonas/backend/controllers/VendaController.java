@@ -1,10 +1,13 @@
 package com.jonas.backend.controllers;
 
+import com.jonas.backend.dto.VendaDTO;
 import com.jonas.backend.entities.Venda;
-import com.jonas.backend.repositories.VendaRepository;
+import com.jonas.backend.services.ClientService;
 import com.jonas.backend.services.VendaService;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,46 +27,92 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class VendaController {
 
     @Autowired
-    private VendaService service;
+    private VendaService vendaService;
 
     @Autowired
-    private VendaRepository repository;
+    private ClientService clientService;
+
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping
-    public List<Venda> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<VendaDTO>> findAll() {
+
+        List<VendaDTO> vendaDTO = vendaService.findAll()
+                .stream()
+                .map(this::convertToVendaDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(vendaDTO);
+
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Venda> getFindById(@PathVariable Long id) { //ResponseEntity: resposta de aquisicao web
-        Venda obj = service.getFindById(id);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<VendaDTO> findById(@PathVariable Long id) {
+
+        VendaDTO vendaDTO = convertToVendaDTO(vendaService.findById(id));
+
+        return ResponseEntity.ok().body(vendaDTO);
 
     }
 
-    @GetMapping(value = "/cliente/{idCliente}")
-    public List<Venda> findBookByClient(@PathVariable int idCliente) {
-        return service.findBookByClient(idCliente);
+    @GetMapping(value = "/cliente/{idCliente}/livro")
+    public ResponseEntity<List<VendaDTO>> findBookByClient(
+            @PathVariable Integer idCliente) {
+
+        List<VendaDTO> vendaDTO = vendaService.findBookByClient(idCliente)
+                .stream()
+                .map(this::convertToVendaDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(vendaDTO);
+
     }
 
-    @PostMapping(path = "/add")
-    public ResponseEntity<Venda> insert(@RequestBody Venda obj) {
-        obj = service.insert(obj);
+    @PostMapping
+    public ResponseEntity<VendaDTO> insert(@RequestBody VendaDTO vendaDTO) {
+
+        Venda venda = mapper.map(vendaDTO, Venda.class);
+        venda.setCliente(clientService.findByNome(vendaDTO.getClienteNome()));
+        venda = vendaService.insert(venda);
+
+        VendaDTO savedvendaDTO = convertToVendaDTO(venda);
+
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+                .buildAndExpand(savedvendaDTO.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(savedvendaDTO);
+
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<VendaDTO> update(@PathVariable Long id,
+            @RequestBody VendaDTO vendaDTO) {
+
+        Venda venda = mapper.map(vendaDTO, Venda.class);
+        venda.setCliente(clientService.findByNome(vendaDTO.getClienteNome()));
+
+        venda = vendaService.update(id, venda);
+
+        VendaDTO updatedVendaDTO = convertToVendaDTO(venda);
+
+        return ResponseEntity.ok().body(updatedVendaDTO);
+
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+
+        vendaService.delete(id);
+
         return ResponseEntity.noContent().build();
+
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Venda> update(@PathVariable Long id, @RequestBody Venda obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    private VendaDTO convertToVendaDTO(Venda venda) {
+
+        return mapper.map(venda, VendaDTO.class);
+
     }
 
 }

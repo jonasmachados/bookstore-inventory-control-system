@@ -9,6 +9,7 @@ public interface VendaRepository extends JpaRepository<Venda, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * "
             + "FROM TB_VENDAS "
-            + "WHERE CLIENT_ID LIKE (:idClient)")
+            + "WHERE CLIENTE_ID LIKE (:idClient)")
     List<Venda> findVendaByClient(int idClient);
+    
 }
