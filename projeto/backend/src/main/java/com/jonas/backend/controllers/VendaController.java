@@ -56,11 +56,11 @@ public class VendaController {
 
     }
 
-    @GetMapping(value = "/cliente/{idCliente}/livro")
-    public ResponseEntity<List<VendaDTO>> findBookByClient(
+    @GetMapping(value = "/cliente/{idCliente}")
+    public ResponseEntity<List<VendaDTO>> findSaleByClient(
             @PathVariable Integer idCliente) {
 
-        List<VendaDTO> vendaDTO = vendaService.findBookByClient(idCliente)
+        List<VendaDTO> vendaDTO = vendaService.findSaleByClient(idCliente)
                 .stream()
                 .map(this::convertToVendaDTO)
                 .collect(Collectors.toList());

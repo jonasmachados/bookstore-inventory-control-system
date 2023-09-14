@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,7 +41,7 @@ public class Venda implements Serializable {
     private Livro livro;
 
     @NotNull(message = "Quantidade é obrigatorio!")
-    @PositiveOrZero(message = "Quantidade deve ser numero positivo ou zero!")
+    @Positive(message = "Quantidade deve ser numero positivo!")
     private Integer qtdItens;
 
     @NotNull(message = "Preco venda é obrigatorio!")

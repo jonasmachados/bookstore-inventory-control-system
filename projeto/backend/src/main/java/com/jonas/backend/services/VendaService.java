@@ -1,5 +1,6 @@
 package com.jonas.backend.services;
 
+import com.jonas.backend.entities.Livro;
 import com.jonas.backend.entities.Venda;
 import com.jonas.backend.repositories.VendaRepository;
 import com.jonas.backend.services.exceptions.DatabaseException;
@@ -34,19 +35,31 @@ public class VendaService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
     }
-    
-    public List<Venda> findBookByClient(int idCliente) {
 
-        return vendaRepository.findVendaByClient(idCliente);
+    public List<Venda> findSaleByClient(int idCliente) {
+
+        return vendaRepository.findSaleByClient(idCliente);
 
     }
 
     public Venda insert(Venda venda) {
 
-        vendaRepository.save(venda);
+        Livro book = livroService.findById(venda.getLivro().getId());
+
+        if (venda.getQtdItens() <= 0) {
+            throw new IllegalArgumentException(
+                    "Quantidade deve ser maior ou igual a zero.");
+        }
+
+        if (venda.getQtdItens() > book.getEstoque()) {
+            throw new IllegalArgumentException(
+                    "Estoque insuficiente.");
+        }
 
         livroService.removeBook(venda.getLivro().getId(),
                 venda.getQtdItens());
+
+        vendaRepository.save(venda);
 
         return venda;
 
@@ -101,7 +114,8 @@ public class VendaService {
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
+            throw new DatabaseException(
+                    "Erro de violação de integridade nos dados");
         }
 
     }
