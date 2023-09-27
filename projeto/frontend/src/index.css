@@ -1,38 +1,14 @@
-:root{
-  /* --primary-color: #6C63FF; 
-  --primary-color: #0e04d8;
-  --primary-color: #377dff;
-  #012892;
-  */
+:root {
   --primary-color: #052ea0;
-  --second-color:#5862ee;
+  --second-color: #5862ee;
   --tertiary: #0258f8;
   --background-color: rgb(255 255 255 / 10%);
-
   --tran-05: all 0.5s ease;
 }
 
+html,
 body {
+  font-family: "Centra", sans-serif !important;
   margin: 0;
-  background-color: var(--background-color)
-}
-
-h1{
-  font-weight: 900;
-  font-size: 45px;
-}
-
-h2{
-  font-weight: 700;
-  font-size: 23px;
-}
-
-p{
-  font-weight: 500;
-  font-size: 21px;
-}
-
-a {
-  font-weight: 900;
-  font-size: 16px;
+  background-color: var(--background-color);
 }
