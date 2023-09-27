@@ -15,15 +15,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     public Docket api() {
+        
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.jonas.backend.resource"))
+                .apis(RequestHandlerSelectors.basePackage("com.jonas.backend.controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(builApiInfo());
+        
     }
     
     private ApiInfo builApiInfo(){
+        
         return new ApiInfoBuilder()
                 .title("API Livro")
                 .description("REST API Livro para gerenciamento de livraria")
@@ -33,6 +36,7 @@ public class SwaggerConfig {
                         "github/jonasmachados",
                         null))
                 .build();
+        
     }
 
 }
