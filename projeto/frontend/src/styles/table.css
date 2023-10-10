@@ -1,0 +1,40 @@
+.table {
+  background-color: var(--body);
+  border-collapse: collapse;
+  box-shadow: 2px 2px 12px var(--primary-color);
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table th {
+  background-color: var(--primary-color);
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table td {
+  background-color: var(--body);
+  border-color: transparent;
+}
+
+.table th p,
+.table td p {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 5px;
+  color: var(--text);
+  text-align: left;
+}
+
+.table tr {
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.table tr:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px var(--primary-color);
+}
