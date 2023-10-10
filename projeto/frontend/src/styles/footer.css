@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.footer-container {
+  display: grid;
+  gap: 50px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  justify-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin: 20px;
+  border-radius: 12px;
+}
+
+.footer-container h2 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: var(--text);
+}
+
+.footer-container p {
+  font-size: 14px;
+  margin-top: 5px;
+  color: var(--text);
+}
+.footer-container a {
+  list-style: none;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.footer-container a:hover {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.footer-social-icon a {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 6px;
+  border: 1px solid var(--text);
+  transition: 0.3s, color 0.3s;
+}
+
+.footer-social-icon a i {
+  color: var(--text);
+  font-size: 28px;
+}
+
+.footer-social-icon a:hover {
+  background-color: var(--text);
+  opacity: 1;
+}
+
+.footer-social-icon a:hover i {
+  color: var(--primary-color);
+}
+
+.footer-logo {
+  width: 200px;
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 50px;
+  }
+}
