@@ -1,0 +1,24 @@
+.container-title-icon {
+  display: flex;
+  align-content: center;
+  margin: 20px 0;
+}
+
+.container-title-icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background-color: var(--primary-color);
+  border-radius: 6px;
+  color: var(--body);
+  font-size: 24px;
+}
+
+.container-title-icon h2 {
+  color: var(--text);
+  font-weight: 900;
+  margin-left: 10px;
+  font-size: 30px;
+}
