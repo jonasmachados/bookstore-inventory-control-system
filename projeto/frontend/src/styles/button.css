@@ -1,0 +1,48 @@
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  color: var(--text);
+  border: none;
+  margin: 20px 0;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.button.primary-button {
+  background-color: var(--second-color);
+}
+
+.button.secondary-button {
+  background-color: var(--primary-color);
+}
+
+.button-icon {
+  font-size: 24px;
+  color: var(--text);
+  padding-right: 5px;
+}
+
+.button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 0 1px var(--primary-color);
+  color: var(--text);
+}
+
+.button:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease-in-out;
+}
+
+@media (min-width: 321px) {
+  .button-container {
+    justify-content: flex-start;
+    gap: 20px;
+  }
+}
