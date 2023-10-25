@@ -1,0 +1,111 @@
+.form-container {
+  width: auto;
+  background-color: var(--text);
+  padding: 20px;
+  margin: 60px 20px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 12px var(--primary-color);
+}
+
+.form-title h2,
+.form-title i {
+  color: var(--body);
+  font-size: 22px;
+}
+
+.form-title i {
+  height: 28px;
+  width: 28px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 20px 0;
+}
+
+.form-input label {
+  font-family: "Poppins", sans-serif;
+  color: var(--body);
+}
+
+.form-input input {
+  width: 100%;
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+.form-input input:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.css-319lph-ValueContainer {
+  padding: 0 10px !important;
+}
+
+input::placeholder,
+.css-qc6sy-singleValue,
+.css-tlfecz-indicatorContainer {
+  color: #3d3a3a !important;
+}
+
+.css-1okebmr-indicatorSeparator {
+  background-color: #3d3a3a !important;
+}
+
+.css-1s2u09g-control {
+  border-radius: 12px !important;
+}
+
+.react-select__option--is-selected {
+  background-color: transparent !important;
+  color: var(--text) !important;
+  cursor: pointer;
+}
+
+.react-select__option:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--text) !important;
+  cursor: pointer;
+}
+
+.form-in-column {
+  display: grid;
+}
+
+.form-related {
+  border: 1px solid var(--second-color);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.form-type {
+  padding: 10px;
+  position: relative;
+}
+
+.form-type label {
+  background-color: var(--second-color);
+  border-radius: 12px;
+  padding: 0 10px;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .form-in-column {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .form-in-column .form-input input {
+    width: 100%;
+  }
+}
