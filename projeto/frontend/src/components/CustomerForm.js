@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineFolderAdd } from 'react-icons/ai';
 import { BiEdit } from 'react-icons/bi';
+import { customerRegistrationSchema, validateForm, renderValidationMessage, clearError } from '../utils/validationSchemas';
 import TitleWithIcon from './TitleWithIcon';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
@@ -20,6 +21,7 @@ const CustomerForm = ({ id, customer }) => {
     const [rg, setRg] = useState('')
     const [cpf, setCpf] = useState('')
     const [cnpj, setCnpj] = useState('')
+    const [validationErrors, setValidationErrors] = useState({});
 
     useEffect(() => {
         if (customer) {
@@ -62,20 +64,26 @@ const CustomerForm = ({ id, customer }) => {
             cnpj: personaType.value === 'PJ' ? cnpj : undefined
         };
 
-        const customerRequest = {
-            clienteType,
-            [clienteType.toLowerCase()]: customerData
-        };
+        const errors = await validateForm(customerData, customerRegistrationSchema, personaType.value);
 
-        try {
-            const response = id
-                ? await CustomerService.updateCustomer(id, customerRequest)
-                : await CustomerService.insertCustomer(customerRequest);
+        setValidationErrors(errors);
 
-            console.log(response.data);
-            window.location.href = '/clientes';
-        } catch (error) {
-            console.log(error);
+        if (Object.keys(errors).length === 0) {
+            const customerRequest = {
+                clienteType,
+                [clienteType.toLowerCase()]: customerData
+            };
+
+            try {
+                const response = id
+                    ? await CustomerService.updateCustomer(id, customerRequest)
+                    : await CustomerService.insertCustomer(customerRequest);
+
+                console.log(response.data);
+                window.location.href = '/clientes';
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
 
@@ -98,7 +106,7 @@ const CustomerForm = ({ id, customer }) => {
                 />
             </div>
 
-            <form className='form'>
+            <form onSubmit={saveOrUpdateCustomer} className='form'>
                 <div className="form-input">
                     <label>Nome</label>
                     <input
@@ -106,9 +114,13 @@ const CustomerForm = ({ id, customer }) => {
                         placeholder="Digite o nome"
                         name="nome"
                         value={nome}
-                        onChange={(e) => setNome(e.target.value)}
+                        onChange={(e) => {
+                            setNome(e.target.value);
+                            clearError(validationErrors, setValidationErrors, 'nome');
+                        }}
                     >
                     </input>
+                    {renderValidationMessage(validationErrors, 'nome')}
                 </div>
 
                 <div className="form-in-column">
@@ -119,9 +131,13 @@ const CustomerForm = ({ id, customer }) => {
                             placeholder="Digite a rua"
                             name="rua"
                             value={rua}
-                            onChange={(e) => setRua(e.target.value)}
+                            onChange={(e) => {
+                                setRua(e.target.value);
+                                clearError(validationErrors, setValidationErrors, 'rua');
+                            }}
                         >
                         </input>
+                        {renderValidationMessage(validationErrors, 'rua')}
                     </div>
 
                     <div className="form-input">
@@ -131,9 +147,13 @@ const CustomerForm = ({ id, customer }) => {
                             placeholder="Digite o número"
                             name="numero"
                             value={numero}
-                            onChange={(e) => setNumero(e.target.value)}
+                            onChange={(e) => {
+                                setNumero(e.target.value);
+                                clearError(validationErrors, setValidationErrors, 'numero');
+                            }}
                         >
                         </input>
+                        {renderValidationMessage(validationErrors, 'numero')}
                     </div>
 
                     <div className="form-input">
@@ -143,9 +163,13 @@ const CustomerForm = ({ id, customer }) => {
                             placeholder="Digite o bairro"
                             name="bairro"
                             value={bairro}
-                            onChange={(e) => setBairro(e.target.value)}
+                            onChange={(e) => {
+                                setBairro(e.target.value);
+                                clearError(validationErrors, setValidationErrors, 'bairro');
+                            }}
                         >
                         </input>
+                        {renderValidationMessage(validationErrors, 'bairro')}
                     </div>
                 </div>
 
@@ -157,9 +181,13 @@ const CustomerForm = ({ id, customer }) => {
                             placeholder="Digite a cidade"
                             name="cidade"
                             value={cidade}
-                            onChange={(e) => setCidade(e.target.value)}
+                            onChange={(e) => {
+                                setCidade(e.target.value)
+                                clearError(validationErrors, setValidationErrors, 'cidade');
+                            }}
                         >
                         </input>
+                        {renderValidationMessage(validationErrors, 'cidade')}
                     </div>
 
                     <div className="form-input">
@@ -169,9 +197,13 @@ const CustomerForm = ({ id, customer }) => {
                             placeholder="Digite o estado"
                             name="estado"
                             value={estado}
-                            onChange={(e) => setEstado(e.target.value)}
+                            onChange={(e) => {
+                                setEstado(e.target.value)
+                                clearError(validationErrors, setValidationErrors, 'estado');
+                            }}
                         >
                         </input>
+                        {renderValidationMessage(validationErrors, 'estado')}
                     </div>
 
                     <div className="form-input">
@@ -180,7 +212,10 @@ const CustomerForm = ({ id, customer }) => {
                             mask="99999-999"
                             maskChar="_"
                             value={cep}
-                            onChange={e => setCep(e.target.value)}
+                            onChange={e => {
+                                setCep(e.target.value)
+                                clearError(validationErrors, setValidationErrors, 'cep');
+                            }}
                         >
                             {inputProps =>
                                 <input
@@ -190,7 +225,9 @@ const CustomerForm = ({ id, customer }) => {
                                     {...inputProps}
                                 />
                             }
+
                         </InputMask>
+                        {renderValidationMessage(validationErrors, 'cep')}
                     </div>
                 </div>
 
@@ -220,7 +257,10 @@ const CustomerForm = ({ id, customer }) => {
                                     mask="99.999.999-9"
                                     maskChar="_"
                                     value={rg}
-                                    onChange={(e) => setRg(e.target.value)} >
+                                    onChange={(e) => {
+                                        setRg(e.target.value)
+                                        clearError(validationErrors, setValidationErrors, 'rg');
+                                    }} >
                                     {inputProps =>
                                         <input
                                             type="text"
@@ -229,7 +269,7 @@ const CustomerForm = ({ id, customer }) => {
                                             {...inputProps} />
                                     }
                                 </InputMask>
-
+                                {renderValidationMessage(validationErrors, 'rg')}
                             </div>
 
                             <div className="form-input">
@@ -238,7 +278,10 @@ const CustomerForm = ({ id, customer }) => {
                                     mask="999.999.999-99"
                                     maskChar="_"
                                     value={cpf}
-                                    onChange={(e) => setCpf(e.target.value)}
+                                    onChange={(e) => {
+                                        setCpf(e.target.value)
+                                        clearError(validationErrors, setValidationErrors, 'cpf');
+                                    }}
                                 >
                                     {inputProps =>
                                         <input
@@ -248,6 +291,7 @@ const CustomerForm = ({ id, customer }) => {
                                             {...inputProps} />
                                     }
                                 </InputMask>
+                                {renderValidationMessage(validationErrors, 'cpf')}
                             </div>
                         </div>
                     )}
@@ -260,7 +304,10 @@ const CustomerForm = ({ id, customer }) => {
                                     mask="99.999.999/9999-99"
                                     maskChar="_"
                                     value={cnpj}
-                                    onChange={(e) => setCnpj(e.target.value)}
+                                    onChange={(e) => {
+                                        setCnpj(e.target.value)
+                                        clearError(validationErrors, setValidationErrors, 'cnpj');
+                                    }}
                                 >
                                     {inputProps =>
                                         <input type="text"
@@ -269,6 +316,7 @@ const CustomerForm = ({ id, customer }) => {
                                             {...inputProps} />
                                     }
                                 </InputMask>
+                                {renderValidationMessage(validationErrors, 'cnpj')}
                             </div>
                         </div>
                     )}
@@ -276,8 +324,9 @@ const CustomerForm = ({ id, customer }) => {
 
                 <div className='button-container'>
                     <button
+                        type="submit"
                         className="button primary-button"
-                        onClick={(e) => saveOrUpdateCustomer(e)} >
+                    >
                         Salvar
                     </button>
 
