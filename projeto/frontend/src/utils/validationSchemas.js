@@ -107,6 +107,26 @@ export const purchaseRegistrationSchema = yup.object({
         .required("O preço é obrigatório.")
 });
 
+export const saleRegistrationSchema = yup.object({
+    customerName: yup.string()
+        .typeError("Necessário selecionar um cliente.")
+        .required("Necessário selecionar um cliente."),
+
+    bookId: yup.string()
+        .typeError("Necessário selecionar um livro.")
+        .required("Necessário selecionar um livro."),
+
+    qtdItens: yup.number()
+        .typeError('A quantidade é obrigatória.')
+        .positive("A Quantidade deve ser maior que 0")
+        .required("A quantidade é obrigatória."),
+
+    salePrice: yup.number()
+        .typeError("O preço é obrigatório.")
+        .positive("O preço deve ser maior que 0")
+        .required("O preço é obrigatório.")
+});
+
 export const validateForm = async (values, schema, personaType) => {
     try {
         await schema.validate(values, { context: { personaType }, abortEarly: false });
