@@ -5,7 +5,7 @@ import { BiEdit } from 'react-icons/bi';
 import { IoIosPeople } from 'react-icons/io';
 import TitleWithIcon from "./TitleWithIcon";
 import CustomerImg from "../assets/img/client.svg";
-import livroToPDF from "../report/cliente/LivroToPDF";
+import CustomertoPdf from "../report/CustomerToPdf";
 import "../styles/button.css";
 import "../styles/table.css";
 
@@ -27,7 +27,7 @@ const CustomerList = ({ customerList, onDeleteCustomer }) => {
                 </Link>
 
                 <button
-                    onClick={(e) => livroToPDF(customerList)}
+                    onClick={(e) => CustomertoPdf(customerList)}
                     className="button secondary-button" >
                     <AiOutlinePrinter className="button-icon" />
                     Print
