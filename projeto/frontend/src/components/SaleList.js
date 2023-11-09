@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import TitleWithIcon from "./TitleWithIcon";
-import livroToPDF from "../report/cliente/LivroToPDF";
+import SaleToPDF from "../report/SaleToPDF";
 import SaleImg from "../assets/img/venda.svg";
 import { convertNumberToCurrency } from "../utils/convertNumberToCurrency";
 import { AiOutlinePrinter, AiOutlineFolderAdd, AiOutlineDelete } from 'react-icons/ai';
@@ -30,7 +30,7 @@ const SaleList = ({ saleList, onDeleteSale }) => {
                 </Link>
 
                 <button
-                    onClick={(e) => livroToPDF()}
+                    onClick={(e) => SaleToPDF(saleList)}
                     className="button secondary-button"
                 >
                     <AiOutlinePrinter className="button-icon" />
