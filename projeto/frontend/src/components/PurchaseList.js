@@ -3,7 +3,7 @@ import { AiOutlinePrinter, AiOutlineFolderAdd, AiOutlineDelete } from 'react-ico
 import { BiEdit } from 'react-icons/bi';
 import { BsFillCartCheckFill } from 'react-icons/bs';
 import TitleWithIcon from "./TitleWithIcon";
-import livroToPDF from "../report/cliente/LivroToPDF";
+import PurchaseToPDF from "../report/PurchaseToPDF";
 import PurchaseImg from "../assets/img/compra.svg";
 import "../styles/button.css";
 import "../styles/table.css";
@@ -30,7 +30,7 @@ const PurchaseList = ({ purchaseList, onDeletePurchase }) => {
                 </Link>
 
                 <button
-                    onClick={(e) => livroToPDF()}
+                    onClick={(e) => PurchaseToPDF(purchaseList)}
                     className="button secondary-button"
                 >
                     <AiOutlinePrinter className="button-icon" />
