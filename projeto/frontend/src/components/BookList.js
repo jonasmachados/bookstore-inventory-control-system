@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import livroImg from "../assets/img/livro.svg";
-import livroToPDF from "../report/cliente/LivroToPDF";
+import BookToPDF from "../report/BookToPDF";
 import "../styles/table.css"
 import "../styles/button.css"
 import { AiOutlinePrinter, AiOutlineFolderAdd, AiOutlineDelete } from 'react-icons/ai'
@@ -28,7 +28,7 @@ const BookList = ({ bookList, onDeleteBook }) => {
         </Link>
 
         <button
-          onClick={(e) => livroToPDF(bookList)}
+          onClick={(e) => BookToPDF(bookList)}
           className="button secondary-button" >
           <AiOutlinePrinter className="button-icon" />
           Print
@@ -79,7 +79,7 @@ const BookList = ({ bookList, onDeleteBook }) => {
         </tbody>
       </table>
 
-      <div class="table-img">
+      <div className="table-img">
         <img
           src={livroImg} alt="Book Img" />
       </div>
