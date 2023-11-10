@@ -1,0 +1,12 @@
+.error-message {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: var(--second-color);
+  color: var(--text);
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px 0;
+}
