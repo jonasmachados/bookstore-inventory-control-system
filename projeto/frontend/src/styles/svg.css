@@ -1,0 +1,23 @@
+.svg-container {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+
+.svg-error {
+  width: auto;
+}
+
+@media (min-width: 320px) {
+  .svg-error {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .svg-error {
+    width: 600px;
+  }
+}
