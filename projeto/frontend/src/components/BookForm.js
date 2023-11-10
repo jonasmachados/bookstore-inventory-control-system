@@ -1,77 +1,100 @@
-import React, { useState, useEffect } from 'react'
-import LivroService from '../services/LivroService';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DatePicker from "react-datepicker";
-import formatDateToDdMmYyyy from '../utils/formatDateToDdMmYyyy';
-import "../styles/form.css"
-import "../styles/button.css"
-import { AiOutlineFolderAdd } from 'react-icons/ai'
-import { BiEdit } from 'react-icons/bi'
-import TitleWithIcon from './TitleWithIcon';
+import DatePicker from 'react-datepicker';
 import { parse } from 'date-fns';
-import { bookRegistrationSchema, validateForm, renderValidationMessage, clearError } from '../utils/validationSchemas';
-import "../styles/validation-errors.css"
-import 'react-datepicker/dist/react-datepicker.css';
 import ptBR from 'date-fns/locale/pt-BR';
+import { AiOutlineFolderAdd } from 'react-icons/ai';
+import { BiEdit } from 'react-icons/bi';
+import BookService from '../services/BookService';
+import formatDateToDdMmYyyy from '../utils/formatDateToDdMmYyyy';
+import TitleWithIcon from './TitleWithIcon';
+import { bookRegistrationSchema, validateForm, renderValidationMessage, clearError } from '../utils/validationSchemas';
+import '../styles/form.css';
+import '../styles/button.css';
+import '../styles/validation-errors.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const BookForm = ({ id, book }) => {
 
-    const [titulo, setTitulo] = useState(book?.titulo || '');
-    const [autor, setAutor] = useState(book?.autor || '');
-    const [editora, setEditora] = useState(book?.editora || '');
-    const [linkImg, setLinkImg] = useState(book?.linkImg || '');
-    const [anoPublicacao, setAnoPublicacao] = useState('')
-    const [estoque, setEstoque] = useState(book?.estoque || '');
+    const [bookForm, setBookForm] = useState({
+        titulo: '',
+        autor: '',
+        editora: '',
+        linkImg: '',
+        anoPublicacao: '',
+        estoque: ''
+    });
+
     const [validationErrors, setValidationErrors] = useState({});
 
     useEffect(() => {
         if (book) {
-            setTitulo(book.titulo);
-            setAutor(book.autor);
-            setEditora(book.editora);
-            setLinkImg(book.linkImg);
-            setAnoPublicacao(parse(
-                book.anoPublicacao,
-                'dd/MM/yyyy',
-                new Date()));
-            setEstoque(book.estoque);
+            setBookForm(prevBookForm => ({
+                ...prevBookForm,
+                titulo: book.titulo,
+                autor: book.autor,
+                editora: book.editora,
+                linkImg: book.linkImg,
+                anoPublicacao: (parse(
+                    book.anoPublicacao,
+                    'dd/MM/yyyy',
+                    new Date())),
+                estoque: book.estoque || 0,
+            }));
         }
     }, [book]);
 
-    const livro = {
-        titulo,
-        autor,
-        editora,
-        linkImg,
-        anoPublicacao,
-        estoque
-    }
+
+    const handleDateChange = (date) => {
+        setBookForm({
+            ...bookForm,
+            anoPublicacao: date,
+        });
+
+        clearError(validationErrors, setValidationErrors, 'anoPublicacao');
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setBookForm({
+            ...bookForm,
+            [name]: value,
+        });
+
+        clearError(validationErrors, setValidationErrors, [name]);
+    };
 
     const saveOrUpdateBook = async (e) => {
-
         e.preventDefault();
 
-        const errors = await validateForm(livro, bookRegistrationSchema);
+        const errors = await
+            validateForm(bookForm, bookRegistrationSchema);
 
         setValidationErrors(errors);
 
-        livro.anoPublicacao = formatDateToDdMmYyyy(anoPublicacao)
+        const saleData = {
+            titulo: bookForm.titulo,
+            autor: bookForm.autor,
+            editora: bookForm.editora,
+            linkImg: bookForm.linkImg,
+            anoPublicacao: formatDateToDdMmYyyy(bookForm.anoPublicacao),
+            estoque: bookForm.estoque,
+        };
 
-        if (id) {
-            LivroService.updateLivro(id, livro).then((response) => {
-                window.location.href = "/livros";
-            }).catch(error => {
-                console.log(error)
-            })
-
-        } else {
-            LivroService.createLivro(livro).then((response) => {
-                window.location.href = "/livros";
-            }).catch(error => {
-                console.log(error)
-            })
-        }
-
+        if (Object.keys(errors).length === 0) {
+            try {
+                if (id) {
+                    await BookService.updateBook(id, saleData);
+                    window.location.href = '/livros';
+                } else {
+                    await BookService.insertBook(saleData);
+                    window.location.href = '/livros';
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
     }
 
     return (
@@ -91,11 +114,8 @@ const BookForm = ({ id, book }) => {
                         type="text"
                         placeholder="Digite o titulo"
                         name="titulo"
-                        value={titulo}
-                        onChange={(e) => {
-                            setTitulo(e.target.value);
-                            clearError(validationErrors, setValidationErrors, 'titulo');
-                        }}
+                        value={bookForm.titulo}
+                        onChange={handleChange}
                     >
                     </input>
                     {renderValidationMessage(validationErrors, 'titulo')}
@@ -107,11 +127,8 @@ const BookForm = ({ id, book }) => {
                         type="text"
                         placeholder="Digite o autor"
                         name="autor"
-                        value={autor}
-                        onChange={(e) => {
-                            setAutor(e.target.value)
-                            clearError(validationErrors, setValidationErrors, 'autor');
-                        }}
+                        value={bookForm.autor}
+                        onChange={handleChange}
                     >
                     </input>
                     {renderValidationMessage(validationErrors, 'autor')}
@@ -123,11 +140,8 @@ const BookForm = ({ id, book }) => {
                         type="text"
                         placeholder="Digite a editora"
                         name="editora"
-                        value={editora}
-                        onChange={(e) => {
-                            setEditora(e.target.value)
-                            clearError(validationErrors, setValidationErrors, 'editora');
-                        }}
+                        value={bookForm.editora}
+                        onChange={handleChange}
                     >
                     </input>
                     {renderValidationMessage(validationErrors, 'editora')}
@@ -139,11 +153,8 @@ const BookForm = ({ id, book }) => {
                         type="text"
                         placeholder="Digite o link da imagem"
                         name="linkImg"
-                        value={linkImg}
-                        onChange={(e) => {
-                            setLinkImg(e.target.value)
-                            clearError(validationErrors, setValidationErrors, 'linkImg');
-                        }}
+                        value={bookForm.linkImg}
+                        onChange={handleChange}
                     >
                     </input>
                     {renderValidationMessage(validationErrors, 'linkImg')}
@@ -153,18 +164,13 @@ const BookForm = ({ id, book }) => {
                     <div className="form-input">
                         <label>Data Edição</label>
                         <DatePicker
-                            controls={['anoPublicacao']}
-                            selected={anoPublicacao}
+                            selected={bookForm.anoPublicacao}
+                            onChange={handleDateChange}
+                            placeholderText="Selecione a data."
                             dateFormat="dd/MM/yyyy"
                             locale={ptBR}
-                            placeholderText="Selecione a data."
                             name="anoPublicacao"
                             id="anoPublicacao"
-                            value={anoPublicacao}
-                            onChange={date => {
-                                setAnoPublicacao(date)
-                                clearError(validationErrors, setValidationErrors, 'anoPublicacao');
-                            }}
                         />
                         {renderValidationMessage(validationErrors, 'anoPublicacao')}
                     </div>
@@ -175,11 +181,8 @@ const BookForm = ({ id, book }) => {
                             type="text"
                             placeholder="Digite o estoque"
                             name="estoque"
-                            value={estoque}
-                            onChange={(e) => {
-                                setEstoque(e.target.value)
-                                clearError(validationErrors, setValidationErrors, 'estoque');
-                            }}
+                            value={bookForm.estoque}
+                            onChange={handleChange}
                         >
                         </input>
                         {renderValidationMessage(validationErrors, 'estoque')}
@@ -202,9 +205,8 @@ const BookForm = ({ id, book }) => {
 
             </form>
         </div>
-
-
     );
+
 };
 
 export default BookForm;
