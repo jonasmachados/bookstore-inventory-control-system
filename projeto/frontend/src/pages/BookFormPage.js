@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import BookForm from "../components/BookForm";
-import LivroService from '../services/LivroService';
+import BookService from '../services/BookService';
 
 const BookFormPage = () => {
 
@@ -10,9 +10,9 @@ const BookFormPage = () => {
     const [book, setBook] = useState('')
 
     useEffect(() => {
-        const getBook = async () => {
+        const fetchBook = async () => {
             try {
-                const response = await LivroService.getLivroById(id);
+                const response = await BookService.findBookById(id);
                 setBook(response.data);
             } catch (error) {
                 console.error(error);
@@ -20,7 +20,7 @@ const BookFormPage = () => {
         };
 
         if (id) {
-            getBook();
+            fetchBook();
         }
     }, [id]);
 
@@ -34,6 +34,7 @@ const BookFormPage = () => {
 
         </>
     );
+
 };
 
 export default BookFormPage;
