@@ -1,4 +1,7 @@
 .container-page {
+  display: flex;
+  flex-direction: column;
   background-color: var(--body);
   padding: 20px;
+  width: auto;
 }
