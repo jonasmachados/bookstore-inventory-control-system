@@ -1,39 +1,36 @@
 import React, { useState, useEffect } from "react";
 import BookList from "../components/BookList";
-import LivroService from "../services/LivroService";
-import "../styles/book-list-page.css"
+import BookService from "../services/BookService";
+import "../styles/page.css"
 
 const BookListPage = () => {
 
     const [bookList, setBookList] = useState([]);
 
     useEffect(() => {
-        getAllLivros();
+        fetchBooks();
     }, []);
 
-    const getAllLivros = () => {
-        LivroService.getAllLivros()
-            .then((response) => {
-                setBookList(response.data);
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const fetchBooks = async () => {
+        try {
+            const response = await BookService.findAllBooks();
+            setBookList(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const handleDeleteBook = (bookId) => {
-        LivroService.deleteLivro(bookId)
-            .then(() => {
-                getAllLivros();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const handleDeleteBook = async (bookId) => {
+        try {
+            await BookService.deletebook(bookId);
+            fetchBooks();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
-        <div className="container-book-list">
+        <div className="container-page">
 
             <BookList
                 bookList={bookList}
