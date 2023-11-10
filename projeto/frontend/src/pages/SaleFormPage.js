@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import LivroService from '../services/LivroService';
+import BookService from '../services/BookService';
 import SaleService from '../services/SaleService';
 import SaleForm from '../components/SaleForm';
 import CustomerService from '../services/CustomerService';
@@ -9,7 +9,6 @@ const SaleFormPage = () => {
 
     const { id } = useParams();
     const [sale, setSale] = useState([]);
-    //  const [saleList, setSaleList] = useState([]);
     const [bookList, setBookList] = useState([]);
     const [customerList, setCustomerList] = useState([]);
 
@@ -25,7 +24,7 @@ const SaleFormPage = () => {
 
         const fetchBooks = async () => {
             try {
-                const response = await LivroService.getAllLivros();
+                const response = await BookService.findAllBooks();
                 setBookList(response.data);
             } catch (error) {
                 console.error(error);

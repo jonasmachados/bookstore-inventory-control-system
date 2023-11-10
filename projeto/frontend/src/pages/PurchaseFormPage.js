@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PurchaseForm from '../components/PurchaseForm';
-import LivroService from '../services/LivroService';
+import BookService from '../services/BookService';
 import PurchaseService from '../services/PurchaseService';
 
 const PurchaseFormPage = () => {
@@ -13,7 +13,7 @@ const PurchaseFormPage = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await LivroService.getAllLivros();
+                const response = await BookService.findAllBooks();
                 setBookList(response.data);
             } catch (error) {
                 console.error(error);
