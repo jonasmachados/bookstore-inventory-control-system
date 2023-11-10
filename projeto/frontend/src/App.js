@@ -1,18 +1,19 @@
-import Navbar from './components/NaviBar/Navibar';
-import Footer from './components/Footer/Footer';
-import RouteComponents from './components/Route/RouteComponents';
+import Footer from './components/Footer';
+import RouteComponents from './components/RouteComponents';
+import Header from './components/Header.js';
+import "./index.css"
 
 function App() {
   return (
-    <div>
-   
-      <Navbar />
-      
+    <div className='app'>
+
+      <Header />
+
       <RouteComponents />
 
       <Footer />
-   
-  </div >
+
+    </div >
   );
 }
 
