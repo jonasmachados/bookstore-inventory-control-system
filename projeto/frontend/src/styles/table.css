@@ -1,3 +1,8 @@
+.table-title {
+  display: flex;
+  justify-content: center;
+}
+
 .table {
   background-color: var(--body);
   border-collapse: collapse;
@@ -6,35 +11,123 @@
   table-layout: fixed;
 }
 
-.table th {
+.table thead th {
   background-color: var(--primary-color);
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 20px 10px;
 }
 
 .table td {
   background-color: var(--body);
-  border-color: transparent;
+  vertical-align: middle;
+  padding: 20px 10px;
+  border-bottom: 3px solid #ccc;
 }
 
 .table th p,
 .table td p {
-  display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 5px;
+  display: block;
+  transition: opacity 0.2s ease-in;
   color: var(--text);
   text-align: left;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
-.table tr {
-  transition: all 0.2s ease-in;
-  cursor: pointer;
+.book-cover-image {
+  width: 50px;
 }
 
-.table tr:hover {
-  transform: scale(1.01);
-  box-shadow: 2px 2px 12px var(--primary-color);
+.table-action {
+  display: flex;
+  justify-content: space-around;
+}
+
+.table-action-icon {
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  color: var(--text);
+}
+
+.table-action-icon.edit {
+  color: var(--primary-color);
+}
+
+.table-action-icon:hover {
+  opacity: 0.7;
+}
+
+.table-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 40px 0;
+}
+
+.table-img img {
+  width: 200px;
+}
+
+.table th:nth-of-type(3),
+.table th:nth-of-type(4),
+.table th:nth-of-type(5),
+.table th:nth-of-type(6),
+.table th:nth-of-type(7),
+.table th:nth-of-type(8),
+.table td:nth-of-type(3),
+.table td:nth-of-type(4),
+.table td:nth-of-type(5),
+.table td:nth-of-type(6),
+.table td:nth-of-type(7),
+.table td:nth-of-type(8) {
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  width: 0;
+}
+
+.table th:last-child {
+  opacity: 1;
+  padding: 20px 10px;
+  width: auto;
+}
+
+.table td:last-child {
+  opacity: 1;
+  padding: 20px 10px;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .table th:nth-of-type(3),
+  .table th:nth-of-type(4),
+  .table th:nth-of-type(5),
+  .table td:nth-of-type(3),
+  .table td:nth-of-type(4),
+  .table td:nth-of-type(5) {
+    opacity: 1;
+    padding: 20px 10px;
+    width: auto;
+  }
+
+  .table-img img {
+    width: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .table th:nth-of-type(6),
+  .table th:nth-of-type(7),
+  .table td:nth-of-type(6),
+  .table td:nth-of-type(7) {
+    opacity: 1;
+    padding: 20px 10px;
+    width: auto;
+  }
 }
