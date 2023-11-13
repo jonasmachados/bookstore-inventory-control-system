@@ -41,9 +41,9 @@ const BookList = ({ bookList, onDeleteBook }) => {
             <th> <p>Id</p> </th>
             <th> <p>Titulo</p> </th>
             <th> <p>Autor</p> </th>
-            <th>Editora</th>
-            <th>Capa</th>
-            <th>Publicação</th>
+            <th> <p>Editora</p> </th>
+            <th> <p>Capa</p> </th>
+            <th> <p>Publicação</p> </th>
             <th> <p>Estoque</p> </th>
             <th> <p>Ações</p> </th>
           </tr>
