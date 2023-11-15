@@ -1,13 +1,7 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  padding: 0 0 20px 0;
-}
-
-.dashboard-text {
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--text);
+  padding: 20px 0;
 }
 
 .dashboard-boxes {
@@ -33,14 +27,14 @@
   color: var(--text);
 }
 
-.dashboard-boxes .dashboard-box .dashboard-text {
+.dashboard-text {
   white-space: nowrap;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text);
 }
 
 .dashboard-number {
-  font-size: 28px;
+  font-size: 18px;
   color: var(--text);
 }
 
@@ -75,6 +69,20 @@
 @media (min-width: 768px) {
   .dashboard-box {
     width: calc(100% / 4 - 15px);
-    margin-top: 15px;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .dashboard-container {
+    padding: 0;
+  }
+
+  .dashboard-text {
+    font-size: 20px;
+  }
+
+  .dashboard-number {
+    font-size: 22px;
   }
 }
