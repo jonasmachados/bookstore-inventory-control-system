@@ -7,6 +7,7 @@
   background-color: var(--body);
   border-collapse: collapse;
   box-shadow: 2px 2px 12px var(--primary-color);
+  border-radius: 12px;
   width: 100%;
   table-layout: fixed;
 }
@@ -14,10 +15,15 @@
 .table thead th {
   background-color: var(--primary-color);
   font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 20px 10px;
+  padding: 20px 5px;
+}
+
+.table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 12px;
 }
 
 .table td {
@@ -27,15 +33,20 @@
   border-bottom: 3px solid #ccc;
 }
 
+.table th,
+.table td {
+  display: none;
+}
+
 .table th p,
 .table td p {
-  display: block;
-  transition: opacity 0.2s ease-in;
   color: var(--text);
-  text-align: left;
   font-family: "Poppins", sans-serif;
+  font-size: 14px;
   padding: 0;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .book-cover-image {
@@ -74,46 +85,25 @@
   width: 200px;
 }
 
-.table th:nth-of-type(3),
-.table th:nth-of-type(4),
-.table th:nth-of-type(5),
-.table th:nth-of-type(6),
-.table th:nth-of-type(7),
-.table th:nth-of-type(8),
-.table td:nth-of-type(3),
-.table td:nth-of-type(4),
-.table td:nth-of-type(5),
-.table td:nth-of-type(6),
-.table td:nth-of-type(7),
-.table td:nth-of-type(8) {
-  opacity: 0;
-  padding: 0;
-  margin: 0;
-  width: 0;
-}
-
-.table th:last-child {
-  opacity: 1;
-  padding: 20px 10px;
-  width: auto;
-}
-
+.table th:nth-of-type(1),
+.table th:nth-of-type(2),
+.table th:last-child,
+.table td:nth-of-type(1),
+.table td:nth-of-type(2),
 .table td:last-child {
-  opacity: 1;
-  padding: 20px 10px;
   width: auto;
+  display: table-cell;
 }
 
 @media (min-width: 768px) {
   .table th:nth-of-type(3),
   .table th:nth-of-type(4),
-  .table th:nth-of-type(5),
+  .table th:last-child,
   .table td:nth-of-type(3),
   .table td:nth-of-type(4),
-  .table td:nth-of-type(5) {
-    opacity: 1;
-    padding: 20px 10px;
+  .table td:last-child {
     width: auto;
+    display: table-cell;
   }
 
   .table-img img {
@@ -122,12 +112,14 @@
 }
 
 @media (min-width: 992px) {
-  .table th:nth-of-type(6),
-  .table th:nth-of-type(7),
-  .table td:nth-of-type(6),
-  .table td:nth-of-type(7) {
-    opacity: 1;
-    padding: 20px 10px;
+  .table th,
+  .table td {
     width: auto;
+    display: table-cell;
+  }
+
+  .table th p,
+  .table td p {
+    font-size: 18px;
   }
 }
