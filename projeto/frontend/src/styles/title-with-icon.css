@@ -8,8 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  width: 35px;
+  height: 28px;
+  width: 28px;
   background-color: var(--primary-color);
   border-radius: 6px;
   color: var(--text);
@@ -20,5 +20,16 @@
   color: var(--text);
   font-weight: 900;
   margin-left: 10px;
-  font-size: 30px;
+  font-size: 22px;
+}
+
+@media (min-width: 992px) {
+  .container-title-icon i {
+    height: 35px;
+    width: 35px;
+  }
+
+  .container-title-icon h2 {
+    font-size: 28px;
+  }
 }
