@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../styles/header.css"
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+    FaBars, FaTimes, FaBookOpen, FaUser, FaShoppingCart
+} from "react-icons/fa";
 import { AiFillHome } from 'react-icons/ai';
-import { GiWhiteBook } from 'react-icons/gi';
-import { BsFillPeopleFill } from 'react-icons/bs';
 import { MdPointOfSale } from 'react-icons/md';
-import { BiPurchaseTagAlt, BiChevronDown } from 'react-icons/bi';
+import { BiChevronDown } from 'react-icons/bi';
 import { HiDocumentReport } from 'react-icons/hi';
 import logo from "../assets/img/logo2.png";
 
@@ -13,7 +13,11 @@ function Header() {
 
     const [click, setClick] = useState(false);
 
-    const handleClick = () => setClick(!click);
+    const handleClick = () => {
+        setClick(!click);
+
+        document.body.style.overflow = !click ? 'hidden' : 'auto';
+    };
 
     return (
         <div className="header-container">
@@ -40,27 +44,27 @@ function Header() {
 
                 <li>
                     <a href="/livros">
-                        <GiWhiteBook className="nav-menu-icon" />
+                        <FaBookOpen className="nav-menu-icon" />
                         Livros
                     </a>
                 </li>
 
                 <li>
-                    <a href="/">
-                        <BsFillPeopleFill className="nav-menu-icon" />
+                    <a href="/clientes">
+                        <FaUser className="nav-menu-icon" />
                         Clientes
                     </a>
                 </li>
 
                 <li>
-                    <a href="/categoria/1">
-                        <BiPurchaseTagAlt className="nav-menu-icon" />
+                    <a href="/compras">
+                        <FaShoppingCart className="nav-menu-icon" />
                         Compras
                     </a>
                 </li>
 
                 <li>
-                    <a href="/">
+                    <a href="/vendas">
                         <MdPointOfSale className="nav-menu-icon" />
                         Vendas
                     </a>
@@ -72,10 +76,31 @@ function Header() {
                         Relatórios
                         <BiChevronDown className="nav-menu-icon" />
                     </a>
+
                     <ul className="sub-menu">
-                        <li><a href="/" >Livros</a></li>
-                        <li><a href="/" >Clientes</a></li>
-                        <li><a href="/" >Compras</a>
+                        <li>
+                            <a href="/" >
+                                <FaBookOpen className="nav-menu-icon" />
+                                Livros
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/" >
+                                <FaUser className="nav-menu-icon" />
+                                Clientes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/" >
+                                <FaShoppingCart className="nav-menu-icon" />
+                                Compras
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/" >
+                                <FaShoppingCart className="nav-menu-icon" />
+                                Vendas
+                            </a>
                         </li>
                     </ul>
                 </li>
