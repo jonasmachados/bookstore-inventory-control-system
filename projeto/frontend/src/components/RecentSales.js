@@ -2,10 +2,13 @@ import { convertNumberToCurrency } from "../utils/convertNumberToCurrency";
 import TitleWithIcon from "./TitleWithIcon";
 import { MdPointOfSale } from 'react-icons/md'
 import "../styles/table.css"
+import "../styles/component.css"
 
 const RecentSales = ({ saleList }) => {
+
   return (
-    <>
+    <div className="container-component">
+
       <TitleWithIcon
         icon={<MdPointOfSale />}
         title="Vendas Recentes"
@@ -32,8 +35,10 @@ const RecentSales = ({ saleList }) => {
           ))}
         </tbody>
       </table>
-    </>
+
+    </div>
   );
+
 };
 
 export default RecentSales;

@@ -1,12 +1,13 @@
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import "../styles/table.css"
+import "../styles/component.css"
 import { convertNumberToCurrency } from "../utils/convertNumberToCurrency";
 import TitleWithIcon from './TitleWithIcon';
 
 const RecentPurchases = ({ purchaseList }) => {
 
     return (
-        <>
+        <div className="container-component">
 
             <TitleWithIcon
                 icon={<AiOutlineShoppingCart />}
@@ -35,7 +36,7 @@ const RecentPurchases = ({ purchaseList }) => {
                 </tbody>
             </table>
 
-        </>
+        </div>
     );
 };
 
