@@ -1,6 +1,7 @@
 # Build stage
 FROM maven AS build
-COPY ./projeto/backend
+COPY ./projeto/backend /projeto/backend
+WORKDIR /projeto/backend
 RUN mvn clean package -Pprod -DskipTests
 
 # Package stage
