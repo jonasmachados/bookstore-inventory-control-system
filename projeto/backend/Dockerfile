@@ -1,14 +1,13 @@
 # Build stage
 FROM maven AS build
-COPY ./projeto/backend /app
-WORKDIR /app
+COPY ./projeto/backend
 RUN mvn clean package -Pprod -DskipTests
 
 # Package stage
 FROM adoptopenjdk:15-jre-hotspot
-COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar /backend.jar
+COPY --from=build /projeto/backend/target/backend-0.0.1-SNAPSHOT.jar /backend.jar
 
 # ENV PORT=8080
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/backend.jar"]
