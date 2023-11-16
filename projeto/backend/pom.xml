@@ -121,7 +121,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version> <!-- ou a versão mais recente disponível -->
+                <version>3.8.1</version> <!-- Use the latest version -->
+                <configuration>
+                    <source>15</source> <!-- Set your Java source version -->
+                    <target>15</target> <!-- Set your Java target version -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
