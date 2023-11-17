@@ -8,8 +8,11 @@ import CustomerImg from "../assets/img/client.svg";
 import CustomertoPdf from "../report/CustomerToPdf";
 import "../styles/button.css";
 import "../styles/table.css";
+import NoDataMessage from "./NoDataMessage";
 
 const CustomerList = ({ customerList, onDeleteCustomer }) => {
+
+    const isEmpty = customerList.length === 0;
 
     return (
         <>
@@ -34,52 +37,63 @@ const CustomerList = ({ customerList, onDeleteCustomer }) => {
                 </button>
             </div>
 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th> <p>Id</p> </th>
-                        <th> <p>Nome</p> </th>
-                        <th> <p>Rua</p> </th>
-                        <th> <p>Numero</p> </th>
-                        <th> <p>Bairro</p> </th>
-                        <th> <p>Cidade</p> </th>
-                        <th> <p>Estado</p> </th>
-                        <th> <p>Cep</p> </th>
-                        <th> <p>Ações</p> </th>
-                    </tr>
-                </thead>
+            {isEmpty ? (
+                <NoDataMessage
+                    header={"Oops, nenhum cliente disponível."}
+                    bodyText={"Adicione um cliente"}
+                    iconButton={< AiOutlineFolderAdd className="button-icon" />}
+                    urlButton={"/add-cliente"}
+                />
+            ) :
+                (
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th> <p>Id</p> </th>
+                                <th> <p>Nome</p> </th>
+                                <th> <p>Rua</p> </th>
+                                <th> <p>Numero</p> </th>
+                                <th> <p>Bairro</p> </th>
+                                <th> <p>Cidade</p> </th>
+                                <th> <p>Estado</p> </th>
+                                <th> <p>Cep</p> </th>
+                                <th> <p>Ações</p> </th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    {customerList.map((customer) => (
-                        <tr key={customer.id}>
-                            <td> <p className="p_td">{customer.id}</p></td>
-                            <td> <p className="p_td">{customer.nome}</p> </td>
-                            <td> <p className="p_td">{customer.rua}</p> </td>
-                            <td> <p className="p_td">{customer.numero} </p> </td>
-                            <td> <p className="p_td">{customer.bairro} </p> </td>
-                            <td> <p className="p_td">{customer.cidade} </p> </td>
-                            <td> <p className="p_td">{customer.estado} </p> </td>
-                            <td> <p className="p_td">{customer.cep} </p> </td>
-                            <td>
-                                <div className="table-action">
+                        <tbody>
+                            {customerList.map((customer) => (
+                                <tr key={customer.id}>
+                                    <td> <p className="p_td">{customer.id}</p></td>
+                                    <td> <p className="p_td">{customer.nome}</p> </td>
+                                    <td> <p className="p_td">{customer.rua}</p> </td>
+                                    <td> <p className="p_td">{customer.numero} </p> </td>
+                                    <td> <p className="p_td">{customer.bairro} </p> </td>
+                                    <td> <p className="p_td">{customer.cidade} </p> </td>
+                                    <td> <p className="p_td">{customer.estado} </p> </td>
+                                    <td> <p className="p_td">{customer.cep} </p> </td>
+                                    <td>
+                                        <div className="table-action">
 
-                                    <Link
-                                        className="table-action-icon edit"
-                                        to={`/edit-cliente/${customer.id}`} >
-                                        <BiEdit />
-                                    </Link>
+                                            <Link
+                                                className="table-action-icon edit"
+                                                to={`/edit-cliente/${customer.id}`} >
+                                                <BiEdit />
+                                            </Link>
 
-                                    <button
-                                        className="table-action-icon"
-                                        onClick={() => onDeleteCustomer(customer.id)}>
-                                        <AiOutlineDelete />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                                            <button
+                                                className="table-action-icon"
+                                                onClick={() => onDeleteCustomer(customer.id)}>
+                                                <AiOutlineDelete />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )
+            }
 
             <div className="table-img">
                 <img

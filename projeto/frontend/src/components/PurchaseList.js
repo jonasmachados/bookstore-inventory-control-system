@@ -8,8 +8,11 @@ import PurchaseImg from "../assets/img/compra.svg";
 import "../styles/button.css";
 import "../styles/table.css";
 import { convertNumberToCurrency } from "../utils/convertNumberToCurrency";
+import NoDataMessage from "./NoDataMessage";
 
 const PurchaseList = ({ purchaseList, onDeletePurchase }) => {
+
+    const isEmpty = purchaseList.length === 0;
 
     return (
         <>
@@ -38,45 +41,55 @@ const PurchaseList = ({ purchaseList, onDeletePurchase }) => {
                 </button>
             </div>
 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th> <p>Id</p> </th>
-                        <th> <p>Livro </p> </th>
-                        <th> <p>Quantidade</p> </th>
-                        <th> <p>Preço </p> </th>
-                        <th> <p>Total </p> </th>
-                        <th> <p>Ações</p> </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {purchaseList.map((purchase) => (
-                        <tr key={purchase.id}>
-                            <td> <p>{purchase.id}</p></td>
-                            <td> <p>{purchase.livro.titulo}</p> </td>
-                            <td> <p>{purchase.qtdItens}</p> </td>
-                            <td> <p>{convertNumberToCurrency(purchase.precoVenda)} </p> </td>
-                            <td> <p>{convertNumberToCurrency(purchase.total)} </p> </td>
-                            <td>
-                                <div className="table-action">
-                                    <Link
-                                        className="table-action-icon edit"
-                                        to={`/edit-compra/${purchase.id}`} >
-                                        <BiEdit />
-                                    </Link>
-
-                                    <button
-                                        className="table-action-icon"
-                                        onClick={() => onDeletePurchase(purchase.id)}>
-                                        <AiOutlineDelete />
-                                    </button>
-                                </div>
-                            </td>
+            {isEmpty ? (
+                <NoDataMessage
+                    header={"Oops, nenhuma compra disponível."}
+                    bodyText={"Adicione uma compra"}
+                    iconButton={< AiOutlineFolderAdd className="button-icon" />}
+                    urlButton={"/add-compra"}
+                />
+            ) : (
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th> <p>Id</p> </th>
+                            <th> <p>Livro </p> </th>
+                            <th> <p>Quantidade</p> </th>
+                            <th> <p>Preço </p> </th>
+                            <th> <p>Total </p> </th>
+                            <th> <p>Ações</p> </th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        {purchaseList.map((purchase) => (
+                            <tr key={purchase.id}>
+                                <td> <p>{purchase.id}</p></td>
+                                <td> <p>{purchase.livro.titulo}</p> </td>
+                                <td> <p>{purchase.qtdItens}</p> </td>
+                                <td> <p>{convertNumberToCurrency(purchase.precoVenda)} </p> </td>
+                                <td> <p>{convertNumberToCurrency(purchase.total)} </p> </td>
+                                <td>
+                                    <div className="table-action">
+                                        <Link
+                                            className="table-action-icon edit"
+                                            to={`/edit-compra/${purchase.id}`} >
+                                            <BiEdit />
+                                        </Link>
+
+                                        <button
+                                            className="table-action-icon"
+                                            onClick={() => onDeletePurchase(purchase.id)}>
+                                            <AiOutlineDelete />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )
+            }
 
             <div className="table-img">
                 <img
